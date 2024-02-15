@@ -19,8 +19,7 @@ int main(int argc, char **argv)
 	game = init_game();
 	if (!game)
 		return (1);
-	game->map = get_map(game, argv);
-	if (!game->map)
+	if (get_file_content(game, argv) == 1)
 		return (free_game(game), 1); //msg a checker
 //	if (parse_map(game) == 1)
 //		return (1); //msg a checker
