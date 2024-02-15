@@ -18,8 +18,6 @@ int	check_extension(char **argv)
 		return (1);
 	if (argv[1][i--] != '.')
 		return (1);
-	if (!argv[1][i])
-		return (1);
 	return (0);
 }
 
