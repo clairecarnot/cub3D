@@ -11,13 +11,13 @@
 
 /*
  * char	**type
- * type[1] = NO
- * type[2] = SO
- * type[3] = WE
- * type[4] = EA
- * type[5] = floor
- * type[6] = ceiling
- * type[7] = NULL
+ * type[0] = NO
+ * type[1] = SO
+ * type[2] = WE
+ * type[3] = EA
+ * type[4] = floor
+ * type[5] = ceiling
+ * type[6] = NULL
  */
 
 typedef struct s_game
@@ -34,6 +34,12 @@ typedef struct s_game
 t_game	*init_game(void);
 int main(int argc, char **argv);
 
+/*--------------------------- clear.c ---------------------------*/
+int	close_if(int *fd);
+void	free_if(char *str);
+void	free_tab(char **tab);
+int	free_game(t_game *game);
+
 /*--------------------------- getcontent1.c ---------------------------*/
 int	check_extension(char **argv);
 int	check_file_errors(char **argv);
@@ -42,16 +48,26 @@ void	is_newline(char *line, int *nl, int *rows);
 void	count_rows(t_game *game, int fd, int *rows);
 
 /*--------------------------- getcontent2.c ---------------------------*/
-//int	is_wspc(char c);
 int	cpy_map_from_file(t_game *game, char **argv, int rows);
 int	get_map(t_game *game, int fd, char **argv);
 int	sort_content(t_game *game, char **argv);
 int	get_file_content(t_game *game, char **argv);
 
-/*--------------------------- clear.c ---------------------------*/
-int	close_if(int *fd);
-void	free_if(char *str);
-void	free_tab(char **tab);
-int	free_game(t_game *game);
+/*--------------------------- parse_type1.c ---------------------------*/
+int	is_wspc(char c);
+int	check_types(char **new);
+void	swap_ptrs(char **s1, char **s2);
+int	ptr_to_swap(char *s);
+int	search_type(char *type, char **new);
+
+/*--------------------------- parse_type2.c ---------------------------*/
+int	check_alltypes(char **new);
+int	reorder_new(char **new);
+int	clean_types(char **new);
+char	*init_set(void);
+int	redef_types(t_game *game);
+
+/*--------------------------- parsing.c ---------------------------*/
+int	parse_content(t_game *game);
 
 #endif

@@ -1,15 +1,5 @@
 #include "../include/cub3D.h"
 
-/*
-int	is_wspc(char c)
-{
-	if (c == ' ' || (c >= '\t' && c <= '\r'))
-		return (1);
-	else
-		return (0);
-}
-*/
-
 int	cpy_map_from_file(t_game *game, char **argv, int rows)
 {
 	int		fd;
@@ -108,6 +98,7 @@ int	get_file_content(t_game *game, char **argv)
 		return (1);
 	if (sort_content(game, argv) == -1)
 		return (1);
+	/*
 	int i = 0;
 	while (game->type[i])
 	{
@@ -122,5 +113,6 @@ int	get_file_content(t_game *game, char **argv)
 		j++;
 	}
 	dprintf(2, "\n***\n");
+	*/
 	return (0);
 }

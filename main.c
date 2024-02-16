@@ -20,9 +20,9 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (1);
 	if (get_file_content(game, argv) == 1)
-		return (free_game(game), 1); //msg a checker
-//	if (parse_map(game) == 1)
-//		return (1); //msg a checker
+		return (free_game(game), 1);
+	if (parse_content(game) == 1)
+		return (free_game(game), 1);
 //	loop
 	free_game(game);
 	return (0);
