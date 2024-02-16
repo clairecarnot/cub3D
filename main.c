@@ -1,16 +1,16 @@
 #include "cub3D.h"
 
-t_game	*init_game()
+t_game	*init_game(void)
 {
 	t_game	*game;
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (NULL);
+		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	return (game);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	*game;
 

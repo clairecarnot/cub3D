@@ -32,6 +32,10 @@ void	free_tab(char **tab)
 
 int	free_game(t_game *game)
 {
+	if (game->type)
+		free_tab(game->type);
+	if (game->map)
+		free_tab(game->map);
 	if (game)
 		free(game);
 	return (0);

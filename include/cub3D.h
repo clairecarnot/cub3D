@@ -17,6 +17,7 @@
  * type[4] = EA
  * type[5] = floor
  * type[6] = ceiling
+ * type[7] = NULL
  */
 
 typedef struct s_game
@@ -30,7 +31,7 @@ typedef struct s_game
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
-t_game	*init_game();
+t_game	*init_game(void);
 int main(int argc, char **argv);
 
 /*--------------------------- getmap.c ---------------------------*/
