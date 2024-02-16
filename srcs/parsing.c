@@ -21,14 +21,16 @@ int	parse_content(t_game *game)
 		i++;
 	}
 	*/
+	if (redef_map(game) == -1)
+		return (1);
 	return (0);
 }
 
 	//TYPES:
-	//enlever les espaces en trop
-	//verifier que tous les types sont presents
-	//reordonner les types et garder juste le chemin
-	//verfieir le chemin
+	//enlever les espaces en trop				OK
+	//verifier que tous les types sont presents		OK
+	//reordonner les types et garder juste le chemin	OK
+	//verifier le chemin
 	//F ou C: 	chiffre qui manque
 	//		virgule en trop
 	//		chiffre superieur a 255 ou un inferieur a(?)
