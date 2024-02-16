@@ -34,9 +34,18 @@ typedef struct s_game
 t_game	*init_game(void);
 int main(int argc, char **argv);
 
-/*--------------------------- getmap.c ---------------------------*/
+/*--------------------------- getcontent1.c ---------------------------*/
 int	check_extension(char **argv);
 int	check_file_errors(char **argv);
+int	get_types(t_game *game, char **argv);
+void	is_newline(char *line, int *nl, int *rows);
+void	count_rows(t_game *game, int fd, int *rows);
+
+/*--------------------------- getcontent2.c ---------------------------*/
+//int	is_wspc(char c);
+int	cpy_map_from_file(t_game *game, char **argv, int rows);
+int	get_map(t_game *game, int fd, char **argv);
+int	sort_content(t_game *game, char **argv);
 int	get_file_content(t_game *game, char **argv);
 
 /*--------------------------- clear.c ---------------------------*/

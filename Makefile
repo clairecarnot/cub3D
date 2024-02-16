@@ -7,7 +7,7 @@ MLXFLAGS = -lX11 -lXext
 INCL = -I -I./libft -I./include -I./minilib-linux
 
 SRCS = main.c \
-srcs/clear.c srcs/getmap.c
+srcs/clear.c srcs/getcontent1.c srcs/getcontent2.c
 
 OBJS = $(SRCS:.c=.o)
 
