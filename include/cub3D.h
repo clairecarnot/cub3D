@@ -54,7 +54,7 @@ int	sort_content(t_game *game, char **argv);
 int	get_file_content(t_game *game, char **argv);
 
 /*--------------------------- parse_type1.c ---------------------------*/
-int	is_wspc(char c);
+int	is_wspc_excl_nl(char c);
 int	check_types(char **new);
 void	swap_ptrs(char **s1, char **s2);
 int	ptr_to_swap(char *s);
@@ -66,6 +66,12 @@ int	reorder_new(char **new);
 int	clean_types(char **new);
 char	*init_set(void);
 int	redef_types(t_game *game);
+
+/*--------------------------- parse_map1.c ---------------------------*/
+int	len_max(char **tab);
+char	*redef_rows_bis(char *map, int lmax);
+char	*redef_rows(char *map, int lmax);
+int	redef_map(t_game *game);
 
 /*--------------------------- parsing.c ---------------------------*/
 int	parse_content(t_game *game);

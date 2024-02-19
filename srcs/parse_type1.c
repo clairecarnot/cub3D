@@ -1,8 +1,8 @@
 #include "cub3D.h"
 
-int	is_wspc(char c)
+int	is_wspc_excl_nl(char c)
 {
-	if (c == ' ' || (c >= '\t' && c <= '\r'))
+	if (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
 		return (1);
 	else
 		return (0);
@@ -36,17 +36,17 @@ void	swap_ptrs(char **s1, char **s2)
 
 int	ptr_to_swap(char *s)
 {
-	if (!ft_strncmp(s, "NO", 2) && is_wspc(s[2]))
+	if (!ft_strncmp(s, "NO", 2) && is_wspc_excl_nl(s[2]))
 		return (0);
-	else if (!ft_strncmp(s, "SO", 2) && is_wspc(s[2]))
+	else if (!ft_strncmp(s, "SO", 2) && is_wspc_excl_nl(s[2]))
 		return (1);
-	else if (!ft_strncmp(s, "WE", 2) && is_wspc(s[2]))
+	else if (!ft_strncmp(s, "WE", 2) && is_wspc_excl_nl(s[2]))
 		return (2);
-	else if (!ft_strncmp(s, "EA", 2) && is_wspc(s[2]))
+	else if (!ft_strncmp(s, "EA", 2) && is_wspc_excl_nl(s[2]))
 		return (3);
-	else if (!ft_strncmp(s, "F", 1) && is_wspc(s[1]))
+	else if (!ft_strncmp(s, "F", 1) && is_wspc_excl_nl(s[1]))
 		return (4);
-	else if (!ft_strncmp(s, "C", 1) && is_wspc(s[1]))
+	else if (!ft_strncmp(s, "C", 1) && is_wspc_excl_nl(s[1]))
 		return (5);
 	else
 		return (-1);

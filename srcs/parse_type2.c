@@ -53,7 +53,7 @@ int	clean_types(char **new)
 			j = 3;
 		else
 			j = 2;
-		while (is_wspc(new[i][j]))
+		while (new[i][j] && is_wspc_excl_nl(new[i][j]))
 			j++;
 		tmp = ft_strdup(&new[i][j]);
 		if (!tmp)
