@@ -54,6 +54,8 @@ int	get_map(t_game *game, int fd, char **argv)
 	game->map = ft_calloc(game->rows + 1, sizeof(char *));
 	if (!game->map)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
+//	dprintf(2, "rows = %d\n", rows);
+//	dprintf(2, "game->rows = %d\n", game->rows);
 	cpy_map_from_file(game, argv, rows);
 	return (0);
 }

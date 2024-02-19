@@ -21,7 +21,6 @@ int	parse_content(t_game *game)
 		i++;
 	}
 	*/
-	/*
 	int j = 0;
 	while (game->map[j])
 	{
@@ -37,17 +36,14 @@ int	parse_content(t_game *game)
 		j++;
 	}
 	dprintf(2, "\n");
-	*/
 	if (redef_map(game) == -1)
 		return (1);
-	/*
 	j = 0;
 	while (game->map[j])
 	{
 		dprintf(2, "%s", game->map[j]);
 		j++;
 	}
-	*/
 	if (check_err_map(game) == -1)
 		return (1);
 	return (0);

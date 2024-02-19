@@ -67,11 +67,14 @@ int	clean_types(char **new);
 char	*init_set(void);
 int	redef_types(t_game *game);
 
-/*--------------------------- parse_map1.c ---------------------------*/
+/*--------------------------- parse_map.c ---------------------------*/
 int	len_max(char **tab);
 char	*redef_rows_bis(char *map, int lmax);
 char	*redef_rows(char *map, int lmax);
 int	redef_map(t_game *game);
+
+/*--------------------------- parse_err_map.c ---------------------------*/
+int	check_err_map(t_game *game);
 
 /*--------------------------- parsing.c ---------------------------*/
 int	parse_content(t_game *game);
