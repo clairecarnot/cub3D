@@ -10,7 +10,8 @@ SRCS = main.c \
 srcs/clear.c srcs/getcontent1.c srcs/getcontent2.c \
 srcs/parsing.c srcs/parse_type1.c srcs/parse_type2.c \
 srcs/parse_map1.c srcs/parse_map2.c \
-srcs/parse_err_map.c
+srcs/parse_err_map.c \
+srcs/handle.c srcs/free_exit.c srcs/img_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

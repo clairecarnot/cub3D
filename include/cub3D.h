@@ -20,14 +20,31 @@
  * type[6] = NULL
  */
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	// char	*addr;
+	int		height;
+	int		width;
+	// int		bpp;
+	// int		line_len;
+	// int		endian;
+}		t_img;
+
 typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_img		image_base;
 	char		**map;
+
 	char		**type;
 	int			rows;
 	int			cols;
+
+	double		posX;
+	double		posY;
+
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
@@ -83,5 +100,15 @@ int	check_err_map(t_game *game);
 
 /*--------------------------- parsing.c ---------------------------*/
 int	parse_content(t_game *game);
+
+//--------------------------- handle.c ---------------------------//
+int	handle_no_event(t_game *game);
+int	handle_input(int keysym, t_game *game);
+
+//------------------------- img_utils.c --------------------------//
+t_img	new_img(int w, int h, t_game *game);
+
+//-------------------------- free_exit.c -------------------------//
+int	ft_exit(t_game *game);
 
 #endif
