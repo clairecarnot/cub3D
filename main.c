@@ -27,6 +27,16 @@ t_game	*init_game()
 		exit (1);
 	}
 	// preinit_img();
+	//--------------------temp-----------------------
+	game->map = malloc(sizeof(char *) * (6 + 1));
+	game->map[0] = ft_strdup("111111");
+	game->map[1] = ft_strdup("100001");
+	game->map[2] = ft_strdup("100001");
+	game->map[3] = ft_strdup("100001");
+	game->map[4] = ft_strdup("10N001");
+	game->map[5] = ft_strdup("111111");
+	game->map[6] = 0;
+	//-----------------------------------------------
 	init_img(game);
 	return (game);
 }

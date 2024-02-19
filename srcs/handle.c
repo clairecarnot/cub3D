@@ -1,17 +1,14 @@
 #include "../include/cub3D.h"
 
+int	draw_game(t_game *game)
+{
+	
+}
+
 int	handle_no_event(t_game *game)
 {
 	(void)game;
-	// game->move_nb = ft_itoa(game->move);
-	// if (!game->move_nb)
-	// 	ft_exit(game);
-	// draw_bricks(game);
-	// draw_floor(game);
-	// draw_collect(game);
-	// draw_exit(game);
-	// draw_perso(game);
-	// draw_enemy(game);
+	draw_game(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
 	game->image_base.img_ptr, 0, 0);
 	// render_rect(game, (t_rect){39, 12, 115, 15, (int)0xffffff});

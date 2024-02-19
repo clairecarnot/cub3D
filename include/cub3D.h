@@ -26,6 +26,8 @@ typedef struct s_game
 	void		*win_ptr;
 	t_img		image_base;
 	char		**map;
+	double		posX;
+	double
 }		t_game;
 
 int main(int argc, char **argv);
