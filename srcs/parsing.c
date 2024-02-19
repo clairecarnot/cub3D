@@ -36,6 +36,7 @@ int	parse_content(t_game *game)
 		j++;
 	}
 	dprintf(2, "\n");
+	dprintf(2, "\n");
 	if (redef_map(game) == -1)
 		return (1);
 	j = 0;
@@ -44,6 +45,8 @@ int	parse_content(t_game *game)
 		dprintf(2, "%s", game->map[j]);
 		j++;
 	}
+//	dprintf(2, "\ngame->rows = %d\n", game->rows);
+//	dprintf(2, "game->cols = %d\n", game->cols);
 	if (check_err_map(game) == -1)
 		return (1);
 	return (0);
@@ -62,8 +65,8 @@ int	parse_content(t_game *game)
 	//remplacer les whitespaces				OK
 	//compter la plus grand chaine, completer avec des 1	OK
 	//compter les rows et cols				OK
-	// ligne vide dans la map
-	//encadre de murs
-	// verifier characteres autorises only
-	//presence un seul player
+	// ligne vide dans la map				OK	
+	//encadre de murs					OK
+	// verifier characteres autorises only			OK
+	//presence un seul player				OK
 	//taille de la map?

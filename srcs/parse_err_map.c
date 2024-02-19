@@ -1,5 +1,10 @@
 #include "cub3D.h"
 
+/*
+ * contains_empty_nl
+ * Checks if there is an empty newline in the map
+ */
+
 int	contains_empty_nl(t_game *game)
 {
 	int	i;
@@ -13,6 +18,11 @@ int	contains_empty_nl(t_game *game)
 	}
 	return (0);
 }
+
+/*
+ * contains_forbid_chars
+ * Checks if there are other characters than 0, 1, N, S, E, W, \n
+ */
 
 int	contains_forbid_chars(t_game *game)
 {
@@ -39,6 +49,11 @@ int	contains_forbid_chars(t_game *game)
 	}
 	return (0);
 }
+
+/*
+ * wrong_nb_player
+ * Checks if the number of players is 1 (no more no less)
+ */
 
 int	wrong_nb_player(t_game *game)
 {
@@ -67,30 +82,42 @@ int	wrong_nb_player(t_game *game)
 	return (0);
 }
 
-//reprendre ici
+/*
+ * map_not_closed
+ * Checks if the map is surrounded by walls (1)
+ */
+
 int	map_not_closed(t_game *game)
 {
 	int	i;
 
-	dprintf(2, "\nici\n");
 	i = 1;
-	while (game->map[i] && i < game->rows)
+	while (game->map[i] && i < game->rows - 1)
 	{
-		if (game->map[i][0] != '1' || game->map[i][game->cols - 1] == '1')
+		if (game->map[i][0] != '1' || game->map[i][game->cols - 2] != '1')
 			return (ft_putstr_fd("Error\nMap not closed\n", 2), -1);
 		i++;
 	}
-	dprintf(2, "ici bis\n");
 	i = 1;
-	while (i < game->cols)
+	while (i < game->cols - 2)
 	{
 		if (game->map[0][i] != '1' || game->map[game->rows - 1][i] != '1')
+		{
 			return (ft_putstr_fd("Error\nMap not closed\n", 2), -1);
+		}
 		i++;
 	}
-	dprintf(2, "ici ter\n");
 	return (0);
 }
+
+/*
+ * check_err_map
+ * Handles the following errors:
+ * 	1/ if there is an empty newline in the map
+ *	2/ if the map contains chars other than 0, 1, N, S, E, W, \n
+ *	3/ if the map does not contain 1 player only
+ *	4/ if the map is not surrounded by walls
+ */
 
 int	check_err_map(t_game *game)
 {
@@ -104,9 +131,3 @@ int	check_err_map(t_game *game)
 		return (-1);
 	return (0);
 }
-	//MAP:
-	// ligne vide dans la map			ok
-	//encadre de murs
-	// verifier characteres autorises only		ok
-	//presence un seul player			ok
-	//taille de la map?

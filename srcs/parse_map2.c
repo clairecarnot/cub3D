@@ -57,7 +57,7 @@ char	*redef_rows_bis(char *map, int lmax)
 	j = i;
 	while (i < lmax - 1)
 	{
-		new[i] = '1';
+		new[i] = '2';
 		i++;
 	}
 	if (map[j] && map[j] == '\n')
@@ -94,23 +94,19 @@ char	*redef_rows(char *map, int lmax)
 
 int	rmv_end_nl(t_game *game)
 {
-//	dprintf(2, "game->rows = %d\n", game->rows);
 	char	**new;
 	int		i;
 
 	i = game->rows - 1;
-//	dprintf(2, "i = %d\n", i);
 	while (i >= 0 && ft_strlen(game->map[i]) == 1
 		&& !ft_strncmp(game->map[i], "\n", 1))
 		i--;
-//	dprintf(2, "i = %d\n", i);
 	if (i != game->rows - 1)
 	{
-//		dprintf(2, "boucle\n");
-		new = ft_calloc(i + 1, sizeof(char *));
+		new = ft_calloc(i + 2, sizeof(char *));
 		if (!new)
 			return (ft_putstr_fd("Bad malloc\n", 2), -1);
-		game->rows = i;
+		game->rows = i + 1;
 		i = 0;
 		while (i < game->rows)
 		{
@@ -134,7 +130,6 @@ int	rmv_end_nl(t_game *game)
 
 int	redef_map(t_game *game)
 {
-//	dprintf(2, "game->rows = %d\n", game->rows);
 	char	**new;
 	int		lmax;
 	int		i;
@@ -156,5 +151,6 @@ int	redef_map(t_game *game)
 	game->map = new;
 	if (rmv_end_nl(game) == -1)
 		return (-1);
+	replace_empty_chars(game);
 	return (0);
 }
