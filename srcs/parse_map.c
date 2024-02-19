@@ -86,13 +86,20 @@ char	*redef_rows(char *map, int lmax)
 		return (redef_rows_bis(map, lmax));
 }
 
+/*
+ * rmv_end_nl
+ * Removes all empty newlines after the last filled row of chars
+ * 	of the map
+ */
+
 int	rmv_end_nl(t_game *game)
 {
 	char	**new;
 	int		i;
 
 	i = game->rows - 1;
-	while (i >= 0 && ft_strlen(game->map[i]) == 1 && !ft_strncmp(game->map[i], "\n", 1))
+	while (i >= 0 && ft_strlen(game->map[i]) == 1
+		&& !ft_strncmp(game->map[i], "\n", 1))
 		i--;
 	if (i != game->rows - 1)
 	{
