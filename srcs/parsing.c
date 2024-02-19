@@ -48,6 +48,8 @@ int	parse_content(t_game *game)
 		j++;
 	}
 	*/
+	if (check_err_map(game) == -1)
+		return (1);
 	return (0);
 }
 
@@ -63,7 +65,7 @@ int	parse_content(t_game *game)
 	//MAP:
 	//remplacer les whitespaces				OK
 	//compter la plus grand chaine, completer avec des 1	OK
-	//compter les rows et cols
+	//compter les rows et cols				OK
 	// ligne vide dans la map
 	//encadre de murs
 	// verifier characteres autorises only

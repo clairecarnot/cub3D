@@ -86,6 +86,34 @@ char	*redef_rows(char *map, int lmax)
 		return (redef_rows_bis(map, lmax));
 }
 
+int	rmv_end_nl(t_game *game)
+{
+	char	**new;
+	int		i;
+
+	i = game->rows - 1;
+	while (i >= 0 && ft_strlen(game->map[i]) == 1 && !ft_strncmp(game->map[i], "\n", 1))
+		i--;
+	if (i != game->rows - 1)
+	{
+		new = ft_calloc(i + 1, sizeof(char *));
+		if (!new)
+			return (ft_putstr_fd("Bad malloc\n", 2), -1);
+		game->rows = i;
+		i = 0;
+		while (i < game->rows)
+		{
+			new[i] = ft_strdup(game->map[i]);
+			if (!new[i])
+				return (ft_putstr_fd("Bad malloc\n", 2), free_tab(new), -1);
+			i++;
+		}
+		free_tab(game->map);
+		game->map = new;
+	}
+	return (0);
+}
+
 /*
  * redef_map
  * First calculates the len of the row with the most characters in the map
@@ -114,5 +142,7 @@ int	redef_map(t_game *game)
 	game->cols = lmax;
 	free_tab(game->map);
 	game->map = new;
+	if (rmv_end_nl(game) == -1)
+		return (-1);
 	return (0);
 }

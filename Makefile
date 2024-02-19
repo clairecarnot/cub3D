@@ -9,7 +9,8 @@ INCL = -I -I./libft -I./include -I./minilib-linux
 SRCS = main.c \
 srcs/clear.c srcs/getcontent1.c srcs/getcontent2.c \
 srcs/parsing.c srcs/parse_type1.c srcs/parse_type2.c \
-srcs/parse_map.c
+srcs/parse_map.c \
+srcs/parse_err_map.c
 
 OBJS = $(SRCS:.c=.o)
 
