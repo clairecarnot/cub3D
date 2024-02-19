@@ -12,6 +12,7 @@ t_game	*init_game(void)
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
+	/*
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 	{
@@ -38,6 +39,7 @@ t_game	*init_game(void)
 	game->map[6] = 0;
 	//-----------------------------------------------
 	init_img(game);
+	*/
 	return (game);
 }
 
@@ -57,10 +59,10 @@ int	main(int argc, char **argv)
 	if (parse_content(game) == 1)
 		return (free_game(game), 1);
 
-	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
-	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_input, game);
-	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
-	mlx_loop(game->mlx_ptr);
+//	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
+//	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_input, game);
+//	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
+//	mlx_loop(game->mlx_ptr);
 
 	free_game(game);
 

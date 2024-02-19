@@ -23,12 +23,12 @@
 typedef struct s_img
 {
 	void	*img_ptr;
-	// char	*addr;
+	char	*addr;
 	int		height;
 	int		width;
-	// int		bpp;
-	// int		line_len;
-	// int		endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }		t_img;
 
 typedef struct s_game
@@ -36,8 +36,12 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		image_base;
-	char		**map;
+	t_img		no;
+	t_img		so;
+	t_img		ea;
+	t_img		we;
 
+	char		**map;
 	char		**type;
 	int			rows;
 	int			cols;

@@ -21,8 +21,8 @@ int	parse_content(t_game *game)
 		i++;
 	}
 	*/
-	// if (check_err_types(game) == -1)
-	// 	return (1);
+	if (check_err_types(game) == -1)
+	 	return (1);
 	/*
 	int j = 0;
 	while (game->map[j])
