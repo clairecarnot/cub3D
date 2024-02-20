@@ -4,10 +4,14 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
+# include <unistd.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <stdio.h>
-# include <unistd.h>
+
 
 /*
  * char	**type
@@ -26,29 +30,64 @@ typedef struct s_img
 	// char	*addr;
 	int		height;
 	int		width;
-	// int		bpp;
-	// int		line_len;
-	// int		endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		*full_buf;
+	int 	size;
 }		t_img;
 
 typedef struct s_game
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		image_base;
-	char		**map;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			image_base;
+	char			**map;
 
-	char		**type;
-	int			rows;
-	int			cols;
+	char			**type;
+	int				rows;
+	int				cols;
 
-	double		posX;
-	double		posY;
+	unsigned int	**buf;
+	// char		*full_buf;
+	t_img			image;
+
+	int				screen_w;
+	int				screen_h;
+	double			posX;
+	double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
+	double			time;
+	double			oldtime;
+
+	double			cameraX;
+	double			rayDirX;
+	double			rayDirY;
+	int				mapX;
+	int				mapY;
+	double			sideDistX;
+	double			sideDistY;
+	double			deltaDistX;
+	double			deltaDistY;
+	double			perpWallDist;
+	int				stepX;
+	int				stepY;
+	int				hit;
+	int				side;
+
+	int				lineHeight;
+	int				drawStart;
+	int				drawEnd;
+	double			frameTime;
+	double			moveSpeed;
+	double			rotSpeed;
 
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
-t_game	*init_game(void);
 int main(int argc, char **argv);
 
 /*--------------------------- clear.c ---------------------------*/
@@ -101,7 +140,13 @@ int	check_err_map(t_game *game);
 /*--------------------------- parsing.c ---------------------------*/
 int	parse_content(t_game *game);
 
+//--------------------------- init.c ---------------------------//
+void	get_posX(t_game *game);
+void	init_info(t_game *game);
+t_game	*init_game(void);
+
 //--------------------------- handle.c ---------------------------//
+int	draw_game(t_game *game);
 int	handle_no_event(t_game *game);
 int	handle_input(int keysym, t_game *game);
 
