@@ -12,7 +12,7 @@ int	tab_size(char **tab)
 
 int	parse_content(t_game *game)
 {
-	/*
+	/****************************************
 	int i = 0;
 	while (game->type[i])
 	{
@@ -20,20 +20,20 @@ int	parse_content(t_game *game)
 		i++;
 	}
 	dprintf(2, "\n");
-	*/
+	**************************************/
 	if (redef_types(game) == -1)
 		return (1);
-	/*
+	/**************************************
 	i = 0;
 	while (game->type[i])
 	{
-		dprintf(2, "%s", game->type[i]);
+		dprintf(2, "%s\n", game->type[i]);
 		i++;
 	}
-	*/
+	**************************************/
 	if (check_err_types(game) == -1)
 		return (1);
-	/*
+	/**************************************
 	int j = 0;
 	while (game->map[j])
 	{
@@ -50,19 +50,19 @@ int	parse_content(t_game *game)
 	}
 	dprintf(2, "\n");
 	dprintf(2, "\n");
-	*/
+	**************************************/
 	if (redef_map(game) == -1)
 		return (1);
-	/*
+	/**************************************
 	j = 0;
 	while (game->map[j])
 	{
 		dprintf(2, "%s", game->map[j]);
 		j++;
 	}
-//	dprintf(2, "\ngame->rows = %d\n", game->rows);
-//	dprintf(2, "game->cols = %d\n", game->cols);
-	*/
+	dprintf(2, "\ngame->rows = %d\n", game->rows);
+	dprintf(2, "game->cols = %d\n", game->cols);
+	**************************************/
 	if (check_err_map(game) == -1)
 		return (1);
 	return (0);

@@ -20,7 +20,6 @@ int	check_chars(char *s, char c)
 
 t_img	*xpm_img(t_game *game, char *img_path)
 {
-	dprintf(2, "path=%s\n", img_path);
 	t_img	*new_img;
 
 	new_img = ft_calloc(1, sizeof(t_img));

@@ -64,6 +64,8 @@ int	main(int argc, char **argv)
 //	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
 //	mlx_loop(game->mlx_ptr);
 
+	dprintf(2, "All is OK\n");
+
 	free_game(game);
 
 	return (0);

@@ -40,6 +40,7 @@ typedef struct s_game
 	t_img		*so;
 	t_img		*ea;
 	t_img		*we;
+	t_img		test;
 	int		*f;
 	int		*c;
 
@@ -73,6 +74,7 @@ void	count_rows(t_game *game, int fd, int *rows);
 /*--------------------------- getcontent2.c ---------------------------*/
 int	cpy_map_from_file(t_game *game, char **argv, int rows);
 int	get_map(t_game *game, int fd, char **argv);
+void	delete_types_nl(t_game *game);
 int	sort_content(t_game *game, char **argv);
 int	get_file_content(t_game *game, char **argv);
 

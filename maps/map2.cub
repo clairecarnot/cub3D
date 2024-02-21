@@ -1,13 +1,13 @@
 C 225,30,0
 
-		WE ./path_to_the_west_texture
+		WE ./img/we.xpm
 
-NO 		./path_to_the_north_texture
+NO 		./img/no.xpm
 
 
-EA      ./path_to_the_east_texture
+EA      ./img/ea.xpm
 
-      SO ./path_to_the_south_texture
+      SO ./img/so.xpm
 
 
 F 220,100,0

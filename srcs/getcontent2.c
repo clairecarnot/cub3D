@@ -61,6 +61,24 @@ int	get_map(t_game *game, int fd, char **argv)
 }
 
 /*
+ * delete_types_nl
+ * Removes the useless '\n' at the end of the types char*
+ */
+
+void	delete_types_nl(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->type[i])
+	{
+		if (game->type[i][ft_strlen(game->type[i]) - 1] == '\n')
+			game->type[i][ft_strlen(game->type[i]) - 1] = '\0';
+		i++;
+	}
+}
+
+/*
  * sort_content
  * Calls get_types: we want exactly 6 types so we open the file
  * 	and get the 6 first non-empty char* ; the fd is returned
@@ -78,6 +96,7 @@ int	sort_content(t_game *game, char **argv)
 	if (!game->type)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	fd = get_types(game, argv);
+	delete_types_nl(game);
 	if (fd < 0)
 		return (-1);
 	if (get_map(game, fd, argv) == -1)
