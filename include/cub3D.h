@@ -28,8 +28,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	// char	*addr;
-	int		height;
-	int		width;
+	int		h;
+	int		w;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -41,7 +41,7 @@ typedef struct s_game
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	t_img			image_base;
+	// t_img			image_base;
 	char			**map;
 
 	char			**type;
@@ -60,8 +60,8 @@ typedef struct s_game
 	double			dirY;
 	double			planeX;
 	double			planeY;
-	double			time;
-	double			oldtime;
+	double			time;//
+	double			oldtime;//
 
 	double			cameraX;
 	double			rayDirX;
@@ -81,9 +81,13 @@ typedef struct s_game
 	int				lineHeight;
 	int				drawStart;
 	int				drawEnd;
-	double			frameTime;
+	
+	// double			frameTime;
 	double			moveSpeed;
 	double			rotSpeed;
+
+	double			oldDirX;
+	double			oldPlaneX;
 
 }		t_game;
 
@@ -141,19 +145,33 @@ int	check_err_map(t_game *game);
 int	parse_content(t_game *game);
 
 //--------------------------- init.c ---------------------------//
+int		init_buf(t_game *game);
+void	get_dir(t_game *game, char c);
 void	get_posX(t_game *game);
 void	init_info(t_game *game);
+void	init_mlx(t_game *game);
 t_game	*init_game(void);
 
 //--------------------------- handle.c ---------------------------//
-int	draw_game(t_game *game);
-int	handle_no_event(t_game *game);
-int	handle_input(int keysym, t_game *game);
+int		handle_no_event(t_game *game);
+int		handle_input(int keysym, t_game *game);
+
+//--------------------------- display.c ---------------------------//
+void	draw(t_game *game);
+void	save_pixel(t_game *game, int x, int color);
+int		display(t_game *game);
 
 //------------------------- img_utils.c --------------------------//
-t_img	new_img(int w, int h, t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
+void	move_left(t_game *game);
+
+//------------------------- img_utils.c --------------------------//
+// t_img	new_img(int w, int h, t_game *game);
 
 //-------------------------- free_exit.c -------------------------//
+void	free_buffer(t_game *game);
 int	ft_exit(t_game *game);
 
 #endif

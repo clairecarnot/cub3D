@@ -26,45 +26,54 @@ void	get_dir(t_game *game, char c)
 	{
 		game->dirX = 0;
 		game->dirY = -1;
+		game->planeX = 0.66;
+		game->planeY = 0;
 	}
 	else if (c == 'S')
 	{
 		game->dirX = 0;
 		game->dirY = 1;
+		game->planeX = -0.66;
+		game->planeY = 0;
 	}
 	else if (c == 'E')
 	{
 		game->dirX = 1;
 		game->dirY = 0;
+		game->planeX = 0;
+		game->planeY = 0.66;
 	}
 	else if (c == 'W')
 	{
 		game->dirX = -1;
 		game->dirY = 0;
+		game->planeX = 0;
+		game->planeY = -0.66;
 	}
 }
 
 void	get_posX(t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (game->map[i])
+	y = 0;
+	while (game->map[y])
 	{
-		j = 0;
-		while (game->map[i][j])
+		x = 0;
+		while (game->map[y][x])
 		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
-				game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			if (game->map[y][x] == 'N' || game->map[y][x] == 'S' ||
+				game->map[y][x] == 'E' || game->map[y][x] == 'W')
 			{
-				game->posX = (double)j;
-				game->posY = (double)i;
-				get_dir(game, game->map[i][j]);
+				game->posX = (double)x + 0.5;
+				game->posY = (double)y + 0.5;
+				// dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
+				get_dir(game, game->map[y][x]);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -72,39 +81,19 @@ void	init_info(t_game *game)
 {
 	get_posX(game);
 	// printf("posX = %f, posY = %f, dirX = %f, dirY = %f\n", game->posX, game->posY, game->dirX, game->dirY);
-	game->planeX = 0.66;
-	game->planeY = 0;
 	game->time = 0;
 	game->oldtime = 0;
 }
 
-
-t_game	*init_game(void)
+void	init_mlx(t_game *game)
 {
-	t_game	*game;
-
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	//--------------------temp-----------------------
-	game->map = malloc(sizeof(char *) * (6 + 1));
-	game->map[0] = ft_strdup("1111111");
-	game->map[1] = ft_strdup("1000001");
-	game->map[2] = ft_strdup("1000001");
-	game->map[3] = ft_strdup("1000001");
-	game->map[4] = ft_strdup("100N001");
-	game->map[5] = ft_strdup("1111111");
-	game->map[6] = 0;
-	//-----------------------------------------------
-
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 	{
 		//faire un fonction free
 		exit (1);
 	}
-	game->screen_w = 600;
-	game->screen_h = 400;
+	
 	game->win_ptr = mlx_new_window(game->mlx_ptr, game->screen_w, game->screen_h, "cub3D");//revoir taille ecran
 	if (!game->win_ptr)
 	{
@@ -113,8 +102,7 @@ t_game	*init_game(void)
 		free(game->mlx_ptr);
 		exit (1);
 	}
-	game->image_base = new_img(600, 400, game);
-
+	// game->image_base = new_img(game->screen_w, game->screen_h, game);
 	game->image.img_ptr = mlx_new_image(game->mlx_ptr, game->screen_w, game->screen_h);
 	if (!game->image.img_ptr)
 	{
@@ -127,9 +115,29 @@ t_game	*init_game(void)
 		//a proteger
 		exit (1);
 	}
-	// preinit_img();
-	
-	init_info(game);
-	init_buf(game);
+}
+
+t_game	*init_game(void)
+{
+	t_game	*game;
+
+	game = ft_calloc(1, sizeof(t_game));
+	if (!game)
+		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
+	//--------------------temp-----------------------
+	game->map = malloc(sizeof(char *) * (7 + 1));
+	game->map[0] = ft_strdup("1111111");
+	game->map[1] = ft_strdup("1100001");
+	game->map[2] = ft_strdup("1000001");
+	game->map[3] = ft_strdup("1000111");
+	game->map[4] = ft_strdup("1000001");
+	game->map[5] = ft_strdup("10S0001");
+	game->map[6] = ft_strdup("1111111");
+	game->map[7] = 0;
+	//-----------------------------------------------
+	game->screen_w = 600;
+	game->screen_h = 400;
+	game->moveSpeed = 0.1;
+	game->rotSpeed = 0.1;
 	return (game);
 }
