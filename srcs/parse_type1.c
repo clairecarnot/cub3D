@@ -1,5 +1,10 @@
 #include "cub3D.h"
 
+/*
+ * is_wspc_excl_nl
+ * Checks if the given char is a wpsc (\n excluded)
+ */
+
 int	is_wspc_excl_nl(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
@@ -7,6 +12,12 @@ int	is_wspc_excl_nl(char c)
 	else
 		return (0);
 }
+
+/*
+ * check_types
+ * Checks that the char** 's final type order is exactly
+ * 	the one defined in the .h
+ */
 
 int	check_types(char **new)
 {
@@ -25,6 +36,11 @@ int	check_types(char **new)
 	return (0);
 }
 
+/*
+ * swap_ptrs
+ * Swaps 2 pointers
+ */
+
 void	swap_ptrs(char **s1, char **s2)
 {
 	char	*tmp;
@@ -33,6 +49,15 @@ void	swap_ptrs(char **s1, char **s2)
 	*s1 = *s2;
 	*s2 = tmp;
 }
+
+/*
+ * ptr_to_swap
+ * Util for reordering the types: given the received type,
+ * 	it returns the position in which this type is 
+ * 	supposed to be as defined in the .h
+ * It also checks that the char after the type is a wpsc, to
+ * 	separate the identifier from the information
+ */
 
 int	ptr_to_swap(char *s)
 {
@@ -51,6 +76,12 @@ int	ptr_to_swap(char *s)
 	else
 		return (-1);
 }
+
+/*
+ * search_type
+ * Util for check_all_types : checks if a type is present
+ * 	in the char**
+ */
 
 int	search_type(char *type, char **new)
 {

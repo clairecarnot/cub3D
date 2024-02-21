@@ -12,7 +12,6 @@ t_game	*init_game(void)
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	/*
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 	{
@@ -27,6 +26,7 @@ t_game	*init_game(void)
 		free(game->mlx_ptr);
 		exit (1);
 	}
+	/*
 	// preinit_img();
 	//--------------------temp-----------------------
 	game->map = malloc(sizeof(char *) * (6 + 1));

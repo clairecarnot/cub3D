@@ -1,5 +1,15 @@
 #include "cub3D.h"
 
+int	tab_size(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
 int	parse_content(t_game *game)
 {
 	/*
@@ -22,7 +32,7 @@ int	parse_content(t_game *game)
 	}
 	*/
 	if (check_err_types(game) == -1)
-	 	return (1);
+		return (1);
 	/*
 	int j = 0;
 	while (game->map[j])
@@ -62,10 +72,10 @@ int	parse_content(t_game *game)
 	//enlever les espaces en trop				OK
 	//verifier que tous les types sont presents		OK
 	//reordonner les types et garder juste le chemin	OK
-	//verifier le chemin
-	//F ou C: 	chiffre qui manque
-	//		virgule en trop
-	//		chiffre superieur a 255 ou un inferieur a(?)
+	//verifier le chemin					OK
+	//F ou C: 	chiffre qui manque			OK
+	//		virgule en trop				OK
+	//		chiffre >255 ou <0			OK
 
 	//MAP:
 	//remplacer les whitespaces				OK

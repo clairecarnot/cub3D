@@ -2,7 +2,8 @@
 
 int	draw_game(t_game *game)
 {
-	
+	(void)game;
+	return (0);
 }
 
 int	handle_no_event(t_game *game)

@@ -30,12 +30,38 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+void	free_img(t_game *game, t_img *img)
+{
+	mlx_destroy_image(game->mlx_ptr, img->img_ptr);
+	img->img_ptr = NULL;
+	free(img);
+	img = NULL;
+}
+
 int	free_game(t_game *game)
 {
 	if (game->type)
 		free_tab(game->type);
 	if (game->map)
 		free_tab(game->map);
+	if (game->no)
+		free_img(game, game->no);
+	if (game->so)
+		free_img(game, game->so);
+	if (game->we)
+		free_img(game, game->we);
+	if (game->ea)
+		free_img(game, game->ea);
+	if (game->f)
+		free(game->f);
+	if (game->c)
+		free(game->c);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+		mlx_destroy_display(game->mlx_ptr);
+	if (game->mlx_ptr)
+		free(game->mlx_ptr);
 	if (game)
 		free(game);
 	return (0);

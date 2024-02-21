@@ -1,5 +1,27 @@
 #include "cub3D.h"
 
+/*
+ * repl_char
+ * The rule for replacing "empty chars" is : if this empty char
+ * 	is next to a '0' (at its left, above or below row),
+ * 	it will be replaced by a '0', because it means that 
+ * 	the map is not closed somewhere. Else it will be replaced
+ * 	by a '1' (wall = closed). Ex ('e' for 'empty') :
+ * 	1111  will give 1111
+ * 	1001		1001
+ * 	1eee		1000
+ * 	1111		1111
+ *
+ * The rule is decomposed below:
+ * 	1/ if the absciss (j) is not 0, and the char before (j-1)
+ * 		is char '0', replace by char '0'
+ * 	2/ if the ordinate (i) is not 0, and the char on the above
+ * 		row (i-1) at absciss j is '0', replace by '0'
+ * 	3/ if we are not on the last row and the char on the below
+ * 		row (i+1) at absciss j i '0', replace by '0'
+ * 	4/ else, replace by '1'
+ */
+
 char	repl_char(t_game *game, int i, int j)
 {
 	if (j > 0 && game->map[i][j - 1] == '0')
@@ -11,6 +33,14 @@ char	repl_char(t_game *game, int i, int j)
 	else
 		return ('1');
 }
+
+/*
+ * replace_empty_chars
+ * When a row of the map was not of length max, all "empty
+ * 	chars" have been previously filled with value '2'
+ * These empty chars will now be replaced by a '1' (wall) or a '0'
+ * 	(floor) in the function above
+ */
 
 int	replace_empty_chars(t_game *game)
 {

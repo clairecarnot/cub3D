@@ -19,7 +19,7 @@ t_img	new_img(int w, int h, t_game *game)
 		// image.img_ptr = NULL;
 		// ft_exit(game);
 	// }
-	image.width = w;
-	image.height = h;
+	image.w = w;
+	image.h = h;
 	return (image);
 }

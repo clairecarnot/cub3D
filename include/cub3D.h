@@ -24,8 +24,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
-	int		height;
-	int		width;
+	int		h;
+	int		w;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -36,10 +36,12 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		image_base;
-	t_img		no;
-	t_img		so;
-	t_img		ea;
-	t_img		we;
+	t_img		*no;
+	t_img		*so;
+	t_img		*ea;
+	t_img		*we;
+	int		*f;
+	int		*c;
 
 	char		**map;
 	char		**type;
@@ -100,9 +102,21 @@ int	rmv_end_nl(t_game *game);
 int	redef_map(t_game *game);
 
 /*--------------------------- parse_err_map.c ---------------------------*/
+int	contains_empty_nl(t_game *game);
+int	contains_forbid_chars(t_game *game);
+int	wrong_nb_player(t_game *game);
+int	map_not_closed(t_game *game);
 int	check_err_map(t_game *game);
 
+/*--------------------------- parse_err_types.c ---------------------------*/
+int	check_chars(char *s, char c);
+t_img	*xpm_img(t_game *game, char *img_path);
+int	get_nb(char *color);
+int	*parse_colors(char *identifier);
+int	check_err_types(t_game *game);
+
 /*--------------------------- parsing.c ---------------------------*/
+int	tab_size(char **tab);
 int	parse_content(t_game *game);
 
 //--------------------------- handle.c ---------------------------//

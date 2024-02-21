@@ -30,9 +30,8 @@ int	len_max(char **tab)
  * 	map char* until the next newline :
  * 		if current char is a whitespace, replace it with 1
  *		else copy the char in the map
- * If the len of the new char* is not lenmax chars, fill all 
- * 	remaining chars with a 1 (wall) until the next newline
- * 	or EOF
+ * If the len of the new char* is not lenmax chars, fill all 'empty
+ * 	remaining chars' with a 2 until the next newline or EOF
  * If the end of line is \n, input \n, else if it is EOF, input EOF
  */
 

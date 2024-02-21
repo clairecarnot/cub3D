@@ -1,5 +1,10 @@
 #include "cub3D.h"
 
+/*
+ * check_alltypes
+ * Checks that all required types are present in the char**
+ */
+
 int	check_alltypes(char **new)
 {
 	if (search_type("NO", new) == -1)
@@ -16,6 +21,16 @@ int	check_alltypes(char **new)
 		return (-1);
 	return (0);
 }
+
+/*
+ * reorder_new
+ * Reorders the types in the order defined in the .h
+ * For that, we first check all the needed types are there (NO,
+ * 	SO, WE, EA), else -1 is returned
+ * Then for each row of the char**, we check in which position the
+ * 	row should be, and then if needed we swap the row in the right
+ * 	position
+ */
 
 int	reorder_new(char **new)
 {
@@ -39,6 +54,16 @@ int	reorder_new(char **new)
 		return (ft_putstr_fd("Error\nInvalid type(s)\n", 2), -1);
 	return (0);
 }
+
+/*
+ * clean_types
+ * For each row defining a type, this function deletes the type
+ * 	identifier (not needed anymore because the rows are
+ * 	ordered as defined in the .h) and all the wpsc present
+ * 	before the information
+ * 	ex: for "NO              /path/"
+ * 	we will get "/path/"
+ */
 
 int	clean_types(char **new)
 {
@@ -65,6 +90,11 @@ int	clean_types(char **new)
 	return (0);
 }
 
+/*
+ * init_set
+ * Defines the wspc to delete (it excludes the \n)
+ */
+
 char	*init_set(void)
 {
 	char	*set;
@@ -79,6 +109,17 @@ char	*init_set(void)
 	set[4] = '\r';
 	return (set);
 }
+
+/*
+ * redef_types
+ * Objective is to reorder and clean (suppr wspc) the lines 
+ * 	of types we got from reading the file
+ * First we clean the beginning and end of the rows (trim wspc)
+ * Based on these clean lines, we reorder them in the game->type char**
+ * Finally, we clean the identifier name and the remaining wpsc
+ * 	positionned between the identifier and the info (ex: for
+ * 	"NO        ./path/" we will get "./path/" in the end)
+ */
 
 int	redef_types(t_game *game)
 {
