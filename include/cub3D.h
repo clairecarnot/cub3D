@@ -4,10 +4,14 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
+# include <unistd.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <stdio.h>
-# include <unistd.h>
+
 
 /*
  * char	**type
@@ -29,33 +33,71 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+
+	int		*full_buf;
+	int 	size;
 }		t_img;
 
 typedef struct s_game
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		image_base;
+
+	void			*mlx_ptr;
+	void			*win_ptr;
+	// t_img			image_base;
 	t_img		*no;
 	t_img		*so;
 	t_img		*ea;
 	t_img		*we;
-	t_img		test;
 	int		*f;
 	int		*c;
+	char			**map;
+	char			**type;
+	int				rows;
+	int				cols;
+	unsigned int	**buf;
+	// char		*full_buf;
+	t_img			image;
 
-	char		**map;
-	char		**type;
-	int			rows;
-	int			cols;
+	int				screen_w;
+	int				screen_h;
+	double			posX;
+	double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
+	double			time;//
+	double			oldtime;//
 
-	double		posX;
-	double		posY;
+	double			cameraX;
+	double			rayDirX;
+	double			rayDirY;
+	int				mapX;
+	int				mapY;
+	double			sideDistX;
+	double			sideDistY;
+	double			deltaDistX;
+	double			deltaDistY;
+	double			perpWallDist;
+	int				stepX;
+	int				stepY;
+	int				hit;
+	int				side;
+
+	int				lineHeight;
+	int				drawStart;
+	int				drawEnd;
+	
+	// double			frameTime;
+	double			moveSpeed;
+	double			rotSpeed;
+
+	double			oldDirX;
+	double			oldPlaneX;
 
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
-t_game	*init_game(void);
 int main(int argc, char **argv);
 
 /*--------------------------- clear.c ---------------------------*/
@@ -121,14 +163,34 @@ int	check_err_types(t_game *game);
 int	tab_size(char **tab);
 int	parse_content(t_game *game);
 
+//--------------------------- init.c ---------------------------//
+int		init_buf(t_game *game);
+void	get_dir(t_game *game, char c);
+void	get_posX(t_game *game);
+void	init_info(t_game *game);
+void	init_mlx(t_game *game);
+t_game	*init_game(void);
+
 //--------------------------- handle.c ---------------------------//
-int	handle_no_event(t_game *game);
-int	handle_input(int keysym, t_game *game);
+int		handle_no_event(t_game *game);
+int		handle_input(int keysym, t_game *game);
+
+//--------------------------- display.c ---------------------------//
+void	draw(t_game *game);
+void	save_pixel(t_game *game, int x, int color);
+int		display(t_game *game);
 
 //------------------------- img_utils.c --------------------------//
-t_img	new_img(int w, int h, t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
+void	move_left(t_game *game);
+
+//------------------------- img_utils.c --------------------------//
+// t_img	new_img(int w, int h, t_game *game);
 
 //-------------------------- free_exit.c -------------------------//
+void	free_buffer(t_game *game);
 int	ft_exit(t_game *game);
 
 #endif

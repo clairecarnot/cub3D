@@ -1,5 +1,18 @@
 #include "../include/cub3D.h"
 
+void	free_buffer(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->screen_h && game->buf && game->buf[i])
+	{
+		free(game->buf[i]);
+		i++;
+	}
+	free(game->buf);
+}
+
 int	ft_exit(t_game *game)
 {
 	(void)game;

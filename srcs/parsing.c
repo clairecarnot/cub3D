@@ -53,8 +53,9 @@ int	parse_content(t_game *game)
 	**************************************/
 	if (redef_map(game) == -1)
 		return (1);
-	/**************************************
-	j = 0;
+	/**************************************/
+	int j = 0;
+	dprintf(2, "ici\n");
 	while (game->map[j])
 	{
 		dprintf(2, "%s", game->map[j]);
@@ -62,7 +63,8 @@ int	parse_content(t_game *game)
 	}
 	dprintf(2, "\ngame->rows = %d\n", game->rows);
 	dprintf(2, "game->cols = %d\n", game->cols);
-	**************************************/
+	/**************************************/
+	dprintf(2, "ici2\n");
 	if (check_err_map(game) == -1)
 		return (1);
 	return (0);

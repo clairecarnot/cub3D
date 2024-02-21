@@ -2,7 +2,7 @@ NAME = cub3D
 
 CFLAGS = -g3 -Wall -Wextra -Werror
 #CFLAGS = -g3 -Wall -Wextra -Werror -fsanitize=address
-MLXFLAGS = -lX11 -lXext
+MLXFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 INCL = -I -I./libft -I./include -I./minilib-linux
 
@@ -11,7 +11,8 @@ srcs/clear.c srcs/getcontent1.c srcs/getcontent2.c \
 srcs/parsing.c srcs/parse_type1.c srcs/parse_type2.c \
 srcs/parse_map1.c srcs/parse_map2.c \
 srcs/parse_err_map.c srcs/parse_err_types.c \
-srcs/handle.c srcs/free_exit.c srcs/img_utils.c
+srcs/handle.c srcs/init.c srcs/display.c srcs/move.c \
+srcs/free_exit.c srcs/img_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
