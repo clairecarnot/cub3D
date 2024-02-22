@@ -22,14 +22,14 @@ int	init_buf(t_game *game)
 
 void	get_dir(t_game *game, char c)
 {
-	if (c == 'E')//regarde a l'ouest
+	if (c == 'E')//regarde a l'est
 	{
 		game->dirX = 0;
 		game->dirY = 1;
 		game->planeX = 0.66;
 		game->planeY = 0;
 	}
-	else if (c == 'W')//regarde a l'est
+	else if (c == 'W')//regarde a l'ouest
 	{
 		game->dirX = 0;
 		game->dirY = -1;
@@ -126,8 +126,8 @@ t_game	*init_game(void)
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	//--------------------temp-----------------------
 	game->map = malloc(sizeof(char *) * (7 + 1));
+
 	game->screen_w = 600;
 	game->screen_h = 400;
 	game->moveSpeed = 0.1;
