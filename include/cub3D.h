@@ -173,18 +173,22 @@ t_game	*init_game(void);
 
 //--------------------------- handle.c ---------------------------//
 int		handle_no_event(t_game *game);
-int		handle_input(int keysym, t_game *game);
+int		handle_keypress(int keysym, t_game *game);
 
 //--------------------------- display.c ---------------------------//
 void	draw(t_game *game);
 void	save_pixel(t_game *game, int x, int color);
 int		display(t_game *game);
 
-//------------------------- img_utils.c --------------------------//
+//------------------------- move.c --------------------------//
 void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	move_left(t_game *game);
+
+//------------------------- rotate.c --------------------------//
+void	rotate_right(t_game *game);
+void	rotate_left(t_game *game);
 
 //------------------------- img_utils.c --------------------------//
 // t_img	new_img(int w, int h, t_game *game);

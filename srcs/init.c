@@ -22,33 +22,33 @@ int	init_buf(t_game *game)
 
 void	get_dir(t_game *game, char c)
 {
-	if (c == 'N')
-	{
-		game->dirX = 0;
-		game->dirY = -1;
-		game->planeX = 0.66;
-		game->planeY = 0;
-	}
-	else if (c == 'S')
+	if (c == 'E')//regarde a l'ouest
 	{
 		game->dirX = 0;
 		game->dirY = 1;
+		game->planeX = 0.66;
+		game->planeY = 0;
+	}
+	else if (c == 'W')//regarde a l'est
+	{
+		game->dirX = 0;
+		game->dirY = -1;
 		game->planeX = -0.66;
 		game->planeY = 0;
 	}
-	else if (c == 'E')
+	else if (c == 'S')//regarde au sud
 	{
 		game->dirX = 1;
 		game->dirY = 0;
 		game->planeX = 0;
-		game->planeY = 0.66;
+		game->planeY = -0.66;
 	}
-	else if (c == 'W')
+	else if (c == 'N')//regarde au nord 
 	{
 		game->dirX = -1;
 		game->dirY = 0;
 		game->planeX = 0;
-		game->planeY = -0.66;
+		game->planeY = 0.66;
 	}
 }
 
@@ -66,8 +66,10 @@ void	get_posX(t_game *game)
 			if (game->map[y][x] == 'N' || game->map[y][x] == 'S' ||
 				game->map[y][x] == 'E' || game->map[y][x] == 'W')
 			{
-				game->posX = (double)x + 0.5 ;
-				game->posY = (double)y + 0.5 ;
+				game->posY = (double)x + 0.5 ;
+				game->posX = (double)y + 0.5 ;
+				// game->posX = (double)x + 0.5 ;
+				// game->posY = (double)y + 0.5 ;
 				dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
 				get_dir(game, game->map[y][x]);
 			}
@@ -125,16 +127,7 @@ t_game	*init_game(void)
 	if (!game)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	//--------------------temp-----------------------
-	// game->map = malloc(sizeof(char *) * (7 + 1));
-	// game->map[0] = ft_strdup("1111111");
-	// game->map[1] = ft_strdup("1100001");
-	// game->map[2] = ft_strdup("1000001");
-	// game->map[3] = ft_strdup("1000111");
-	// game->map[4] = ft_strdup("1000001");
-	// game->map[5] = ft_strdup("10S0001");
-	// game->map[6] = ft_strdup("1111111");
-	// game->map[7] = 0;
-	//-----------------------------------------------
+	game->map = malloc(sizeof(char *) * (7 + 1));
 	game->screen_w = 600;
 	game->screen_h = 400;
 	game->moveSpeed = 0.1;

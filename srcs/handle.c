@@ -20,7 +20,7 @@ int	handle_no_event(t_game *game)
 	return (0);
 }
 
-int	handle_input(int keysym, t_game *game)
+int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
 	{	
@@ -41,6 +41,14 @@ int	handle_input(int keysym, t_game *game)
 	{
 		// dprintf(2, "left\n");
 		move_left(game);
+	}
+	else if (keysym == 65363)
+	{
+		rotate_right(game);
+	}
+	else if (keysym == 65361)
+	{
+		rotate_left(game);
 	}
 	else if (keysym == XK_Escape)
 		ft_exit(game);
