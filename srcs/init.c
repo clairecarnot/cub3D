@@ -123,8 +123,8 @@ t_game	*init_game(void)
 
 	game->screen_w = 640;
 	game->screen_h = 480;
-	game->tex_w = 40;//a changer avec la valeur de l'img de la texture load 
-	game->tex_h = 40;
+	game->tex_w = 64;//a changer avec la valeur de l'img de la texture load 
+	game->tex_h = 64;
 	game->nb_tex = 4;
 	game->moveSpeed = 0.1;
 	game->rotSpeed = 0.1;

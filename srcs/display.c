@@ -106,20 +106,87 @@ int	display(t_game *game)
 		
 		game->lineHeight = (int)(game->screen_h / game->perpWallDist);
 		
-		game->drawStart = - game->lineHeight / 2 + game->screen_h / 2;
+		game->pitch = 100;
+
+		game->drawStart = - game->lineHeight / 2 + game->screen_h / 2 /*+ game->pitch*/;
 		if (game->drawStart < 0)
 			game->drawStart = 0;
 		
-		game->drawEnd = game->lineHeight / 2 + game->screen_h / 2;
+		game->drawEnd = game->lineHeight / 2 + game->screen_h / 2 /*+ game->pitch*/;
 		if (game->drawEnd >= game->screen_h)
 			game->drawEnd = game->screen_h - 1;
 		
-		int	color = 0xffffff;
-		if (game->side == 0)
-			color = color / 2;
+		// int	color = 0xffffff;
+		// if (game->side == 0)
+		// 	color = color / 2;
 		//texture
-		// texture();
-		save_pixel(game, x, color);//verLine
+		game->texX = 0;
+		game->texY = 0;
+
+		// game->texNum = game->map[game->mapX][game->mapY] - 1;
+		
+		if (game->side == 0)
+			game->wallX = game->posY + game->perpWallDist * game->rayDirY;
+		else
+			game->wallX = game->posX + game->perpWallDist * game->rayDirX;
+		game->wallX -= floor(game->wallX);
+
+		game->texX = (int)(game->wallX * (double)(game->tex_w));
+		if (game->side == 0 && game->rayDirX > 0)
+		{	
+			// dprintf(2, "1\n");//derriere
+			game->texX = game->tex_w - game->texX - 1;
+		}
+		if (game->side == 1 && game->rayDirY < 0)
+		{
+			// dprintf(2, "2\n");//cote droit
+			game->texX = game->tex_w - game->texX - 1;
+		}
+		game->step = 1.0 * game->tex_h / game->lineHeight;
+
+		game->texPos = (game->drawStart /*- game->pitch*/ - game->screen_h / 2 + game->lineHeight / 2) * game->step;
+
+		//wall orientation
+		if (game->side == 0)
+		{
+			if (game->stepX == 1)
+			{
+				// dprintf(2, "0\n");
+				game->texNum = 0;
+			}
+			else if (game->stepX == -1)
+			{
+				// dprintf(2, "1\n");
+				game->texNum = 1;
+			}
+		}
+		else if (game->side == 1)
+		{
+			if (game->stepY == 1)
+			{
+				// dprintf(2, "2\n");
+				game->texNum = 2;//droite ou gauche
+			}
+			else if (game->stepY == -1)
+			{
+				// dprintf(2, "3\n");
+				game->texNum = 3;//droite ou gauche
+			}
+		}
+
+		//pixel color
+		int 			y = game->drawStart;
+		unsigned int	color;
+		while (y < game->drawEnd)
+		{
+			game->texY = (int)game->texPos & (game->tex_h - 1);
+			game->texPos += game->step;
+			color = game->tex[game->texNum][game->tex_h * game->texY + game->texX];
+			// if (game->side == 1)
+			game->buf[y][x] = color;
+			y++;
+		}
+		// save_pixel(game, x, color);//verLine
 		x++;
 		// dprintf(2, "0\n");
 	}

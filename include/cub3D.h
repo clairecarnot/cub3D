@@ -85,9 +85,17 @@ typedef struct s_game
 	int				side;
 
 	int				lineHeight;
+	int				pitch;
 	int				drawStart;
 	int				drawEnd;
 	
+	int				texNum;
+	double			wallX;
+	int				texX;
+	int				texY;
+	double			step;
+	double			texPos;
+
 	// double			frameTime;
 	double			moveSpeed;
 	double			rotSpeed;

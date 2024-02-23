@@ -1,19 +1,19 @@
-WE ./img/we.xpm
+WE ./img/bluestone.xpm
 
-NO ./img/no.xpm
-
-
+NO ./img/colorstone.xpm
 
 
 
-		EA ./img/ea.xpm
+
+
+		EA ./img/greystone.xpm
 
 
 F 220,100,0     
 
 C          225,30,0
 
-SO 			./img/so.xpm
+SO 			./img/eagle.xpm
 
 11111111
 10000001
