@@ -27,7 +27,7 @@
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*addr;
+	// char	*addr;
 	int		h;
 	int		w;
 	int		bpp;
@@ -56,7 +56,7 @@ typedef struct s_game
 	int				cols;
 	unsigned int	**buf;
 	// char		*full_buf;
-	t_img			image;
+	t_img			*image;
 
 	int				screen_w;
 	int				screen_h;
@@ -95,6 +95,10 @@ typedef struct s_game
 	double			oldDirX;
 	double			oldPlaneX;
 
+	int				tex_w;
+	int				tex_h;
+	int				nb_tex;
+	unsigned int	**tex;
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
@@ -166,7 +170,7 @@ int	parse_content(t_game *game);
 //--------------------------- init.c ---------------------------//
 int		init_buf(t_game *game);
 void	get_dir(t_game *game, char c);
-void	get_posX(t_game *game);
+void	get_pos(t_game *game);
 void	init_info(t_game *game);
 void	init_mlx(t_game *game);
 t_game	*init_game(void);

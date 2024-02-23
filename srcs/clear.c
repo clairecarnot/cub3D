@@ -17,6 +17,20 @@ void	free_if(char *str)
 		free(str);
 }
 
+void	free_tab_int(unsigned int **tab, int nb_tex)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_tex)
+	{
+		if (tab[i])
+			free(tab[i]);
+		i++;
+	}
+	free(tab);	
+}
+
 void	free_tab(char **tab)
 {
 	int	i;
@@ -40,6 +54,8 @@ void	free_img(t_game *game, t_img *img)
 
 int	free_game(t_game *game)
 {
+	if (game->tex)//ajout
+		free_tab_int(game->tex, game->nb_tex);
 	if (game->type)
 		free_tab(game->type);
 	if (game->map)
@@ -56,6 +72,8 @@ int	free_game(t_game *game)
 		free(game->f);
 	if (game->c)
 		free(game->c);
+	if (game->image)//ajout
+		free_img(game, game->image);
 	if (game->win_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	if (game->mlx_ptr)

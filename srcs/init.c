@@ -50,9 +50,10 @@ void	get_dir(t_game *game, char c)
 		game->planeX = 0;
 		game->planeY = 0.66;
 	}
+
 }
 
-void	get_posX(t_game *game)
+void	get_pos(t_game *game)
 {
 	int	x;
 	int	y;
@@ -70,21 +71,13 @@ void	get_posX(t_game *game)
 				game->posX = (double)y + 0.5 ;
 				// game->posX = (double)x + 0.5 ;
 				// game->posY = (double)y + 0.5 ;
-				dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
+				// dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
 				get_dir(game, game->map[y][x]);
 			}
 			x++;
 		}
 		y++;
 	}
-}
-
-void	init_info(t_game *game)
-{
-	get_posX(game);
-	// printf("posX = %f, posY = %f, dirX = %f, dirY = %f\n", game->posX, game->posY, game->dirX, game->dirY);
-	game->time = 0;
-	game->oldtime = 0;
 }
 
 void	init_mlx(t_game *game)
@@ -104,15 +97,15 @@ void	init_mlx(t_game *game)
 		free(game->mlx_ptr);
 		exit (1);
 	}
-	// game->image_base = new_img(game->screen_w, game->screen_h, game);
-	game->image.img_ptr = mlx_new_image(game->mlx_ptr, game->screen_w, game->screen_h);
-	if (!game->image.img_ptr)
+	game->image = malloc(sizeof(t_img));// a proteger
+	game->image->img_ptr = mlx_new_image(game->mlx_ptr, game->screen_w, game->screen_h);
+	if (!game->image->img_ptr)
 	{
 		//a proteger
 		exit(1);
 	}
-	game->image.full_buf = (int *)mlx_get_data_addr(game->image.img_ptr, &game->image.bpp, &game->image.size, &game->image.endian);
-	if (!game->image.full_buf)
+	game->image->full_buf = (int *)mlx_get_data_addr(game->image->img_ptr, &game->image->bpp, &game->image->size, &game->image->endian);
+	if (!game->image->full_buf)
 	{
 		//a proteger
 		exit (1);
@@ -126,10 +119,13 @@ t_game	*init_game(void)
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	game->map = malloc(sizeof(char *) * (7 + 1));
+	// game->map = malloc(sizeof(char *) * (7 + 1));
 
-	game->screen_w = 600;
-	game->screen_h = 400;
+	game->screen_w = 640;
+	game->screen_h = 480;
+	game->tex_w = 40;//a changer avec la valeur de l'img de la texture load 
+	game->tex_h = 40;
+	game->nb_tex = 4;
 	game->moveSpeed = 0.1;
 	game->rotSpeed = 0.1;
 	return (game);

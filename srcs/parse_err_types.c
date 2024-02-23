@@ -18,6 +18,72 @@ int	check_chars(char *s, char c)
 	return (count);
 }
 
+void	free_img_2(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	if (game->tex)
+	{
+		if (game->tex[i])
+		{
+			while(game->tex[i])
+			{
+				free(game->tex[i]);
+				i++;
+			}
+			free(game->tex);
+		}
+	}
+	mlx_destroy_image(game->mlx_ptr, game->no->img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->so->img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->ea->img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->we->img_ptr);
+	free(game->no);
+	free(game->so);
+	free(game->ea);
+	free(game->we);	
+}
+
+int	get_each_img_data(t_game *game, t_img *img, int i)
+{
+	int	x;
+	int	y;
+
+	game->tex[i] = malloc(sizeof(int) * (game->tex_w * game->tex_h));
+	if (!game->tex[i])
+		return (ft_putstr_fd("Bad malloc\n", 2), -1);
+	y = 0;
+	while (y < game->tex_h)
+	{
+		x = 0;
+		while (x < game->tex_w)
+		{
+			game->tex[i][y * game->tex_w + x] = img->full_buf[y * game->tex_w + x];
+			// dprintf(2, "i = %d, x = %d, y = %d\n", i, x, y);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+int	get_imgs_data(t_game *game)
+{
+	game->tex = malloc(sizeof(int *) * 4);
+	if (!game->tex)// a verifier
+		return (ft_putstr_fd("Bad malloc\n", 2), -1);
+	if (get_each_img_data(game, game->no, 0) != 0)
+		return (-1);// a verifier 
+	if (get_each_img_data(game, game->so, 1) != 0)
+		return (-1);// a verifier
+	if (get_each_img_data(game, game->ea, 2) != 0)
+		return (-1);// a verifier
+	if (get_each_img_data(game, game->we, 3) != 0)
+		return (-1);// a verifier
+	return (0);
+}
+
 t_img	*xpm_img(t_game *game, char *img_path)
 {
 	t_img	*new_img;
@@ -32,10 +98,10 @@ t_img	*xpm_img(t_game *game, char *img_path)
 	if (!new_img->img_ptr)
 		return (ft_putstr_fd("Error\nWrong texture path\n", 2),
 			free(new_img), NULL);
-	new_img->addr = mlx_get_data_addr(new_img->img_ptr,
+	new_img->full_buf = (int *)mlx_get_data_addr(new_img->img_ptr,
 			&new_img->bpp, &new_img->line_len,
 			&new_img->endian);
-	if (!new_img->addr)
+	if (!new_img->full_buf)
 	{
 		mlx_destroy_image(game->mlx_ptr, new_img->img_ptr);
 		new_img->img_ptr = NULL;
@@ -117,6 +183,8 @@ int	check_err_types(t_game *game)
 		return (-1);
 	game->ea = xpm_img(game, game->type[3]);
 	if (!game->ea)
+		return (-1);
+	if (get_imgs_data(game) != 0)//ajout
 		return (-1);
 	if (check_chars(game->type[4], ',') != 2
 		|| check_chars(game->type[5], ',') != 2)

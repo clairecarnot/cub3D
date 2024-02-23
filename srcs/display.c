@@ -11,12 +11,12 @@ void	draw(t_game *game)
 		x = 0;
 		while (x < game->screen_w)
 		{
-			game->image.full_buf[y * game->screen_w + x] = game->buf[y][x];
+			game->image->full_buf[y * game->screen_w + x] = game->buf[y][x];
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->image.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->image->img_ptr, 0, 0);
 }
 
 void	save_pixel(t_game *game, int x, int color)
@@ -117,7 +117,8 @@ int	display(t_game *game)
 		int	color = 0xffffff;
 		if (game->side == 0)
 			color = color / 2;
-		
+		//texture
+		// texture();
 		save_pixel(game, x, color);//verLine
 		x++;
 		// dprintf(2, "0\n");

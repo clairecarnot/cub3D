@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 		return (free_game(game), 1);
 
 	// dprintf(2, "All is OK\n");
-	init_info(game);
+	get_pos(game);
 	// dprintf(2, "All is OK2\n");
 	display(game);
 	// dprintf(2, "All is OK3\n");
