@@ -66,8 +66,8 @@ void	get_posX(t_game *game)
 			if (game->map[y][x] == 'N' || game->map[y][x] == 'S' ||
 				game->map[y][x] == 'E' || game->map[y][x] == 'W')
 			{
-				game->posY = (double)x + 0.55 ;
-				game->posX = (double)y + 0.55 ;
+				game->posY = (double)x + 0.5 ;
+				game->posX = (double)y + 0.5 ;
 				// game->posX = (double)x + 0.5 ;
 				// game->posY = (double)y + 0.5 ;
 				dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);

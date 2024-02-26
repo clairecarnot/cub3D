@@ -95,6 +95,10 @@ int	display(t_game *game)
 				game->mapY += game->stepY;
 				game->side = 1;
 			}
+//			dprintf(2, "posX hit = %f\n", game->posX);
+//			dprintf(2, "posY hit = %f\n", game->posY);
+//			dprintf(2, "mapX = %d\n", game->mapX);
+//			dprintf(2, "mapY = %d\n", game->mapY);
 			if (game->map[game->mapX][game->mapY] == '1')
 				game->hit = 1;
 		}
@@ -118,6 +122,7 @@ int	display(t_game *game)
 		if (game->side == 0)
 			color = color / 2;
 		
+
 		save_pixel(game, x, color);//verLine
 		x++;
 		// dprintf(2, "0\n");
