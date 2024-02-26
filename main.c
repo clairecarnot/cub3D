@@ -15,11 +15,10 @@ int	main(int argc, char **argv)
 		return (free_game(game), 1);
 	if (parse_content(game) == 1)
 		return (free_game(game), 1);
-
 	// dprintf(2, "All is OK\n");
 	get_pos(game);
 	// dprintf(2, "All is OK2\n");
-	display(game);
+	display(game, 0);
 	// dprintf(2, "All is OK3\n");
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	// mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, game);

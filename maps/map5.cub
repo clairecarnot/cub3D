@@ -1,24 +1,24 @@
-WE ./img/bluestone.xpm
+WE ./img/Bricks_12-64x64.xpm
 
-NO ./img/colorstone.xpm
-
-
+NO ./img/Bricks_20-64x64.xpm
 
 
 
-		EA ./img/greystone.xpm
 
 
-F 220,100,0     
+		EA ./img/Bricks_19-64x64.xpm
 
-C          225,30,0
 
-SO 			./img/eagle.xpm
+F 48,48,48    
+
+C          207,231,255
+
+SO 			./img/Bricks_21-64x64.xpm
 
 11111111
 10000001
 10000001
 10000111
 10000001
-1100N011
+1100W011
 11111111
