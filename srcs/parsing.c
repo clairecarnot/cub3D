@@ -60,9 +60,9 @@ int	parse_content(t_game *game)
 		dprintf(2, "%s", game->map[j]);
 		j++;
 	}
+	**************************************/
 	dprintf(2, "\ngame->rows = %d\n", game->rows);
 	dprintf(2, "game->cols = %d\n", game->cols);
-	**************************************/
 	if (check_err_map(game) == -1)
 		return (1);
 	return (0);

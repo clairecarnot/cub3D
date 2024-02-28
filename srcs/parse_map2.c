@@ -145,7 +145,7 @@ int	redef_map(t_game *game)
 			return (free_tab(new), -1);
 		i++;
 	}
-	game->cols = lmax;
+	game->cols = lmax - 1;
 	free_tab(game->map);
 	game->map = new;
 	if (rmv_end_nl(game) == -1)
