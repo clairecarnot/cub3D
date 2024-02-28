@@ -61,6 +61,7 @@ void	get_pos(t_game *game)
 				// game->posY = (double)y + 0.5 ;
 				// dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
 				get_dir(game, game->map[y][x]);
+				game->map[y][x] = '0';
 			}
 			x++;
 		}
