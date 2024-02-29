@@ -12,6 +12,10 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+# define BONUS 1
+# define DIST_MOUSE 20
+# define SCREEN_W 640
+
 /*
  * char	**type
  * type[0] = NO
@@ -37,6 +41,16 @@ typedef struct s_img
 	int 	size;
 }		t_img;
 
+typedef struct	s_anim
+{
+	t_list	*frame;
+	int	nb_frame;
+	int	cur_time;
+	int	update_time;
+	int	w;
+	int	h;
+}		t_anim;
+
 typedef struct s_game
 {
 
@@ -47,6 +61,11 @@ typedef struct s_game
 	t_img		*so;
 	t_img		*ea;
 	t_img		*we;
+	t_img		*door;
+	t_img		*spr;
+	t_anim		*anim;
+	int		door_flag;
+	int		anim_flag;
 	int		*f;
 	int		*c;
 	unsigned int	f_color;
@@ -116,6 +135,7 @@ typedef struct s_game
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
+	int		*door_tex;
 
 	// t_img			*minimap;
 	double			pX;
@@ -156,6 +176,10 @@ void	delete_types_nl(t_game *game);
 int		sort_content(t_game *game, char **argv);
 int		get_file_content(t_game *game, char **argv);
 
+/*--------------------------- getcontent_bonus.c ---------------------------*/
+int	*get_one_img_data(t_game *game, t_img *img);
+int	bonus_contents(t_game *game);
+
 /*--------------------------- parse_type1.c ---------------------------*/
 int		is_wspc_excl_nl(char c);
 int		check_types(char **new);
@@ -182,6 +206,10 @@ int		rmv_end_nl(t_game *game);
 int		redef_map(t_game *game);
 
 /*--------------------------- parse_err_map.c ---------------------------*/
+int	valid_char(char c);
+int	valid_char_bonus(t_game *game, char c);
+
+/*--------------------------- parse_err_map.c ---------------------------*/
 int		contains_empty_nl(t_game *game);
 int		contains_forbid_chars(t_game *game);
 int		wrong_nb_player(t_game *game);
@@ -190,7 +218,7 @@ int		check_err_map(t_game *game);
 
 /*--------------------------- parse_err_types.c ---------------------------*/
 int		check_chars(char *s, char c);
-t_img	*xpm_img(t_game *game, char *img_path);
+t_img	*xpm_img(t_game *game, char *img_path, int w, int h);
 int		get_nb(char *color);
 int		*parse_colors(char *identifier);
 int		check_err_types(t_game *game);
@@ -240,6 +268,10 @@ void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	move_left(t_game *game);
+
+//------------------------- move.c --------------------------//
+void	mouse_pos(t_game *game, int x, int y);
+int	mouse_mv(int x, int y, t_game *game);
 
 //------------------------- rotate.c --------------------------//
 void	rotate_right(t_game *game);

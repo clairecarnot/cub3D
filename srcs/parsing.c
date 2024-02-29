@@ -61,10 +61,15 @@ int	parse_content(t_game *game)
 		j++;
 	}
 	**************************************/
-	dprintf(2, "\ngame->rows = %d\n", game->rows);
-	dprintf(2, "game->cols = %d\n", game->cols);
+//	dprintf(2, "\ngame->rows = %d\n", game->rows);
+//	dprintf(2, "game->cols = %d\n", game->cols);
 	if (check_err_map(game) == -1)
 		return (1);
+	if (BONUS)
+	{
+		if (bonus_contents(game) == -1)
+			return (1);
+	}
 	return (0);
 }
 

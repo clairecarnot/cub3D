@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	// dprintf(2, "All is OK3\n");
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, game);
+	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mv, game);
 	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
 	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
 	// dprintf(2, "All is OK4\n");

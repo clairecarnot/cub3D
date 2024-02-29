@@ -18,15 +18,15 @@ int	check_chars(char *s, char c)
 	return (count);
 }
 
-t_img	*xpm_img(t_game *game, char *img_path)
+t_img	*xpm_img(t_game *game, char *img_path, int w, int h)
 {
 	t_img	*new_img;
 
 	new_img = ft_calloc(1, sizeof(t_img));
 	if (!new_img)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	new_img->w = 64; //A DEFINIR
-	new_img->h = 64; //A DEFINIR
+	new_img->w = w; //A DEFINIR
+	new_img->h = h; //A DEFINIR
 	new_img->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			img_path, &(new_img->w), &(new_img->h));
 	if (!new_img->img_ptr)
@@ -106,16 +106,16 @@ int	*parse_colors(char *identifier)
 
 int	check_err_types(t_game *game)
 {
-	game->no = xpm_img(game, game->type[0]);
+	game->no = xpm_img(game, game->type[0], 64, 64);
 	if (!game->no)
 		return (-1);
-	game->so = xpm_img(game, game->type[1]);
+	game->so = xpm_img(game, game->type[1], 64, 64);
 	if (!game->so)
 		return (-1);
-	game->we = xpm_img(game, game->type[2]);
+	game->we = xpm_img(game, game->type[2], 64, 64);
 	if (!game->we)
 		return (-1);
-	game->ea = xpm_img(game, game->type[3]);
+	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
 		return (-1);
 	if (get_imgs_data(game) != 0)

@@ -28,6 +28,10 @@ void	free_img(t_game *game, t_img *img)
 
 void	free_game2(t_game *game)
 {
+	if (game->door)
+		free_img(game, game->door);
+	if (game->door_tex)
+		free(game->door_tex);
 	if (game->buf)
 		free_buffer(game);
 	if (game->win_ptr)

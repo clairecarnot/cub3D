@@ -22,23 +22,28 @@ int	contains_empty_nl(t_game *game)
 /*
  * contains_forbid_chars
  * Checks if there are other characters than 0, 1, N, S, E, W, \n
+ * 	for mandatory
+ * + other chars in bonus: D and A
  */
 
 int	contains_forbid_chars(t_game *game)
 {
 	int	i;
 	int	j;
+	int	res;
 
 	i = 0;
+	res = 0;
 	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] != '0' && game->map[i][j] != '1'
-				&& game->map[i][j] != 'N' && game->map[i][j] != 'S'
-				&& game->map[i][j] != 'E' && game->map[i][j] != 'W'
-				&& game->map[i][j] != '\n')
+			if (BONUS)
+				res = valid_char_bonus(game, game->map[i][j]);
+			else
+				res = valid_char(game->map[i][j]);
+			if (res == -1)
 			{
 				ft_putstr_fd("Error\nForbidden chars in the map\n", 2);
 				return (-1);

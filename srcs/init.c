@@ -103,8 +103,8 @@ t_game	*init_game(void)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 4;
-	game->moveSpeed = 0.05;
-	game->rotSpeed = 0.05;
+	game->moveSpeed = 0.1;
+	game->rotSpeed = 0.1;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;
