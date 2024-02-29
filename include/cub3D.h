@@ -59,6 +59,14 @@ typedef struct s_game
 	// char		*full_buf;
 	t_img			*image;
 
+
+	int				key_w;
+	int				key_s;
+	int				key_a;
+	int				key_d;
+	int				key_left;
+	int				key_right;
+
 	int				screen_w;
 	int				screen_h;
 	double			posX;
@@ -108,6 +116,16 @@ typedef struct s_game
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
+
+	// t_img			*minimap;
+	double			pX;
+	double			pY;
+	int				col_perso;
+	int				col_wall;
+	int				col_floor;
+	int				x_mmap;
+	int				y_mmap;
+	int				box_size;
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
@@ -195,11 +213,12 @@ t_game	*init_game(void);
 //--------------------------- handle.c ---------------------------//
 int		handle_no_event(t_game *game);
 int		handle_keypress(int keysym, t_game *game);
+int		handle_keyrelease(int keysym, t_game *game);
 
 //--------------------------- display.c ---------------------------//
 int		init_buf(t_game *game);
 void	wall_size(t_game *game);
-void	dda_algorithme(t_game *game);
+void	dda_algo(t_game *game);
 void	init_side(t_game *game);
 int		display(t_game *game, int x);
 
@@ -212,6 +231,9 @@ void	pixel_color_ceiling_floor(t_game *game, int x);
 void	pixel_color_walls(t_game *game, int x);
 void	texture_wall_orientation(t_game *game);
 void	texture(t_game *game, int x);
+
+void	draw_box(t_game *game, int color, int x, int y);
+void	minimap(t_game *game);
 
 //------------------------- move.c --------------------------//
 void	move_up(t_game *game);

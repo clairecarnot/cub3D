@@ -105,5 +105,6 @@ t_game	*init_game(void)
 	game->nb_tex = 4;
 	game->moveSpeed = 0.1;
 	game->rotSpeed = 0.1;
+
 	return (game);
 }

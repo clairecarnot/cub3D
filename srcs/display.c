@@ -34,7 +34,7 @@ void	wall_size(t_game *game)
 		game->drawEnd = game->screen_h - 1;
 }
 
-void	dda_algorithme(t_game *game)
+void	dda_algo(t_game *game)
 {
 	while (game->hit == 0)
 	{
@@ -98,10 +98,8 @@ int	display(t_game *game, int x)
 			game->deltaDistY = pow(10, 30);
 		else
 			game->deltaDistY = fabs(1 / game->rayDirY);
-		init_side(game);
-		dda_algorithme(game);
-		wall_size(game);
-		texture(game, x);
+		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
+		
 		x++;
 	}
 	draw(game);

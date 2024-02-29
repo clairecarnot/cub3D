@@ -71,9 +71,6 @@ void	get_pos(t_game *game)
 
 void	init_mlx(t_game *game)
 {
-	game->mlx_ptr = mlx_init();
-	if (!game->mlx_ptr)
-		(free_game(game), exit(1));
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->screen_w, game->screen_h, "cub3D");
 	if (!game->win_ptr)
@@ -89,6 +86,9 @@ void	init_mlx(t_game *game)
 			&game->image->bpp, &game->image->size, &game->image->endian);
 	if (!game->image->full_buf)
 		(free_game(game), exit (1));
+	// game->img_map = ft_calloc(sizeof(t_img), 1);
+	// if (!game->img_map)
+	// 	(free_game(game), exit(1));
 }
 
 t_game	*init_game(void)
@@ -103,7 +103,21 @@ t_game	*init_game(void)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 4;
-	game->moveSpeed = 0.1;
-	game->rotSpeed = 0.1;
+	game->moveSpeed = 0.05;
+	game->rotSpeed = 0.05;
+	game->key_w = 0;
+	game->key_s = 0;
+	game->key_a = 0;
+	game->key_d = 0;
+	game->key_left = 0;
+	game->key_right = 0;
+	// ----------------- bonus ---------------- //
+	game->col_perso = 0xf000ff;
+	game->col_floor = 0xededed;
+	game->col_wall = 0x3d3d3d;
+	game->box_size = 100;
+	game->x_mmap = 0;
+	game->y_mmap = 0;
+	// ---------------------------------------- //
 	return (game);
 }

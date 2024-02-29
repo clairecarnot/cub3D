@@ -1,19 +1,19 @@
-WE ./img/Bricks_12-64x64.xpm
+WE ./img/color_theme/color_background_62.xpm
 
-NO ./img/Bricks_20-64x64.xpm
-
-
+NO ./img/color_theme/color_background_88.xpm
 
 
 
-		EA ./img/Bricks_19-64x64.xpm
+
+
+		EA ./img/color_theme/color_background_86.xpm
 
 
 F 48,48,48    
 
-C          207,231,255
+C          255,255,255
 
-SO 			./img/Bricks_21-64x64.xpm
+SO 			./img/color_theme/color_background_89.xpm
 
 11111111
 10000011

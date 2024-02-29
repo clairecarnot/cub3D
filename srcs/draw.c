@@ -6,6 +6,7 @@ void	draw(t_game *game)
 	int	y;
 
 	y = 0;
+	minimap(game);//bonus
 	while (y < game->screen_h)
 	{
 		x = 0;
