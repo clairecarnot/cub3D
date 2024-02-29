@@ -118,6 +118,8 @@ typedef struct s_game
 	unsigned int	**tex;
 
 	// t_img			*minimap;
+	double			pX;
+	double			pY;
 	int				col_perso;
 	int				col_wall;
 	int				col_floor;
