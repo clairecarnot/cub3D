@@ -68,30 +68,30 @@ void	move_up(t_game *game)// W key
 	dprintf(2, "cellY = %d\n", cellY);
 	dprintf(2, "tmpX = %f\n", tmpX);
 	dprintf(2, "tmpY = %f\n", tmpY);
-	dprintf(2, "ici1\n");
+//	dprintf(2, "ici1\n");
 	if ((tmpX >= 1.1) && (tmpX <= game->rows - 1.1) && (tmpY >= 1.1) && (tmpY <= game->cols - 1.1))
 	{
-		dprintf(2, "ici2\n");
-		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
-		if ((game->map[cellX][cellY] == '0'))
+//		dprintf(2, "ici2\n");
+//		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
+		if (game->map[cellX][cellY] == '0')
 		{
-			dprintf(2, "ici3\n");
-			dprintf(2, "game->map[%d][%d] = %c\n", cellX, cellY, game->map[cellX][cellY]);
+//			dprintf(2, "ici3\n");
+//			dprintf(2, "game->map[%d][%d] = %c\n", cellX, cellY, game->map[cellX][cellY]);
 			game->posX = tmpX;
 		}
 		else if (cellX < tmpX && fabs(tmpX - (cellX + 1)) > 0.1)
 		{
-			dprintf(2, "ici4\n");
-			dprintf(2, "fabs(tmpX - (cellX + 1)) = %f\n", fabs(tmpX - (cellX + 1)));
+//			dprintf(2, "ici4\n");
+//			dprintf(2, "fabs(tmpX - (cellX + 1)) = %f\n", fabs(tmpX - (cellX + 1)));
 			game->posX = tmpX;
 		}
 		else if (cellX > tmpX && fabs(tmpX - (cellX - 1)) > 0.1)
 		{
-			dprintf(2, "ici5\n");
-			dprintf(2, "fabs(tmpX - (cellX - 1)) = %f\n", fabs(tmpX - (cellX - 1)));
+//			dprintf(2, "ici5\n");
+//			dprintf(2, "fabs(tmpX - (cellX - 1)) = %f\n", fabs(tmpX - (cellX - 1)));
 			game->posX = tmpX;
 		}
-		if ((game->map[cellX][cellY] == '0'))
+		if (game->map[cellX][cellY] == '0')
 			game->posY = tmpY;
 		else if (cellY < tmpY && fabs(tmpY - (cellY + 1)) > 0.1)
 			game->posY = tmpY;
@@ -174,23 +174,35 @@ void	move_down(t_game *game)// S key
 	dprintf(2, "cellY = %d\n", cellY);
 	dprintf(2, "tmpX = %f\n", tmpX);
 	dprintf(2, "tmpY = %f\n", tmpY);
+//	dprintf(2, "ici1\n");
 	if ((tmpX >= 1.1) && (tmpX <= game->rows - 1.1) && (tmpY >= 1.1) && (tmpY <= game->cols - 1.1))
 	{
-		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
-		dprintf(2, "fabs(tmpX - cellX) = %f\n", fabs(tmpX - cellX));
-		dprintf(2, "fabs(tmpY - cellY) = %f\n", fabs(tmpY - cellY));
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpX - cellX) > 1.1))
-			{
-				game->posX = tmpX;
-			}
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpY - cellY) > 1.1))
-			{
-				game->posY = tmpY;
-			}
+//		dprintf(2, "ici2\n");
+//		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
+		if (game->map[cellX][cellY] == '0')
+		{
+//			dprintf(2, "ici3\n");
+//			dprintf(2, "game->map[%d][%d] = %c\n", cellX, cellY, game->map[cellX][cellY]);
+			game->posX = tmpX;
+		}
+		else if (cellX < tmpX && fabs(tmpX - (cellX + 1)) > 0.1)
+		{
+//			dprintf(2, "ici4\n");
+//			dprintf(2, "fabs(tmpX - (cellX + 1)) = %f\n", fabs(tmpX - (cellX + 1)));
+			game->posX = tmpX;
+		}
+		else if (cellX > tmpX && fabs(tmpX - (cellX - 1)) > 0.1)
+		{
+//			dprintf(2, "ici5\n");
+//			dprintf(2, "fabs(tmpX - (cellX - 1)) = %f\n", fabs(tmpX - (cellX - 1)));
+			game->posX = tmpX;
+		}
+		if (game->map[cellX][cellY] == '0')
+			game->posY = tmpY;
+		else if (cellY < tmpY && fabs(tmpY - (cellY + 1)) > 0.1)
+			game->posY = tmpY;
+		else if (cellY > tmpY && fabs(tmpY - (cellY - 1)) > 0.1)
+			game->posY = tmpY;
 	}
 	dprintf(2, "posX = %f\n", game->posX);
 	dprintf(2, "posY = %f\n", game->posY);
@@ -272,23 +284,35 @@ void	move_left(t_game *game)// A key
 	dprintf(2, "cellY = %d\n", cellY);
 	dprintf(2, "tmpX = %f\n", tmpX);
 	dprintf(2, "tmpY = %f\n", tmpY);
+//	dprintf(2, "ici1\n");
 	if ((tmpX >= 1.1) && (tmpX <= game->rows - 1.1) && (tmpY >= 1.1) && (tmpY <= game->cols - 1.1))
 	{
-		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
-		dprintf(2, "fabs(tmpX - cellX) = %f\n", fabs(tmpX - cellX));
-		dprintf(2, "fabs(tmpY - cellY) = %f\n", fabs(tmpY - cellY));
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpX - cellX) > 1.1))
-			{
-				game->posX = tmpX;
-			}
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpY - cellY) > 1.1))
-			{
-				game->posY = tmpY;
-			}
+//		dprintf(2, "ici2\n");
+//		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
+		if (game->map[cellX][cellY] == '0')
+		{
+//			dprintf(2, "ici3\n");
+//			dprintf(2, "game->map[%d][%d] = %c\n", cellX, cellY, game->map[cellX][cellY]);
+			game->posX = tmpX;
+		}
+		else if (cellX < tmpX && fabs(tmpX - (cellX + 1)) > 0.1)
+		{
+//			dprintf(2, "ici4\n");
+//			dprintf(2, "fabs(tmpX - (cellX + 1)) = %f\n", fabs(tmpX - (cellX + 1)));
+			game->posX = tmpX;
+		}
+		else if (cellX > tmpX && fabs(tmpX - (cellX - 1)) > 0.1)
+		{
+//			dprintf(2, "ici5\n");
+//			dprintf(2, "fabs(tmpX - (cellX - 1)) = %f\n", fabs(tmpX - (cellX - 1)));
+			game->posX = tmpX;
+		}
+		if (game->map[cellX][cellY] == '0')
+			game->posY = tmpY;
+		else if (cellY < tmpY && fabs(tmpY - (cellY + 1)) > 0.1)
+			game->posY = tmpY;
+		else if (cellY > tmpY && fabs(tmpY - (cellY - 1)) > 0.1)
+			game->posY = tmpY;
 	}
 	dprintf(2, "posX = %f\n", game->posX);
 	dprintf(2, "posY = %f\n", game->posY);
@@ -370,23 +394,35 @@ void	move_right(t_game *game)// D key
 	dprintf(2, "cellY = %d\n", cellY);
 	dprintf(2, "tmpX = %f\n", tmpX);
 	dprintf(2, "tmpY = %f\n", tmpY);
+//	dprintf(2, "ici1\n");
 	if ((tmpX >= 1.1) && (tmpX <= game->rows - 1.1) && (tmpY >= 1.1) && (tmpY <= game->cols - 1.1))
 	{
-		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
-		dprintf(2, "fabs(tmpX - cellX) = %f\n", fabs(tmpX - cellX));
-		dprintf(2, "fabs(tmpY - cellY) = %f\n", fabs(tmpY - cellY));
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpX - cellX) > 1.1))
-			{
-				game->posX = tmpX;
-			}
-		if ((game->map[cellX][cellY] == '0')
-			|| ((game->map[cellX][cellY] == '1')
-			&& fabs(tmpY - cellY) > 1.1))
-			{
-				game->posY = tmpY;
-			}
+//		dprintf(2, "ici2\n");
+//		dprintf(2, "game->map[cellX][cellY] = %c\n", game->map[cellX][cellY]);
+		if (game->map[cellX][cellY] == '0')
+		{
+//			dprintf(2, "ici3\n");
+//			dprintf(2, "game->map[%d][%d] = %c\n", cellX, cellY, game->map[cellX][cellY]);
+			game->posX = tmpX;
+		}
+		else if (cellX < tmpX && fabs(tmpX - (cellX + 1)) > 0.1)
+		{
+//			dprintf(2, "ici4\n");
+//			dprintf(2, "fabs(tmpX - (cellX + 1)) = %f\n", fabs(tmpX - (cellX + 1)));
+			game->posX = tmpX;
+		}
+		else if (cellX > tmpX && fabs(tmpX - (cellX - 1)) > 0.1)
+		{
+//			dprintf(2, "ici5\n");
+//			dprintf(2, "fabs(tmpX - (cellX - 1)) = %f\n", fabs(tmpX - (cellX - 1)));
+			game->posX = tmpX;
+		}
+		if (game->map[cellX][cellY] == '0')
+			game->posY = tmpY;
+		else if (cellY < tmpY && fabs(tmpY - (cellY + 1)) > 0.1)
+			game->posY = tmpY;
+		else if (cellY > tmpY && fabs(tmpY - (cellY - 1)) > 0.1)
+			game->posY = tmpY;
 	}
 	dprintf(2, "posX = %f\n", game->posX);
 	dprintf(2, "posY = %f\n", game->posY);
