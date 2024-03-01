@@ -30,7 +30,7 @@
 typedef struct s_img
 {
 	void	*img_ptr;
-	// char	*addr;
+	char	*addr;
 	int		h;
 	int		w;
 	int		bpp;

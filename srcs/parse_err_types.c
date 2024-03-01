@@ -25,8 +25,8 @@ t_img	*xpm_img(t_game *game, char *img_path, int w, int h)
 	new_img = ft_calloc(1, sizeof(t_img));
 	if (!new_img)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-	new_img->w = w; //A DEFINIR
-	new_img->h = h; //A DEFINIR
+	new_img->w = w;
+	new_img->h = h;
 	new_img->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			img_path, &(new_img->w), &(new_img->h));
 	if (!new_img->img_ptr)
@@ -42,6 +42,7 @@ t_img	*xpm_img(t_game *game, char *img_path, int w, int h)
 		free(new_img);
 		return (ft_putstr_fd("Bad xpm adress\n", 2), NULL);
 	}
+//	dprintf(2, "line len xpm = %d\n", new_img->line_len);
 	return (new_img);
 }
 
