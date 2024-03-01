@@ -4,15 +4,15 @@ int	handle_no_event(t_game *game)
 {
 	if (game->key_w)
 		move_up(game);
-	else if (game->key_s)
+	if (game->key_s)
 		move_down(game);
-	else if (game->key_d)
+	if (game->key_d)
 		move_right(game);
-	else if (game->key_a)
+	if (game->key_a)
 		move_left(game);
-	else if (game->key_right)
+	if (game->key_right)
 		rotate_right(game);
-	else if (game->key_left)
+	if (game->key_left)
 		rotate_left(game);	
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	display(game, 0);
@@ -23,17 +23,17 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
 		game->key_w = 1;
-	else if (keysym == XK_s)
+	if (keysym == XK_s)
 		game->key_s = 1;
-	else if (keysym == XK_d)
+	if (keysym == XK_d)
 		game->key_d = 1;
-	else if (keysym == XK_a)
+	if (keysym == XK_a)
 		game->key_a = 1;
-	else if (keysym == 65363)
+	if (keysym == 65363)
 		game->key_right = 1;
-	else if (keysym == 65361)
+	if (keysym == 65361)
 		game->key_left = 1;
-	else if (keysym == XK_Escape)
+	if (keysym == XK_Escape)
 		ft_exit(game);
 	return (0);
 }
@@ -42,15 +42,15 @@ int	handle_keyrelease(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
 		game->key_w = 0;
-	else if (keysym == XK_s)
+	if (keysym == XK_s)
 		game->key_s = 0;
-	else if (keysym == XK_d)
+	if (keysym == XK_d)
 		game->key_d = 0;
-	else if (keysym == XK_a)
+	if (keysym == XK_a)
 		game->key_a = 0;
-	else if (keysym == 65363)
+	if (keysym == 65363)
 		game->key_right = 0;
-	else if (keysym == 65361)
+	if (keysym == 65361)
 		game->key_left = 0;
 	// else if (keysym == XK_Escape)
 	// 	ft_exit(game);

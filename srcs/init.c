@@ -67,6 +67,8 @@ void	get_pos(t_game *game)
 		}
 		y++;
 	}
+
+	
 }
 
 void	init_mlx(t_game *game)

@@ -22,10 +22,12 @@ void	pixel_color_ceiling_floor(t_game *game, int x)
 		y++;
 	}
 	y = game->drawEnd;
-	while (y < game->screen_h)
+	// dprintf(2, "x = %d\n", x);
+	while (y < game->screen_h && y >= 0)
 	{
 		// dprintf(2, "y = %d, x = %d\n", y, x);
-		game->buf[y][x] = game->f_color;
+		if (x < game->screen_w)
+			game->buf[y][x] = game->f_color;
 		y++;
 	}
 }
@@ -86,50 +88,19 @@ void	texture(t_game *game, int x)
 	pixel_color_ceiling_floor(game, x);
 }
 
-//------------------------------------ bonus -------------------------------------//
-void	draw_box(t_game *game, int color, int x, int y)
-{
-	int	tmp_x;
-	int	tmp_y;
-	
-	tmp_x = x;
-	tmp_y = y;
-
-	int yy = y * 10 + 10;//20
-	int	xx = x * 10 + 10;//20
-
-	y = tmp_y * 10;//10
-	
-	// point de reference a x = 35, y = 35 
-	// position du joueur par ex map[y] = 6, map[x] = 7
-
-	// dprintf(2, "x = %d, xx = %d\n", x, xx);
-	// dprintf(2, "y = %d, yy = %d\n", y, yy);		
-	while (y < yy && y < 70)
-	{
-		// dprintf(2, "-y = %d\n", y);
-		x = tmp_x * 10;//10
-		while (x < xx && x < 70)
-		{
-			// dprintf(2, "-x = %d\n", x);
-			game->buf[x][y] = color;
-			x++;
-		}
-		y++;
-	}
-}
+//------------------------------------ bonus minimap -------------------------------------//
 
 void	perso(t_game *game)
 {
-	game->buf[34][34] = game->col_perso;
-	game->buf[34][35] = game->col_perso;
-	game->buf[34][36] = game->col_perso;
-	game->buf[35][34] = game->col_perso;
-	game->buf[35][35] = game->col_perso;
-	game->buf[35][36] = game->col_perso;
-	game->buf[36][34] = game->col_perso;
-	game->buf[36][35] = game->col_perso;
-	game->buf[36][36] = game->col_perso;
+	game->buf[39][39] = game->col_perso;
+	game->buf[39][40] = game->col_perso;
+	game->buf[39][41] = game->col_perso;
+	game->buf[40][39] = game->col_perso;
+	game->buf[40][40] = game->col_perso;
+	game->buf[40][41] = game->col_perso;
+	game->buf[41][39] = game->col_perso;
+	game->buf[41][40] = game->col_perso;
+	game->buf[41][41] = game->col_perso;
 }
 
 void	right_down(t_game *game)
@@ -142,21 +113,33 @@ void	right_down(t_game *game)
 	game->pY = game->posX + 0;
 	game->pX = game->posY + 0;
 	(void) game;
-	y = 35;
-	while (y < 70)
+	y = 40;
+	while (y < 75)
 	{
-		x = 35;
+		x = 40;
 		game->pX = game->posY;
-		while (x < 70)
+		while (x < 75)
 		{
-			//dprintf(2, "right down .....pY = %f, .....pX = %f\n", game->pY, game->pX);
-			//dprintf(2, "right down (int)pY = %d, (int)pX = %d\n", (int)game->pY, (int)game->pX);
-			//dprintf(2, "right down ......y = %d, ......x = %d\n", y, x);			
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+			// dprintf(2, "right down .....pY = %f, .....pX = %f\n", game->pY, game->pX);
+			// dprintf(2, "right down (int)pY = %d, (int)pX = %d\n", (int)game->pY, (int)game->pX);
+			// dprintf(2, "right down ......y = %d, ......x = %d\n", y, x);			
+			if (game->pY >= 0 && game->pX >= 0 && 
+				game->pY < game->rows && game->pX < game->cols)
 			{
-				game->buf[y][x] = game->col_floor;
+				if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				{
+					game->buf[y][x] = game->col_floor;
+				}
+				else if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+				{
+					game->buf[y][x] = game->col_wall;
+				}
+				else
+				{
+					game->buf[y][x] = game->col_wall;
+				}
 			}
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+			else
 			{
 				game->buf[y][x] = game->col_wall;
 			}
@@ -178,21 +161,31 @@ void	left_down(t_game *game)
 	game->pY = game->posX + 0;
 	game->pX = game->posY + 0;
 	(void) game;
-	y = 35;
-	while (y < 70)
+	y = 40;
+	while (y < 75)
 	{
-		x = 35;
+		x = 40;
 		game->pX = game->posY;
-		while (x > 0)
+		while (x > 5)
 		{
 			//dprintf(2, "left down .....pY = %f, .....pX = %f\n", game->pY, game->pX);
 			//dprintf(2, "left down (int)pY = %d, (int)pX = %d\n", (int)game->pY, (int)game->pX);
 			//dprintf(2, "left down ......y = %d, ......x = %d\n", y, x);			
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+			if (game->pY >= 0 && game->pX >= 0 && 
+				game->pY < game->rows && game->pX < game->cols)
 			{
-				game->buf[y][x] = game->col_floor;
+				if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				{
+					game->buf[y][x] = game->col_floor;
+				}
+				else if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+				{
+					game->buf[y][x] = game->col_wall;
+				}
+				else
+					game->buf[y][x] = game->col_wall;
 			}
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+			else
 			{
 				game->buf[y][x] = game->col_wall;
 			}
@@ -214,21 +207,31 @@ void	left_up(t_game *game)
 	game->pY = game->posX + 0;
 	game->pX = game->posY + 0;
 	(void) game;
-	y = 35;
-	while (y > 0)
+	y = 40;
+	while (y > 5)
 	{
-		x = 35;
+		x = 40;
 		game->pX = game->posY;
-		while (x > 0)
+		while (x > 5)
 		{
 			//dprintf(2, "left up .....pY = %f, .....pX = %f\n", game->pY, game->pX);
 			//dprintf(2, "left up (int)pY = %d, (int)pX = %d\n", (int)game->pY, (int)game->pX);
 			//dprintf(2, "left up ......y = %d, ......x = %d\n", y, x);			
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+			if (game->pY >= 0 && game->pX >= 0 && 
+				game->pY < game->rows && game->pX < game->cols)
 			{
-				game->buf[y][x] = game->col_floor;
+				if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				{
+					game->buf[y][x] = game->col_floor;
+				}
+				else if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+				{
+					game->buf[y][x] = game->col_wall;
+				}
+				else
+					game->buf[y][x] = game->col_wall;
 			}
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+			else
 			{
 				game->buf[y][x] = game->col_wall;
 			}
@@ -250,21 +253,31 @@ void	right_up(t_game *game)
 	game->pY = game->posX + 0;
 	game->pX = game->posY + 0;
 	(void) game;
-	y = 35;
-	while (y > 0)
+	y = 40;
+	while (y > 5)
 	{
-		x = 35;
+		x = 40;
 		game->pX = game->posY;
-		while (x < 70)
+		while (x < 75)
 		{
 			//dprintf(2, "right up .....pY = %f, .....pX = %f\n", game->pY, game->pX);
 			//dprintf(2, "right up (int)pY = %d, (int)pX = %d\n", (int)game->pY, (int)game->pX);
 			//dprintf(2, "right up ......y = %d, ......x = %d\n", y, x);			
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+			if (game->pY >= 0 && game->pX >= 0 && 
+				game->pY < game->rows && game->pX < game->cols)
 			{
-				game->buf[y][x] = game->col_floor;
+				if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				{
+					game->buf[y][x] = game->col_floor;
+				}
+				else if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+				{
+					game->buf[y][x] = game->col_wall;
+				}
+				else
+					game->buf[y][x] = game->col_wall;
 			}
-			if (game->map && game->map[(int)(game->pY)] && game->map[(int)(game->pY)][(int)(game->pX)] && game->map[(int)(game->pY)][(int)(game->pX)] == '1')
+			else
 			{
 				game->buf[y][x] = game->col_wall;
 			}
@@ -276,80 +289,12 @@ void	right_up(t_game *game)
 	}
 }
 
-void	draw_box_middle(t_game *game)
-{
-	(void)game;
-	// right_down(game);
-	// left_down(game);
-	// left_up(game);
-	// right_up(game);
-	// perso(game);
-	
-}
-
-void	draw_perso(t_game *game, int color, int x, int y)
-{
-	int	tmp_x;
-	int	tmp_y;
-	
-	tmp_x = x;
-	tmp_y = y;
-
-	int yy = y * 10 + 10 - 3;//20
-	int	xx = x * 10 + 10 - 3;//20
-
-	y = tmp_y * 10 + 3;//10
-	
-	// point de reference a x = 35, y = 35 
-	// position du joueur par ex map[y] = 6, map[x] = 7
-
-	// dprintf(2, "x = %d, xx = %d\n", x, xx);
-	// dprintf(2, "y = %d, yy = %d\n", y, yy);		
-	while (y < yy && y < 70)
-	{
-		// dprintf(2, "-y = %d\n", y);
-		x = tmp_x * 10 + 3;//10
-		while (x < xx && x < 70)
-		{
-			// dprintf(2, "-x = %d\n", x);
-			game->buf[x][y] = color;
-			x++;
-		}
-		y++;
-	}
-}
-
 void	minimap(t_game *game)
 {
-	/*int y;
-	int	x;
-
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == '1')
-			{
-				// dprintf(2, "< 1 > x = %d, y = %d\n", x, y);
-				draw_box(game, game->col_wall, y, x);
-			}
-			if (game->map[y][x] == '0' || game->map[y][x] == 'N' ||
-				game->map[y][x] == 'S' || game->map[y][x] == 'E' ||
-				game->map[y][x] == 'W')
-			{
-				// dprintf(2, "< 0 > x = %d, y = %d\n", x, y);
-				draw_box(game, game->col_floor, y, x);
-			}
-			if (game->map[y][x] == 'N' || game->map[y][x] == 'S' ||
-				game->map[y][x] == 'E' || game->map[y][x] == 'W')
-			{
-				draw_perso(game, game->col_perso, y, x);
-			}
-			x++;
-		}
-		y++;
-	}*/
-	draw_box_middle(game);
+	(void)game;
+	right_down(game);
+	left_down(game);
+	left_up(game);
+	right_up(game);
+	perso(game);
 }

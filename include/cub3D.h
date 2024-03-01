@@ -137,7 +137,7 @@ typedef struct s_game
 	unsigned int	**tex;
 	int		*door_tex;
 
-	// t_img			*minimap;
+	//---- mini_map ----//
 	double			pX;
 	double			pY;
 	int				col_perso;
@@ -146,6 +146,7 @@ typedef struct s_game
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
+	//------------------//
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/

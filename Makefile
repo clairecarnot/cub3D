@@ -17,17 +17,6 @@ srcs/display.c srcs/texture.c srcs/draw.c srcs/pixels.c\
 srcs/move.c srcs/rotate.c srcs/move_mouse.c \
 srcs/free_exit.c 
 
-SRCS_BONUS = main.c \
-srcs_bonus/clear.c srcs_bonus/clear2.c \
-srcs_bonus/getcontent1.c srcs_bonus/getcontent2.c \
-srcs_bonus/parsing.c srcs_bonus/parse_type1.c srcs_bonus/parse_type2.c \
-srcs_bonus/parse_map1.c srcs_bonus/parse_map2.c \
-srcs_bonus/parse_err_map.c srcs_bonus/parse_err_types.c srcs_bonus/parse_err_types2.c \
-srcs_bonus/handle.c srcs_bonus/init.c \
-srcs_bonus/display.c srcs_bonus/texture.c srcs_bonus/draw.c \
-srcs_bonus/move.c srcs_bonus/rotate.c \
-srcs_bonus/free_exit.c 
-
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = ./libft/libft.a
