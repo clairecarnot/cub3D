@@ -135,7 +135,7 @@ typedef struct s_game
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
-	int		*door_tex;
+	// int				*door_tex;
 
 	//---- mini_map ----//
 	double			pX;
@@ -280,9 +280,19 @@ void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	move_left(t_game *game);
 
-//------------------------- move.c --------------------------//
+//------------------------- move_mouse.c --------------------------//
 void	mouse_pos(t_game *game, int x, int y);
 int	mouse_mv(int x, int y, t_game *game);
+
+//------------------------- minimap.c --------------------------//
+void	perso(t_game *game);
+void	minimap(t_game *game);
+
+//------------------------- minimap2.c --------------------------//
+void	right_down(t_game *game, int y, int x);
+void	left_down(t_game *game, int y, int x);
+void	left_up(t_game *game, int y, int x);
+void	right_up(t_game *game, int y, int x);
 
 //------------------------- rotate.c --------------------------//
 void	rotate_right(t_game *game);

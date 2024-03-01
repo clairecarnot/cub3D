@@ -121,15 +121,15 @@ t_anim	*sprite_init(t_game *game, int update_time)
 
 int	bonus_contents(t_game *game)
 {
-	if (game->door_flag == 1)
-	{
-		game->door = xpm_img(game, "./img/door.xpm", 64, 64);
-		if (!game->door)
-			return (-1);
-		game->door_tex = get_one_img_data(game, game->door);
-		if (!game->door_tex)
-			return (-1);
-	}
+	// if (game->door_flag == 1)
+	// {
+	// 	game->door = xpm_img(game, "./img/door.xpm", 64, 64);
+	// 	if (!game->door)
+	// 		return (-1);
+	// 	game->door_tex = get_one_img_data(game, game->door);
+	// 	if (!game->door_tex)
+	// 		return (-1);
+	// }
 	if (game->anim_flag == 1)
 	{
 		game->spr = xpm_img(game, "./img/sprite.xpm", 2400, 80);
