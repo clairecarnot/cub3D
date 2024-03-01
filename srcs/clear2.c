@@ -26,3 +26,23 @@ void	free_tab(char **tab)
 	}
 	free(tab);
 }
+
+void	ft_lstfree(t_list **lst)
+{
+	t_list	*ptr;
+	t_list	*tmp;
+
+	if (lst)
+	{
+		ptr = *lst;
+		while (ptr)
+		{
+			tmp = ptr->next;
+			if (ptr->content)
+				free(ptr->content);
+			free(ptr);
+			ptr = tmp;
+		}
+		*lst = NULL;
+	}
+}

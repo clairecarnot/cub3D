@@ -43,8 +43,8 @@ typedef struct s_img
 
 typedef struct	s_anim
 {
-	t_list	*frame;
-	int	nb_frame;
+	t_list	*imgs;
+	int	nb_img;
 	int	cur_time;
 	int	update_time;
 	int	w;
@@ -161,6 +161,7 @@ int		free_game(t_game *game);
 /*--------------------------- clear2.c ---------------------------*/
 void	free_tab_int(unsigned int **tab, int nb);
 void	free_tab(char **tab);
+void	ft_lstfree(t_list **lst);
 
 /*--------------------------- getcontent1.c ---------------------------*/
 int		check_extension(char **argv);
