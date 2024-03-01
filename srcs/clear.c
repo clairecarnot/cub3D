@@ -32,6 +32,8 @@ void	free_game2(t_game *game)
 		free_img(game, game->door);
 	if (game->door_tex)
 		free(game->door_tex);
+	if (game->spr)
+		free_img(game, game->spr);
 	if (game->buf)
 		free_buffer(game);
 	if (game->win_ptr)

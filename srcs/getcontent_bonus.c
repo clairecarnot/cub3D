@@ -71,6 +71,8 @@ int	*slice_sprite(t_game *game, t_anim *anim, int x, int y)
 		i++;
 	}
 	tex = get_one_img_data(game, game->door);
+	free(img);
+	return (tex);
 }
 
 t_list	*create_imgs_lst(t_game *game, t_anim *anim)
@@ -87,7 +89,7 @@ t_list	*create_imgs_lst(t_game *game, t_anim *anim)
 	{
 		tmp = ft_lstnew(slice_sprite(game, anim, x, y));
 		if (!tmp)
-			return (free_lst(&imgs), NULL);
+			return (ft_lstfree(&imgs), NULL);
 		ft_lstadd_back(&imgs, tmp);
 		if (x > game->spr->w)
 		{
@@ -133,9 +135,9 @@ int	bonus_contents(t_game *game)
 		game->spr = xpm_img(game, "./img/sprite.xpm", 2400, 80);
 		if (!game->door)
 			return (-1);
-		game->anim = sprite_init(game, 20);
-		if (!game->anim)
-			return (-1);
+//		game->anim = sprite_init(game, 20);
+//		if (!game->anim)
+//			return (-1);
 	}
 	return (0);
 }

@@ -179,6 +179,10 @@ int		get_file_content(t_game *game, char **argv);
 
 /*--------------------------- getcontent_bonus.c ---------------------------*/
 int	*get_one_img_data(t_game *game, t_img *img);
+t_img	*create_new_img(t_game *game, t_anim *anim);
+int	*slice_sprite(t_game *game, t_anim *anim, int x, int y);
+t_list	*create_imgs_lst(t_game *game, t_anim *anim);
+t_anim	*sprite_init(t_game *game, int update_time);
 int	bonus_contents(t_game *game);
 
 /*--------------------------- parse_type1.c ---------------------------*/
@@ -263,6 +267,11 @@ void	texture(t_game *game, int x);
 
 void	draw_box(t_game *game, int color, int x, int y);
 void	minimap(t_game *game);
+
+//--------------------------- pixels.c ---------------------------//
+unsigned int	get_pixel_img(t_img src, int x, int y);
+void	put_pixel_img(t_img dst, int x, int y, int color);
+void	put_pixel_img_sprites(t_img dst, int x, int y, int color);
 
 //------------------------- move.c --------------------------//
 void	move_up(t_game *game);
