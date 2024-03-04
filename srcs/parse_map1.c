@@ -14,21 +14,24 @@
  *
  * The rule is decomposed below:
  * 	1/ if the absciss (j) is not 0, and the char before (j-1)
- * 		is char '0', replace by char '0'
+ * 		is char '0', 'D' or 'A', replace by char '0'
  * 	2/ if the ordinate (i) is not 0, and the char on the above
- * 		row (i-1) at absciss j is '0', replace by '0'
+ * 		row (i-1) at absciss j is '0', 'D' or 'A', replace by '0'
  * 	3/ if we are not on the last row and the char on the below
- * 		row (i+1) at absciss j i '0', replace by '0'
+ * 		row (i+1) at absciss j is '0', 'D' or 'A', replace by '0'
  * 	4/ else, replace by '1'
  */
 
 char	repl_char(t_game *game, int i, int j)
 {
-	if (j > 0 && game->map[i][j - 1] == '0')
+	if (j > 0 && (game->map[i][j - 1] == '0' || game->map[i][j - 1] == 'D'
+			|| game->map[i][j - 1] == 'A'))
 		return ('0');
-	else if (i > 0 && game->map[i - 1][j] == '0')
+	else if (i > 0 && (game->map[i - 1][j] == '0' || game->map[i - 1][j] == 'D'
+			|| game->map[i - 1][j] == 'A'))
 		return ('0');
-	else if (game->map[i + 1] && game->map[i + 1][j] == '0')
+	else if (game->map[i + 1] && (game->map[i + 1][j] == '0'
+			|| game->map[i + 1][j] == 'D' || game->map[i + 1][j] == 'A'))
 		return ('0');
 	else
 		return ('1');
