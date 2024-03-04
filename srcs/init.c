@@ -98,6 +98,7 @@ void	init_game_bonus(t_game *game)
 	game->col_perso = 0xf000ff;
 	game->col_floor = 0xededed;
 	game->col_wall = 0x3d3d3d;
+	game->col_door = 0x726b73;
 	game->box_size = 100;
 	game->x_mmap = 0;
 	game->y_mmap = 0;	
@@ -123,6 +124,8 @@ t_game	*init_game(void)
 	game->key_d = 0;
 	game->key_left = 0;
 	game->key_right = 0;
+	game->key_q = 0;
+	game->key_e = 0;
 	if (BONUS)
 		init_game_bonus(game);
 	return (game);

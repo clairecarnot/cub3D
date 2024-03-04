@@ -50,7 +50,8 @@ void	dda_algo(t_game *game)
 			game->mapY += game->stepY;
 			game->side = 1;
 		}
-		if (game->map[game->mapX][game->mapY] == '1')
+		if (game->map[game->mapX][game->mapY] == '1' ||
+			game->map[game->mapX][game->mapY] == 'D' )
 			game->hit = 1;
 	}
 }
@@ -99,7 +100,14 @@ int	display(t_game *game, int x)
 		else
 			game->deltaDistY = fabs(1 / game->rayDirY);
 		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
-		
+		if (x == (game->screen_w / 2))
+		{
+			game->mY = game->mapY;
+			game->mX = game->mapX;
+			game->dY = (int)game->sideDistY;
+			game->dX = (int)game->sideDistX;
+			// dprintf(2, "dY = %d, dX = %d\n", game->dY, game->dX);
+		}
 		x++;
 	}
 	draw(game);

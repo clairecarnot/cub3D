@@ -50,12 +50,12 @@ void	pixel_color_walls(t_game *game, int x)
 
 void	texture_wall_orientation(t_game *game)
 {
-	if (game->map[game->mapY][game->mapX] == 'D')
+	if (game->map[game->mapX][game->mapY] == 'D')
 	{
-		dprintf(2, "mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+		// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
 		game->texNum = 4;
 	}
-	if (game->side == 0)
+	else if (game->side == 0)
 	{
 		if (game->stepX == 1)
 			game->texNum = 1;

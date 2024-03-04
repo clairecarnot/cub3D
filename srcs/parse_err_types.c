@@ -118,7 +118,7 @@ int	check_err_types(t_game *game)
 	game->ea = xpm_img(game, game->type[3], 64, 64);
 	if (!game->ea)
 		return (-1);
-	game->door = xpm_img(game, "./img/door.xpm", 64, 64);
+	game->door = xpm_img(game, "./img/color_theme/color_background_44.xpm", 64, 64);
 	if (!game->door)
 		return (-1);
 	if (get_imgs_data(game) != 0)

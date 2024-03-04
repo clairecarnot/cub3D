@@ -85,6 +85,8 @@ typedef struct s_game
 	int				key_d;
 	int				key_left;
 	int				key_right;
+	int				key_q;
+	int				key_e;
 
 	int				screen_w;
 	int				screen_h;
@@ -142,11 +144,17 @@ typedef struct s_game
 	double			pY;
 	int				col_perso;
 	int				col_wall;
+	int				col_door;
 	int				col_floor;
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
 	//------------------//
+
+	int				mY;
+	int				mX;
+	int				dY;
+	int				dX;
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/

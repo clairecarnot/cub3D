@@ -13,10 +13,13 @@ void	right_down(t_game *game, int y, int x)
 			if (game->pY >= 0 && game->pX >= 0
 				&& game->pY < game->rows && game->pX < game->cols)
 			{
-				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0'
+					|| game->map[(int)(game->pY)][(int)(game->pX)] == 'd')
 					game->buf[y][x] = game->col_floor;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == '1')
 					game->buf[y][x] = game->col_wall;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
+					game->buf[y][x] = game->col_door;
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -41,10 +44,13 @@ void	left_down(t_game *game, int y, int x)
 			if (game->pY >= 0 && game->pX >= 0
 				&& game->pY < game->rows && game->pX < game->cols)
 			{
-				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0'
+					|| game->map[(int)(game->pY)][(int)(game->pX)] == 'd')
 					game->buf[y][x] = game->col_floor;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == '1')
 					game->buf[y][x] = game->col_wall;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
+					game->buf[y][x] = game->col_door;
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -69,10 +75,13 @@ void	left_up(t_game *game, int y, int x)
 			if (game->pY >= 0 && game->pX >= 0
 				&& game->pY < game->rows && game->pX < game->cols)
 			{
-				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0'
+					|| game->map[(int)(game->pY)][(int)(game->pX)] == 'd')
 					game->buf[y][x] = game->col_floor;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == '1')
 					game->buf[y][x] = game->col_wall;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
+					game->buf[y][x] = game->col_door;
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -97,10 +106,13 @@ void	right_up(t_game *game, int y, int x)
 			if (game->pY >= 0 && game->pX >= 0
 				&& game->pY < game->rows && game->pX < game->cols)
 			{
-				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0')
+				if (game->map[(int)(game->pY)][(int)(game->pX)] == '0'
+					|| game->map[(int)(game->pY)][(int)(game->pX)] == 'd')
 					game->buf[y][x] = game->col_floor;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == '1')
 					game->buf[y][x] = game->col_wall;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
+					game->buf[y][x] = game->col_door;
 				else
 					game->buf[y][x] = game->col_wall;
 			}
