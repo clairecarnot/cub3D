@@ -15,6 +15,9 @@
 # define BONUS 1
 # define DIST_MOUSE 20
 # define SCREEN_W 640
+# define UDIV 1
+# define VDIV 1
+# define VMOVE 0.0
 
 /*
  * char	**type
@@ -26,6 +29,12 @@
  * type[5] = ceiling
  * type[6] = NULL
  */
+
+typedef struct	s_pair
+{
+	double	first;
+	int		second;
+}		t_pair;
 
 typedef struct s_img
 {
@@ -49,7 +58,15 @@ typedef struct	s_anim
 	int	update_time;
 	int	w;
 	int	h;
+	int	*tex; //A SUPPR
 }		t_anim;
+
+typedef struct	s_sprite
+{
+	double	x;
+	double	y;
+	t_anim	*anim;
+}		t_sprite;
 
 typedef struct s_game
 {
@@ -137,6 +154,26 @@ typedef struct s_game
 	unsigned int	**tex;
 	int		*door_tex;
 
+	t_sprite	*sprite;
+	int			numSprites;
+	double			ZBuffer[SCREEN_W];
+	int			*spriteOrder;
+	double			*spriteDistance;
+	double			spriteX;
+	double			spriteY;
+	double			invDet;
+	double			transformX;
+	double			transformY;
+	int				spriteScreenX;
+	int				spriteHeight;
+	int				spriteWidth;
+	int				stripe;
+	int				drawStartY;
+	int				drawStartX;
+	int				drawEndY;
+	int				drawEndX;
+	int				vMoveScreen;
+
 	//---- mini_map ----//
 	double			pX;
 	double			pY;
@@ -178,13 +215,17 @@ void	delete_types_nl(t_game *game);
 int		sort_content(t_game *game, char **argv);
 int		get_file_content(t_game *game, char **argv);
 
-/*--------------------------- getcontent_bonus.c ---------------------------*/
+/*--------------------------- getcontent_bonus1.c ---------------------------*/
 int	*get_one_img_data(t_game *game, t_img *img);
 t_img	*create_new_img(t_game *game, t_anim *anim);
-int	*slice_sprite(t_game *game, t_anim *anim, int x, int y);
+int	*slice_anim(t_game *game, t_anim *anim, int x, int y);
 t_list	*create_imgs_lst(t_game *game, t_anim *anim);
-t_anim	*sprite_init(t_game *game, int update_time);
+t_anim	*anim_init(t_game *game, int update_time);
 int	bonus_contents(t_game *game);
+
+/*--------------------------- getcontent_bonus2.c ---------------------------*/
+int	sprite_init(t_game *game);
+int	create_sprite_utils(t_game *game);
 
 /*--------------------------- parse_type1.c ---------------------------*/
 int		is_wspc_excl_nl(char c);
@@ -269,10 +310,19 @@ void	texture(t_game *game, int x);
 void	draw_box(t_game *game, int color, int x, int y);
 void	minimap(t_game *game);
 
+//--------------------------- texture2.c ---------------------------//
+//void	swap_dist(double *a, double *b);
+//void	swap_sprite(t_sprite *a, t_sprite *b);
+//void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
+void	reorder_sprites(t_pair *sprites, int numspr);
+void	sort_sprites(t_game *game, int *order, double *dist, int numspr);
+void	project_sprites(t_game *game);
+void	pixel_color_sprites(t_game *game);
+
 //--------------------------- pixels.c ---------------------------//
 unsigned int	get_pixel_img(t_img src, int x, int y);
 void	put_pixel_img(t_img dst, int x, int y, int color);
-void	put_pixel_img_sprites(t_img dst, int x, int y, int color);
+void	put_pixel_img_anims(t_img dst, int x, int y, int color);
 
 //------------------------- move.c --------------------------//
 void	move_up(t_game *game);

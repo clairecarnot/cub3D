@@ -34,8 +34,14 @@ void	free_game2(t_game *game)
 		free(game->door_tex);
 	if (game->spr)
 		free_img(game, game->spr);
+	if (game->sprite)
+		free(game->sprite);
+	if (game->spriteOrder)
+		free(game->spriteOrder);
+	if (game->spriteDistance)
+		free(game->spriteDistance);
 	if (game->anim)
-		(ft_lstfree(&game->anim->imgs), free(game->anim));
+		(free(game->anim->tex), ft_lstfree(&game->anim->imgs), free(game->anim));
 	if (game->buf)
 		free_buffer(game);
 	if (game->win_ptr)

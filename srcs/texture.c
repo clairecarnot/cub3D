@@ -46,6 +46,7 @@ void	pixel_color_walls(t_game *game, int x)
 		game->buf[y][x] = color;
 		y++;
 	}
+	game->ZBuffer[x] = game->perpWallDist;
 }
 
 void	texture_wall_orientation(t_game *game)
@@ -86,6 +87,7 @@ void	texture(t_game *game, int x)
 	texture_wall_orientation(game);
 	pixel_color_walls(game, x);
 	pixel_color_ceiling_floor(game, x);
+	pixel_color_sprites(game);
 }
 
 //------------------------------------ bonus minimap -------------------------------------//

@@ -52,7 +52,7 @@ t_img	*create_new_img(t_game *game, t_anim *anim)
 	return (new_img);
 }
 
-int	*slice_sprite(t_game *game, t_anim *anim, int x, int y)
+int	*slice_anim(t_game *game, t_anim *anim, int x, int y)
 {
 	t_img	*img;
 	int	*tex;
@@ -76,7 +76,7 @@ int	*slice_sprite(t_game *game, t_anim *anim, int x, int y)
 		{
 //			dprintf(2, "i = %d\n", i);
 //			dprintf(2, "j = %d\n", j);
-			put_pixel_img_sprites(*img, j, i,
+			put_pixel_img_anims(*img, j, i,
 				get_pixel_img(*(game->spr), x + j, y + i));
 			j++;
 		}
@@ -105,7 +105,7 @@ t_list	*create_imgs_lst(t_game *game, t_anim *anim)
 //		dprintf(2, "i = %d\n", i);
 //		dprintf(2, "x = %d\n", x);
 //		dprintf(2, "y = %d\n", y);
-		tmp = ft_lstnew(slice_sprite(game, anim, x, y));
+		tmp = ft_lstnew(slice_anim(game, anim, x, y));
 		if (!tmp)
 			return (ft_lstfree(&imgs), NULL);
 		ft_lstadd_back(&imgs, tmp);
@@ -120,7 +120,7 @@ t_list	*create_imgs_lst(t_game *game, t_anim *anim)
 	return (imgs);
 }
 
-t_anim	*sprite_init(t_game *game, int update_time)
+t_anim	*anim_init(t_game *game, int update_time)
 {
 	t_anim	*anim;
 
@@ -152,12 +152,25 @@ int	bonus_contents(t_game *game)
 	}
 	if (game->anim_flag == 1)
 	{
-		game->spr = xpm_img(game, "./img/sprite.xpm", 2400, 80);
-		game->spr->addr = (char *) game->spr->full_buf;
-		if (!game->spr)
-			return (-1);
-		game->anim = sprite_init(game, 20);
-		if (!game->anim)
+		/* Sprite avec animation
+		   game->spr = xpm_img(game, "./img/anim.xpm", 2400, 80);
+		   game->spr->addr = (char *) game->spr->full_buf;
+		   if (!game->spr)
+		   return (-1);
+		   game->anim = anim_init(game, 20);
+		   if (!game->anim)
+		   return (-1);
+		   */
+		/* Sprite sans animation - a suppr*/
+		game->anim = ft_calloc(1, sizeof(t_anim));
+		game->anim->w = 64;
+		game->anim->h = 64;
+		t_img *img = xpm_img(game, "./img/barrel.xpm", 64, 64);
+		game->anim->tex = get_one_img_data(game, img);
+		free(img);
+		/* */
+//		dprintf(2, "numSprites = %d\n", game->numSprites);
+		if (create_sprite_utils(game) == -1)
 			return (-1);
 	}
 //	dprintf(2, "OK!\n");

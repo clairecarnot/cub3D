@@ -22,7 +22,7 @@ void	put_pixel_img(t_img dst, int x, int y, int color)
 	}
 }
 
-void	put_pixel_img_sprites(t_img dst, int x, int y, int color)
+void	put_pixel_img_anims(t_img dst, int x, int y, int color)
 {
 //	int	*img;
 	char	*img;
