@@ -1,6 +1,6 @@
 WE ./img/color_theme/color_background_62.xpm
 
-NO ./img/color_theme/color_background_88.xpm
+NO ./img/color_theme/color_background_88.2.xpm
 
 
 
@@ -18,8 +18,8 @@ SO 			./img/color_theme/color_background_89.3.xpm
 11111111
 100A0001
 11000001
-10000111
 10000001
-100N0001
+100011D1
+100N10A1
 11111111
 

@@ -20,6 +20,13 @@ void	right_down(t_game *game, int y, int x)
 					game->buf[y][x] = game->col_wall;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
 					game->buf[y][x] = game->col_door;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'A')
+				{
+					// if (y % 10 == 0 && x % 10 == 0)
+						game->buf[y][x] = game->col_anim;
+					// else
+					// 	game->buf[y][x] = game->col_floor;
+				}
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -51,6 +58,13 @@ void	left_down(t_game *game, int y, int x)
 					game->buf[y][x] = game->col_wall;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
 					game->buf[y][x] = game->col_door;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'A')
+				{
+					// if (y % 10 == 0 && x % 10 == 0)
+						game->buf[y][x] = game->col_anim;
+					// else
+					// 	game->buf[y][x] = game->col_floor;
+				}
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -82,6 +96,13 @@ void	left_up(t_game *game, int y, int x)
 					game->buf[y][x] = game->col_wall;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
 					game->buf[y][x] = game->col_door;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'A')
+				{
+					// if (y % 10 == 0 && x % 10 == 0)
+						game->buf[y][x] = game->col_anim;
+					// else
+					// 	game->buf[y][x] = game->col_floor;
+				}
 				else
 					game->buf[y][x] = game->col_wall;
 			}
@@ -113,6 +134,17 @@ void	right_up(t_game *game, int y, int x)
 					game->buf[y][x] = game->col_wall;
 				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'D')
 					game->buf[y][x] = game->col_door;
+				else if (game->map[(int)(game->pY)][(int)(game->pX)] == 'A')
+				{
+					// dprintf(2, "x = %d, y + %d\n", x, y);
+					// if (y % 10 == 0 && x % 10 == 0)
+					// {
+					// 	dprintf(2, "hey\n");
+						game->buf[y][x] = game->col_anim;
+					// }
+					// else
+					// 	game->buf[y][x] = game->col_floor;
+				}
 				else
 					game->buf[y][x] = game->col_wall;
 			}

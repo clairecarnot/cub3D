@@ -129,8 +129,8 @@ t_anim	*anim_init(t_game *game, int update_time)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	anim->cur_time = 0;
 	anim->update_time = update_time;
-	anim->w = 64; //A MODIF
-	anim->h = 64; //A MODIF
+	anim->w = 20; //A MODIF
+	anim->h = 20; //A MODIF
 	anim->imgs = create_imgs_lst(game, anim);
 	if (!anim->imgs)
 		return (free(anim), NULL);
@@ -155,7 +155,7 @@ int	bonus_contents(t_game *game)
 	if (game->anim_flag == 1)
 	{
 		/* Sprite avec animation */
-		game->spr = xpm_img(game, "./img/player.xpm", 1920, 64);
+		game->spr = xpm_img(game, "./img/nounoursvert.xpm", 160, 20);
 		game->spr->addr = (char *) game->spr->full_buf;
 		if (!game->spr)
 			return (-1);

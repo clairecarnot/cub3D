@@ -183,6 +183,7 @@ typedef struct s_game
 	int				col_wall;
 	int				col_door;
 	int				col_floor;
+	int				col_anim;
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
