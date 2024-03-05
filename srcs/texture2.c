@@ -18,12 +18,6 @@ void	swap_sprite(t_sprite *a, t_sprite *b)
 	*b = tmp;
 }
 
-/*
- * sort_sprites
- * first sprite will be the farest to player
- */
-
-/*
 void	sort_sprites(t_sprite *sprite, double *dist, int numspr)
 {
 	int	i;
@@ -45,8 +39,8 @@ void	sort_sprites(t_sprite *sprite, double *dist, int numspr)
 		i++;
 	}
 }
-*/
 
+/*
 void	reorder_sprites(t_pair *sprites, int numspr)
 {
 	int	i;
@@ -99,9 +93,16 @@ void	sort_sprites(t_game *game, int *order, double *dist, int numspr)
 	}
 	free(sprites);
 }
+*/
+
+/*
+ * sort_sprites
+ * first sprite will be the farest to player
+ */
 
 void	project_sprites(t_game *game)
 {
+//	dprintf(2, "PROJECTION\n");
 	int	i;
 	unsigned int	color;
 
@@ -110,62 +111,64 @@ void	project_sprites(t_game *game)
 	while (i < game->numSprites)
 	{
 		//translate sprite position to relative to camera
+//		dprintf(2, "game->sprite[game->spriteOrder[i]].x = %f\n", game->sprite[game->spriteOrder[i]].x);
+//		dprintf(2, "game->sprite[game->spriteOrder[i]].y = %f\n", game->sprite[game->spriteOrder[i]].y);
 		game->spriteX = game->sprite[game->spriteOrder[i]].x - game->posX;
 		game->spriteY = game->sprite[game->spriteOrder[i]].y - game->posY;
 		i++;
-	}
-	//transform sprite with the inverse camera matrix
-	game->invDet = 1.0 / (game->planeX * game->dirY - game->dirX * game->planeY);
-	game->transformX = game->invDet * (game->dirY * game->spriteX - game->dirX * game->spriteY);
-	game->transformY = game->invDet * (-game->planeY * game->spriteX + game->planeX * game->spriteY);
-	game->spriteScreenX = (int)((game->screen_w / 2) * (1 + game->transformX / game->transformY));
-	//calculate height of the sprite on screen
-	game->vMoveScreen = (int)(VMOVE / game->transformY);
-	game->spriteHeight = abs((int)(game->screen_h / (game->transformY))) / VDIV;
-//	game->spriteHeight = abs((int)(game->screen_h / (game->transformY)));
-	//calculate lowest and highest pixel to fill in current stripe
-	game->drawStartY = -game->spriteHeight / 2 + game->screen_h / 2 + game->vMoveScreen;
-	if (game->drawStartY < 0)
-		game->drawStartY = 0;
-	game->drawEndY = game->spriteHeight / 2 + game->screen_h / 2 + game->vMoveScreen;
-	if (game->drawEndY >= game->screen_h)
-		game->drawEndY = game->screen_h - 1;
-	//calculate width of the sprite
-	game->spriteWidth = abs((int)(game->screen_h / (game->transformY))) / UDIV;
-	game->drawStartX = -game->spriteWidth / 2 + game->spriteScreenX;
-	if (game->drawStartX < 0)
-		game->drawStartX = 0;
-	game->drawEndX = game->spriteWidth / 2 + game->spriteScreenX;
-	if (game->drawEndX >= game->screen_w)
-		game->drawEndX = game->screen_w - 1;
-	//loop through every vertical stripe of the sprite on screen
-	game->stripe = game->drawStartX;
-	while (game->stripe < game->drawEndX)
-	{
-		game->texX = (int)(256 * (game->stripe - (-game->spriteWidth / 2
-			+ game->spriteScreenX)) * game->anim->w / game->spriteWidth) / 256;
-		//the conditions in the if are:
-		//1) it's in front of camera plane so you don't see things behind you
-		//2) it's on the screen (left)
-		//3) it's on the screen (right)
-		//4) ZBuffer, with perpendicular distance
-		if (game->transformY > 0 && game->stripe > 0 && game->stripe < game->screen_w
-				&& game->transformY < game->ZBuffer[game->stripe])
+		//transform sprite with the inverse camera matrix
+		game->invDet = 1.0 / (game->planeX * game->dirY - game->dirX * game->planeY);
+		game->transformX = game->invDet * (game->dirY * game->spriteX - game->dirX * game->spriteY);
+		game->transformY = game->invDet * (-game->planeY * game->spriteX + game->planeX * game->spriteY);
+		game->spriteScreenX = (int)((game->screen_w / 2) * (1 + game->transformX / game->transformY));
+		//calculate height of the sprite on screen
+		game->vMoveScreen = (int)(VMOVE / game->transformY);
+		game->spriteHeight = abs((int)(game->screen_h / (game->transformY))) / VDIV;
+		//	game->spriteHeight = abs((int)(game->screen_h / (game->transformY)));
+		//calculate lowest and highest pixel to fill in current stripe
+		game->drawStartY = -game->spriteHeight / 2 + game->screen_h / 2 + game->vMoveScreen;
+		if (game->drawStartY < 0)
+			game->drawStartY = 0;
+		game->drawEndY = game->spriteHeight / 2 + game->screen_h / 2 + game->vMoveScreen;
+		if (game->drawEndY >= game->screen_h)
+			game->drawEndY = game->screen_h - 1;
+		//calculate width of the sprite
+		game->spriteWidth = abs((int)(game->screen_h / (game->transformY))) / UDIV;
+		game->drawStartX = -game->spriteWidth / 2 + game->spriteScreenX;
+		if (game->drawStartX < 0)
+			game->drawStartX = 0;
+		game->drawEndX = game->spriteWidth / 2 + game->spriteScreenX;
+		if (game->drawEndX >= game->screen_w)
+			game->drawEndX = game->screen_w - 1;
+		//loop through every vertical stripe of the sprite on screen
+		game->stripe = game->drawStartX;
+		while (game->stripe < game->drawEndX)
 		{
-			int y = game->drawStartY;
-			while (y < game->drawEndY)
+			game->texX = (int)(256 * (game->stripe - (-game->spriteWidth / 2
+							+ game->spriteScreenX)) * game->anim->w / game->spriteWidth) / 256;
+			//the conditions in the if are:
+			//1) it's in front of camera plane so you don't see things behind you
+			//2) it's on the screen (left)
+			//3) it's on the screen (right)
+			//4) ZBuffer, with perpendicular distance
+			if (game->transformY > 0 && game->stripe > 0 && game->stripe < game->screen_w
+					&& game->transformY < game->ZBuffer[game->stripe])
 			{
-//				dprintf(2, "y = %d\n", y);
-//				dprintf(2, "game->drawEndY = %d\n", game->drawEndY);
-				int d = (y) * 256 - game->screen_h * 128 + game->spriteHeight * 128;
-				game->texY = ((d * game->anim->h) / game->spriteHeight) / 256;
-				color = game->anim->tex[game->anim->w * game->texY + game->texX];
-				if ((color & 0x00FFFFFF) != 0)
-					game->buf[y][game->stripe] = color;
-				y++;
+				int y = game->drawStartY;
+				while (y < game->drawEndY)
+				{
+					//dprintf(2, "y = %d\n", y);
+					//dprintf(2, "game->drawEndY = %d\n", game->drawEndY);
+					int d = (y) * 256 - game->screen_h * 128 + game->spriteHeight * 128;
+					game->texY = ((d * game->anim->h) / game->spriteHeight) / 256;
+					color = game->anim->tex[game->anim->w * game->texY + game->texX];
+					if ((color & 0x00FFFFFF) != 0)
+						game->buf[y][game->stripe] = color;
+					y++;
+				}
 			}
+			game->stripe++;
 		}
-		game->stripe++;
 	}
 }
 
@@ -174,8 +177,8 @@ void	pixel_color_sprites(t_game *game)
 	int	i;
 
 	i = 0;
-//	dprintf(2, "premier\n");
 	/*
+	dprintf(2, "premier\n");
 	int j = 0;
 	while (j < game->numSprites)
 	{
@@ -193,17 +196,17 @@ void	pixel_color_sprites(t_game *game)
 			- game->sprite[i].y) * (game->posY - game->sprite[i].y));
 		i++;
 	}
-	sort_sprites(game, game->spriteOrder, game->spriteDistance, game->numSprites);
-//	sort_sprites(game->sprite, game->spriteDistance, game->numSprites);
-//	dprintf(2, "deuxieme\n");
+//	sort_sprites(game, game->spriteOrder, game->spriteDistance, game->numSprites);
+	sort_sprites(game->sprite, game->spriteDistance, game->numSprites);
 	/*
-	int j = 0;
-	while (j < game->numSprites)
+	dprintf(2, "deuxieme\n");
+	int k = 0;
+	while (k < game->numSprites)
 	{
-		dprintf(2, "j = %d\n", j);
-		dprintf(2, "x = %f\n", game->sprite[j].x);
-		dprintf(2, "y = %f\n", game->sprite[j].y);
-		j++;
+		dprintf(2, "k = %d\n", k);
+		dprintf(2, "x = %f\n", game->sprite[k].x);
+		dprintf(2, "y = %f\n", game->sprite[k].y);
+		k++;
 	}
 	*/
 	project_sprites(game);

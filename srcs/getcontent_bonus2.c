@@ -18,8 +18,8 @@ int	sprite_init(t_game *game)
 //				dprintf(2, "k = %d\n", k);
 //				dprintf(2, "j = %d\n", j);
 //				dprintf(2, "i = %d\n", i);
-				game->sprite[k].x = j + 0.5;
-				game->sprite[k].y = i + 0.5;
+				game->sprite[k].x = i + 0.5;
+				game->sprite[k].y = j + 0.5;
 				game->sprite[k].anim = game->anim;
 				k++;
 			}

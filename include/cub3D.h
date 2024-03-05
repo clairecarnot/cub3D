@@ -311,11 +311,11 @@ void	draw_box(t_game *game, int color, int x, int y);
 void	minimap(t_game *game);
 
 //--------------------------- texture2.c ---------------------------//
-//void	swap_dist(double *a, double *b);
-//void	swap_sprite(t_sprite *a, t_sprite *b);
-//void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
+void	swap_dist(double *a, double *b);
+void	swap_sprite(t_sprite *a, t_sprite *b);
+void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
 void	reorder_sprites(t_pair *sprites, int numspr);
-void	sort_sprites(t_game *game, int *order, double *dist, int numspr);
+//void	sort_sprites(t_game *game, int *order, double *dist, int numspr);
 void	project_sprites(t_game *game);
 void	pixel_color_sprites(t_game *game);
 
