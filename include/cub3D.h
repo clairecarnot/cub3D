@@ -15,9 +15,9 @@
 # define BONUS 1
 # define DIST_MOUSE 20
 # define SCREEN_W 640
-# define UDIV 1
-# define VDIV 1
-# define VMOVE 0.0
+# define UDIV 7
+# define VDIV 7
+# define VMOVE 200
 
 /*
  * char	**type

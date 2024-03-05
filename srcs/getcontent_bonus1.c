@@ -129,8 +129,8 @@ t_anim	*anim_init(t_game *game, int update_time)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	anim->cur_time = 0;
 	anim->update_time = update_time;
-	anim->w = 80; //A MODIF
-	anim->h = 80; //A MODIF
+	anim->w = 16; //A MODIF
+	anim->h = 16; //A MODIF
 	anim->imgs = create_imgs_lst(game, anim);
 	if (!anim->imgs)
 		return (free(anim), NULL);
@@ -163,9 +163,9 @@ int	bonus_contents(t_game *game)
 		   */
 		/* Sprite sans animation - a suppr*/
 		game->anim = ft_calloc(1, sizeof(t_anim));
-		game->anim->w = 64;
-		game->anim->h = 64;
-		t_img *img = xpm_img(game, "./img/barrel.xpm", 64, 64);
+		game->anim->w = 16;
+		game->anim->h = 16;
+		t_img *img = xpm_img(game, "./img/coin_mario3.xpm", 16, 16);
 		game->anim->tex = get_one_img_data(game, img);
 		free(img);
 		/* */
