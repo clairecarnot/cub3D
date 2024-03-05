@@ -15,6 +15,7 @@ srcs/parse_err_map.c srcs/parse_err_map2.c srcs/parse_err_types.c srcs/parse_err
 srcs/handle.c srcs/init.c \
 srcs/display.c srcs/texture.c srcs/texture2.c srcs/draw.c srcs/pixels.c \
 srcs/move.c srcs/rotate.c srcs/move_mouse.c \
+srcs/minimap.c srcs/minimap2.c \
 srcs/free_exit.c 
 
 OBJS = $(SRCS:.c=.o)

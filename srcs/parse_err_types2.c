@@ -25,7 +25,7 @@ int	get_each_img_data(t_game *game, t_img *img, int i)
 
 int	get_imgs_data(t_game *game)
 {
-	game->tex = ft_calloc(4, sizeof(int *));
+	game->tex = ft_calloc(5, sizeof(int *));
 	if (!game->tex)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	if (get_each_img_data(game, game->no, 0) != 0)
@@ -35,6 +35,8 @@ int	get_imgs_data(t_game *game)
 	if (get_each_img_data(game, game->ea, 2) != 0)
 		return (-1);
 	if (get_each_img_data(game, game->we, 3) != 0)
+		return (-1);
+	if (get_each_img_data(game, game->door, 4) != 0)
 		return (-1);
 	return (0);
 }

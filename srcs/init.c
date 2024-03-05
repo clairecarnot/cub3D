@@ -93,6 +93,18 @@ void	init_mlx(t_game *game)
 	// 	(free_game(game), exit(1));
 }
 
+void	init_game_bonus(t_game *game)
+{
+	game->col_perso = 0xf000ff;
+	game->col_floor = 0xededed;
+	game->col_wall = 0x3d3d3d;
+	game->col_door = 0x726b73;
+	game->box_size = 100;
+	game->x_mmap = 0;
+	game->y_mmap = 0;
+	game->click = -1;
+}
+
 t_game	*init_game(void)
 {
 	t_game	*game;
@@ -104,22 +116,17 @@ t_game	*init_game(void)
 	game->screen_h = 480;
 	game->tex_w = 64;
 	game->tex_h = 64;
-	game->nb_tex = 4;
-	game->moveSpeed = 0.1;
-	game->rotSpeed = 0.1;
+	game->nb_tex = 5;
+	game->moveSpeed = 0.01;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;
 	game->key_d = 0;
 	game->key_left = 0;
 	game->key_right = 0;
-	// ----------------- bonus ---------------- //
-	game->col_perso = 0xf000ff;
-	game->col_floor = 0xededed;
-	game->col_wall = 0x3d3d3d;
-	game->box_size = 100;
-	game->x_mmap = 0;
-	game->y_mmap = 0;
-	// ---------------------------------------- //
+	game->key_q = 0;
+	game->key_e = 0;
+	if (BONUS)
+		init_game_bonus(game);
 	return (game);
 }

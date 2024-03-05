@@ -30,8 +30,8 @@ void	free_game2(t_game *game)
 {
 	if (game->door)
 		free_img(game, game->door);
-	if (game->door_tex)
-		free(game->door_tex);
+	// if (game->door_tex)
+	// 	free(game->door_tex);
 	if (game->spr)
 		free_img(game, game->spr);
 	if (game->sprite)

@@ -102,6 +102,8 @@ typedef struct s_game
 	int				key_d;
 	int				key_left;
 	int				key_right;
+	int				key_q;
+	int				key_e;
 
 	int				screen_w;
 	int				screen_h;
@@ -143,7 +145,6 @@ typedef struct s_game
 
 	// double			frameTime;
 	double			moveSpeed;
-	double			rotSpeed;
 
 	double			oldDirX;
 	double			oldPlaneX;
@@ -152,7 +153,7 @@ typedef struct s_game
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
-	int		*door_tex;
+	// int				*door_tex;
 
 	t_sprite	*sprite;
 	int			numSprites;
@@ -179,11 +180,19 @@ typedef struct s_game
 	double			pY;
 	int				col_perso;
 	int				col_wall;
+	int				col_door;
 	int				col_floor;
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
 	//------------------//
+
+	int				mY;
+	int				mX;
+	int				dY;
+	int				dX;
+
+	int				click;
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
@@ -330,13 +339,25 @@ void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	move_left(t_game *game);
 
-//------------------------- move.c --------------------------//
+//------------------------- move_mouse.c --------------------------//
 void	mouse_pos(t_game *game, int x, int y);
-int	mouse_mv(int x, int y, t_game *game);
+int		mouse_mv(int x, int y, t_game *game);
+int		mouse_click(int button, int x, int y, t_game *game);
+
+
+//------------------------- minimap.c --------------------------//
+void	perso(t_game *game);
+void	minimap(t_game *game);
+
+//------------------------- minimap2.c --------------------------//
+void	right_down(t_game *game, int y, int x);
+void	left_down(t_game *game, int y, int x);
+void	left_up(t_game *game, int y, int x);
+void	right_up(t_game *game, int y, int x);
 
 //------------------------- rotate.c --------------------------//
-void	rotate_right(t_game *game);
-void	rotate_left(t_game *game);
+void	rotate_right(t_game *game, double mult);
+void	rotate_left(t_game *game, double mult);
 
 //-------------------------- free_exit.c -------------------------//
 void	free_buffer(t_game *game);
