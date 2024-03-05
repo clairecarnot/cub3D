@@ -22,8 +22,6 @@ int	valid_char_bonus(t_game *game, char c)
 	{
 		return (-1);
 	}
-	if (c == 'D')
-		game->door_flag = 1;
 	if (c == 'A')
 	{
 		game->anim_flag = 1;

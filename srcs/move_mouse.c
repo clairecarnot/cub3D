@@ -9,7 +9,7 @@ void	mouse_pos(t_game *game, int x, int y)
 	}
 	if (x < DIST_MOUSE)
 	{
-		x =  game->screen_w - DIST_MOUSE;
+		x = game->screen_w - DIST_MOUSE;
 		mlx_mouse_move(game->mlx_ptr, game->win_ptr, x, y);
 	}
 }
@@ -27,7 +27,6 @@ int	mouse_mv(int x, int y, t_game *game)
 			rotate_left(game, 2);
 		else if (x > last_x)
 			rotate_right(game, -2);
-		
 	}
 	last_x = x;
 	(void)y;

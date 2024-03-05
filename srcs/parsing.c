@@ -72,22 +72,3 @@ int	parse_content(t_game *game)
 	}
 	return (0);
 }
-
-	//TYPES:
-	//enlever les espaces en trop				OK
-	//verifier que tous les types sont presents		OK
-	//reordonner les types et garder juste le chemin	OK
-	//verifier le chemin					OK
-	//F ou C: 	chiffre qui manque			OK
-	//		virgule en trop				OK
-	//		chiffre >255 ou <0			OK
-
-	//MAP:
-	//remplacer les whitespaces				OK
-	//compter la plus grand chaine, completer avec des 1	OK
-	//compter les rows et cols				OK
-	// ligne vide dans la map				OK	
-	//encadre de murs					OK
-	// verifier characteres autorises only			OK
-	//presence un seul player				OK
-	//taille de la map?

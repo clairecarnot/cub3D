@@ -42,7 +42,6 @@ t_img	*xpm_img(t_game *game, char *img_path, int w, int h)
 		free(new_img);
 		return (ft_putstr_fd("Bad xpm adress\n", 2), NULL);
 	}
-//	dprintf(2, "line len xpm = %d\n", new_img->line_len);
 	return (new_img);
 }
 

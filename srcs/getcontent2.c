@@ -54,8 +54,6 @@ int	get_map(t_game *game, int fd, char **argv)
 	game->map = ft_calloc(game->rows + 1, sizeof(char *));
 	if (!game->map)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
-//	dprintf(2, "rows = %d\n", rows);
-//	dprintf(2, "game->rows = %d\n", game->rows);
 	cpy_map_from_file(game, argv, rows);
 	return (0);
 }
@@ -119,21 +117,5 @@ int	get_file_content(t_game *game, char **argv)
 		return (1);
 	if (sort_content(game, argv) == -1)
 		return (1);
-	/*
-	int i = 0;
-	while (game->type[i])
-	{
-		dprintf(2, "%s", game->type[i]);
-		i++;
-	}
-	dprintf(2, "***\n");
-	int j = 0;
-	while (game->map[j])
-	{
-		dprintf(2, "%s", game->map[j]);
-		j++;
-	}
-	dprintf(2, "\n***\n");
-	*/
 	return (0);
 }

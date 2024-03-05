@@ -30,12 +30,6 @@
  * type[6] = NULL
  */
 
-typedef struct	s_pair
-{
-	double	first;
-	int		second;
-}		t_pair;
-
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -47,22 +41,22 @@ typedef struct s_img
 	int		endian;
 
 	int		*full_buf;
-	int 	size;
+	int		size;
 }		t_img;
 
-typedef struct	s_anim
+typedef struct s_anim
 {
 	t_list	*imgs;
-	int	nb_img;
-	int	cur_nb;
-	int	cur_time;
-	int	update_time;
-	int	w;
-	int	h;
-	int	*tex;
+	int		nb_img;
+	int		cur_nb;
+	int		cur_time;
+	int		update_time;
+	int		w;
+	int		h;
+	int		*tex;
 }		t_anim;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	double	x;
 	double	y;
@@ -71,21 +65,18 @@ typedef struct	s_sprite
 
 typedef struct s_game
 {
-
 	void			*mlx_ptr;
 	void			*win_ptr;
-	// t_img			image_base;
-	t_img		*no;
-	t_img		*so;
-	t_img		*ea;
-	t_img		*we;
-	t_img		*door;
-	t_img		*spr;
-	t_anim		*anim;
-	int		door_flag;
-	int		anim_flag;
-	int		*f;
-	int		*c;
+	t_img			*no;
+	t_img			*so;
+	t_img			*ea;
+	t_img			*we;
+	t_img			*door;
+	t_img			*spr;
+	t_anim			*anim;
+	int				anim_flag;
+	int				*f;
+	int				*c;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	char			**map;
@@ -93,10 +84,7 @@ typedef struct s_game
 	int				rows;
 	int				cols;
 	unsigned int	**buf;
-	// char		*full_buf;
 	t_img			*image;
-
-
 	int				key_w;
 	int				key_s;
 	int				key_a;
@@ -197,6 +185,7 @@ typedef struct s_game
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
+void	init_loop(t_game *game);
 int 	main(int argc, char **argv);
 
 /*--------------------------- clear.c ---------------------------*/
@@ -231,11 +220,11 @@ t_img	*create_new_img(t_game *game, t_anim *anim);
 int	*slice_anim(t_game *game, t_anim *anim, int x, int y);
 t_list	*create_imgs_lst(t_game *game, t_anim *anim);
 t_anim	*anim_init(t_game *game, int update_time);
-int	bonus_contents(t_game *game);
 
 /*--------------------------- getcontent_bonus2.c ---------------------------*/
 int	sprite_init(t_game *game);
 int	create_sprite_utils(t_game *game);
+int	bonus_contents(t_game *game);
 
 /*--------------------------- parse_type1.c ---------------------------*/
 int		is_wspc_excl_nl(char c);
@@ -310,6 +299,13 @@ int		display(t_game *game, int x);
 //--------------------------- draw.c ---------------------------//
 void	draw(t_game *game);
 
+//--------------------------- sprites.c ---------------------------//
+void	swap_dist(double *a, double *b);
+void	swap_sprite(t_sprite *a, t_sprite *b);
+void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
+t_list	*ft_lstget(t_list *lst, int index);
+void	update_sprite(t_game *game);
+
 //--------------------------- texture.c ---------------------------//
 int		get_color(int *tab_c);
 void	pixel_color_ceiling_floor(t_game *game, int x);
@@ -321,12 +317,9 @@ void	draw_box(t_game *game, int color, int x, int y);
 void	minimap(t_game *game);
 
 //--------------------------- texture2.c ---------------------------//
-void	swap_dist(double *a, double *b);
-void	swap_sprite(t_sprite *a, t_sprite *b);
-void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
-void	reorder_sprites(t_pair *sprites, int numspr);
-//void	sort_sprites(t_game *game, int *order, double *dist, int numspr);
-void	project_sprites(t_game *game);
+void	project_sprites_ter(t_game *game);
+void	project_sprites_bis(t_game *game);
+void	project_sprites(t_game *game, int i);
 void	pixel_color_sprites(t_game *game);
 
 //--------------------------- pixels.c ---------------------------//
@@ -344,7 +337,6 @@ void	move_left(t_game *game);
 void	mouse_pos(t_game *game, int x, int y);
 int		mouse_mv(int x, int y, t_game *game);
 int		mouse_click(int button, int x, int y, t_game *game);
-
 
 //------------------------- minimap.c --------------------------//
 void	perso(t_game *game);

@@ -31,7 +31,7 @@ char	repl_char(t_game *game, int i, int j)
 			|| game->map[i - 1][j] == 'A'))
 		return ('0');
 	else if (game->map[i + 1] && (game->map[i + 1][j] == '0'
-			|| game->map[i + 1][j] == 'D' || game->map[i + 1][j] == 'A'))
+		|| game->map[i + 1][j] == 'D' || game->map[i + 1][j] == 'A'))
 		return ('0');
 	else
 		return ('1');

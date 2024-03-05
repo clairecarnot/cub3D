@@ -1,5 +1,19 @@
 #include "cub3D.h"
 
+void	init_loop(t_game *game)
+{
+	mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->screen_w / 2,
+		game->screen_h / 2);
+	mlx_mouse_hook(game->win_ptr, mouse_click, game);
+	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mv, game);
+	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
+	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
+		&handle_keyrelease, game);
+	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
+	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
+	mlx_loop(game->mlx_ptr);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -16,20 +30,10 @@ int	main(int argc, char **argv)
 		return (free_game(game), 1);
 	if (parse_content(game) == 1)
 		return (free_game(game), 1);
-	// dprintf(2, "All is OK\n");
 	init_mlx(game);
 	get_pos(game);
-	// dprintf(2, "All is OK2\n");
 	display(game, 0);
-	// dprintf(2, "All is OK3\n");
-	mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->screen_w / 2, game->screen_h / 2);
-	mlx_mouse_hook(game->win_ptr, mouse_click, game);
-	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mv, game);
-	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
-	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, game);
-	mlx_hook(game->win_ptr, ClientMessage, NoEventMask, &ft_exit, game);
-	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
-	mlx_loop(game->mlx_ptr);
+	init_loop(game);
 	free_game(game);
 	return (0);
 }

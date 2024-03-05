@@ -38,8 +38,6 @@ void	ft_lstfree_int(t_list **lst)
 		while (ptr)
 		{
 			tmp = ptr->next;
-//			if (ptr->content)
-//				free(ptr->content);
 			free(ptr);
 			ptr = tmp;
 		}
