@@ -120,8 +120,10 @@ void	project_sprites(t_game *game)
 		game->transformX = game->invDet * (game->dirY * game->spriteX - game->dirX * game->spriteY);
 		game->transformY = game->invDet * (-game->planeY * game->spriteX + game->planeX * game->spriteY);
 		game->spriteScreenX = (int)((game->screen_w / 2) * (1 + game->transformX / game->transformY));
+		
+		
 		//calculate height of the sprite on screen
-		game->vMoveScreen = (int)(VMOVE / game->transformY);
+		game->vMoveScreen = (int)(VMOVE / (game->transformY ));
 		game->spriteHeight = abs((int)(game->screen_h / (game->transformY))) / VDIV;
 		//	game->spriteHeight = abs((int)(game->screen_h / (game->transformY)));
 		//calculate lowest and highest pixel to fill in current stripe
@@ -163,7 +165,7 @@ void	project_sprites(t_game *game)
 					color = game->anim->tex[game->anim->w * game->texY + game->texX];
 					if ((color & 0x00FFFFFF) != 0)
 						game->buf[y][game->stripe] = color;
-					y++;
+					y ++;
 				}
 			}
 			game->stripe++;
