@@ -1,22 +1,22 @@
-WE ./img/color_theme/color_background_62.xpm
+WE ./img/blackandwhite_theme/black_background_26.2.xpm
 
-NO ./img/color_theme/color_background_88.xpm
-
-
+NO ./img/blackandwhite_theme/black_background_47.2.xpm
 
 
 
-		EA ./img/color_theme/color_background_86.xpm
+
+
+		EA ./img/blackandwhite_theme/black_background_56.2.xpm
 
 
 F 48,48,48    
 
 C          255,255,255
 
-SO 			./img/color_theme/color_background_89.3.xpm
+SO 			./img/blackandwhite_theme/black_background_63.2.xpm
 
 11111111
-100A0001
+100000A1
 11000001
 10000001
 100N0001

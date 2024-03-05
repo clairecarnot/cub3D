@@ -99,6 +99,7 @@ void	init_game_bonus(t_game *game)
 	game->col_floor = 0xededed;
 	game->col_wall = 0x3d3d3d;
 	game->col_door = 0x726b73;
+	game->col_anim = 0x02ff00;
 	game->box_size = 100;
 	game->x_mmap = 0;
 	game->y_mmap = 0;

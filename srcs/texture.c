@@ -92,6 +92,9 @@ void	texture(t_game *game, int x)
 		
 	pixel_color_walls(game, x);
 	pixel_color_ceiling_floor(game, x);
-	game->z_buffer[x] = game->perp_wall_dist;
-	pixel_color_sprites(game);
+	if (BONUS && game->num_sprites > 0)
+	{
+		game->z_buffer[x] = game->perp_wall_dist;
+		pixel_color_sprites(game);
+	}
 }

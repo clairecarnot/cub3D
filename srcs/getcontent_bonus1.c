@@ -111,8 +111,8 @@ t_anim	*anim_init(t_game *game, int update_time)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	anim->cur_time = 0;
 	anim->update_time = update_time;
-	anim->w = 64;
-	anim->h = 64;
+	anim->w = 20;
+	anim->h = 20;
 	anim->imgs = create_imgs_lst(game, anim);
 	if (!anim->imgs)
 		return (free(anim), NULL);
