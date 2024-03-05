@@ -31,7 +31,7 @@ int	cpy_map_from_file(t_game *game, char **argv, int rows)
 
 /*
  * get_map
- * The nb of lines already read was stocked in game->rows. We change and
+ * The nb of lines alread_y read was stocked in game->rows. We change and
  * 	now stock this nb in "rows". game->rows is reset to 0 and will 
  * 	now keep count of the nb of lines of the map
  * count_rows: will update 'rows' (lines before the map incl types + empty
@@ -81,7 +81,7 @@ void	delete_types_nl(t_game *game)
  * Calls get_types: we want exactly 6 types so we open the file
  * 	and get the 6 first non-empty char* ; the fd is returned
  * 	so that we can read what's next (the map)
- * Calls get_map: the first is already open and the head for read is
+ * Calls get_map: the first is alread_y open and the head for read is
  * 	stopped after the 6 types ; we then get all the rows that come
  * 	after, which correspond supposedly to the map
  */

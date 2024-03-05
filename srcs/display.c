@@ -102,11 +102,11 @@ int	display(t_game *game, int x)
 		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
 		if (x == (game->screen_w / 2))
 		{
-			game->mY = game->map_y;
-			game->mX = game->map_x;
-			game->dY = (int)game->side_dist_y;
-			game->dX = (int)game->side_dist_x;
-			// dprintf(2, "dY = %d, dX = %d\n", game->dY, game->dX);
+			game->m_y = game->map_y;
+			game->m_x = game->map_x;
+			game->d_y = (int)game->side_dist_y;
+			game->d_x = (int)game->side_dist_x;
+			// dprintf(2, "d_y = %d, d_x = %d\n", game->d_y, game->d_x);
 		}
 		x++;
 	}

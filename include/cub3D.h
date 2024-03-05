@@ -85,6 +85,7 @@ typedef struct s_game
 	int				cols;
 	unsigned int	**buf;
 	t_img			*image;
+
 	int				key_w;
 	int				key_s;
 	int				key_a;
@@ -122,7 +123,6 @@ typedef struct s_game
 	int				pitch;
 	int				draw_start;
 	int				draw_end;
-	
 	int				tex_num;
 	double			wall_x;
 	int				tex_x;
@@ -130,7 +130,6 @@ typedef struct s_game
 	double			step;
 	double			tex_pos;
 
-	// double			frameTime;
 	double			move_speed;
 
 	double			olddir_x;
@@ -140,12 +139,11 @@ typedef struct s_game
 	int				tex_h;
 	int				nb_tex;
 	unsigned int	**tex;
-	// int				*door_tex;
 
-	t_sprite	*sprite;
-	int			num_sprites;
+	t_sprite		*sprite;
+	int				num_sprites;
 	double			z_buffer[SCREEN_W];
-	int			*sprite_order;
+	int				*sprite_order;
 	double			*sprite_distance;
 	double			sprite_x;
 	double			sprite_y;
@@ -162,9 +160,8 @@ typedef struct s_game
 	int				draw_end_x;
 	int				vmove_screen;
 
-	//---- mini_map ----//
-	double			pX;
-	double			pY;
+	double			p_x;
+	double			p_y;
 	int				col_perso;
 	int				col_wall;
 	int				col_door;
@@ -173,186 +170,185 @@ typedef struct s_game
 	int				x_mmap;
 	int				y_mmap;
 	int				box_size;
-	//------------------//
 
-	int				mY;
-	int				mX;
-	int				dY;
-	int				dX;
+	int				m_y;
+	int				m_x;
+	int				d_y;
+	int				d_x;
 
 	int				click;
 }		t_game;
 
 /*--------------------------- main.c ---------------------------*/
-void	init_loop(t_game *game);
-int 	main(int argc, char **argv);
+void			init_loop(t_game *game);
+int				main(int argc, char **argv);
 
 /*--------------------------- clear.c ---------------------------*/
-int		close_if(int *fd);
-void	free_if(char *str);
-void	free_img(t_game *game, t_img *img);
-void 	free_game2(t_game *game);
-int		free_game(t_game *game);
+int				close_if(int *fd);
+void			free_if(char *str);
+void			free_img(t_game *game, t_img *img);
+void			free_game2(t_game *game);
+int				free_game(t_game *game);
 
 /*--------------------------- clear2.c ---------------------------*/
-void	free_tab_int(unsigned int **tab, int nb);
-void	free_tab(char **tab);
-void	ft_lstfree_int(t_list **lst);
+void			free_tab_int(unsigned int **tab, int nb);
+void			free_tab(char **tab);
+void			ft_lstfree_int(t_list **lst);
 
 /*--------------------------- getcontent1.c ---------------------------*/
-int		check_extension(char **argv);
-int		check_file_errors(char **argv);
-int		get_types(t_game *game, char **argv);
-void	is_newline(char *line, int *nl, int *rows);
-void	count_rows(t_game *game, int fd, int *rows);
+int				check_extension(char **argv);
+int				check_file_errors(char **argv);
+int				get_types(t_game *game, char **argv);
+void			is_newline(char *line, int *nl, int *rows);
+void			count_rows(t_game *game, int fd, int *rows);
 
 /*--------------------------- getcontent2.c ---------------------------*/
-int		cpy_map_from_file(t_game *game, char **argv, int rows);
-int		get_map(t_game *game, int fd, char **argv);
-void	delete_types_nl(t_game *game);
-int		sort_content(t_game *game, char **argv);
-int		get_file_content(t_game *game, char **argv);
+int				cpy_map_from_file(t_game *game, char **argv, int rows);
+int				get_map(t_game *game, int fd, char **argv);
+void			delete_types_nl(t_game *game);
+int				sort_content(t_game *game, char **argv);
+int				get_file_content(t_game *game, char **argv);
 
 /*--------------------------- getcontent_bonus1.c ---------------------------*/
-int	*get_one_img_data(t_game *game, t_img *img);
-t_img	*create_new_img(t_game *game, t_anim *anim);
-int	*slice_anim(t_game *game, t_anim *anim, int x, int y);
-t_list	*create_imgs_lst(t_game *game, t_anim *anim);
-t_anim	*anim_init(t_game *game, int update_time);
+int				*get_one_img_data(t_game *game, t_img *img);
+t_img			*create_new_img(t_game *game, t_anim *anim);
+int				*slice_anim(t_game *game, t_anim *anim, int x, int y);
+t_list			*create_imgs_lst(t_game *game, t_anim *anim);
+t_anim			*anim_init(t_game *game, int update_time);
 
 /*--------------------------- getcontent_bonus2.c ---------------------------*/
-int	sprite_init(t_game *game);
-int	create_sprite_utils(t_game *game);
-int	bonus_contents(t_game *game);
+int				sprite_init(t_game *game);
+int				create_sprite_utils(t_game *game);
+int				bonus_contents(t_game *game);
 
 /*--------------------------- parse_type1.c ---------------------------*/
-int		is_wspc_excl_nl(char c);
-int		check_types(char **new);
-void	swap_ptrs(char **s1, char **s2);
-int		ptr_to_swap(char *s);
-int		search_type(char *type, char **new);
+int				is_wspc_excl_nl(char c);
+int				check_types(char **new);
+void			swap_ptrs(char **s1, char **s2);
+int				ptr_to_swap(char *s);
+int				search_type(char *type, char **new);
 
 /*--------------------------- parse_type2.c ---------------------------*/
-int		check_alltypes(char **new);
-int		reorder_new(char **new);
-int		clean_types(char **new);
-char	*init_set(void);
-int		redef_types(t_game *game);
+int				check_alltypes(char **new);
+int				reorder_new(char **new);
+int				clean_types(char **new);
+char			*init_set(void);
+int				redef_types(t_game *game);
 
 /*--------------------------- parse_map1.c ---------------------------*/
-char	repl_char(t_game *game, int i, int j);
-int		replace_empty_chars(t_game *game);
+char			repl_char(t_game *game, int i, int j);
+int				replace_empty_chars(t_game *game);
 
 /*--------------------------- parse_map2.c ---------------------------*/
-int		len_max(char **tab);
-char	*redef_rows_bis(char *map, int lmax);
-char	*redef_rows(char *map, int lmax);
-int		rmv_end_nl(t_game *game);
-int		redef_map(t_game *game);
+int				len_max(char **tab);
+char			*redef_rows_bis(char *map, int lmax);
+char			*redef_rows(char *map, int lmax);
+int				rmv_end_nl(t_game *game);
+int				redef_map(t_game *game);
 
 /*--------------------------- parse_err_map.c ---------------------------*/
-int	valid_char(char c);
-int	valid_char_bonus(t_game *game, char c);
+int				valid_char(char c);
+int				valid_char_bonus(t_game *game, char c);
 
 /*--------------------------- parse_err_map.c ---------------------------*/
-int		contains_empty_nl(t_game *game);
-int		contains_forbid_chars(t_game *game);
-int		wrong_nb_player(t_game *game);
-int		map_not_closed(t_game *game);
-int		check_err_map(t_game *game);
+int				contains_empty_nl(t_game *game);
+int				contains_forbid_chars(t_game *game);
+int				wrong_nb_player(t_game *game);
+int				map_not_closed(t_game *game);
+int				check_err_map(t_game *game);
 
 /*--------------------------- parse_err_types.c ---------------------------*/
-int		check_chars(char *s, char c);
-t_img	*xpm_img(t_game *game, char *img_path, int w, int h);
-int		get_nb(char *color);
-int		*parse_colors(char *identifier);
-int		check_err_types(t_game *game);
+int				check_chars(char *s, char c);
+t_img			*xpm_img(t_game *game, char *img_path, int w, int h);
+int				get_nb(char *color);
+int				*parse_colors(char *identifier);
+int				check_err_types(t_game *game);
 
 /*--------------------------- parse_err_types2.c ---------------------------*/
-int	get_each_img_data(t_game *game, t_img *img, int i);
-int	get_imgs_data(t_game *game);
+int				get_each_img_data(t_game *game, t_img *img, int i);
+int				get_imgs_data(t_game *game);
 
 /*--------------------------- parsing.c ---------------------------*/
-int		tab_size(char **tab);
-int		parse_content(t_game *game);
+int				tab_size(char **tab);
+int				parse_content(t_game *game);
 
 //--------------------------- init.c ---------------------------//
-void	get_dir2(t_game *game, char c);
-void	get_dir(t_game *game, char c);
-void	get_pos(t_game *game);
-void	init_mlx(t_game *game);
-t_game	*init_game(void);
+void			get_dir2(t_game *game, char c);
+void			get_dir(t_game *game, char c);
+void			get_pos(t_game *game);
+void			init_mlx(t_game *game);
+t_game			*init_game(void);
 
 //--------------------------- handle.c ---------------------------//
-int		handle_no_event(t_game *game);
-int		handle_keypress(int keysym, t_game *game);
-int		handle_keyrelease(int keysym, t_game *game);
+int				handle_no_event(t_game *game);
+int				handle_keypress(int keysym, t_game *game);
+int				handle_keyrelease(int keysym, t_game *game);
 
 //--------------------------- display.c ---------------------------//
-int		init_buf(t_game *game);
-void	wall_size(t_game *game);
-void	dda_algo(t_game *game);
-void	init_side(t_game *game);
-int		display(t_game *game, int x);
+int				init_buf(t_game *game);
+void			wall_size(t_game *game);
+void			dda_algo(t_game *game);
+void			init_side(t_game *game);
+int				display(t_game *game, int x);
 
 //--------------------------- draw.c ---------------------------//
-void	draw(t_game *game);
+void			draw(t_game *game);
 
 //--------------------------- sprites.c ---------------------------//
-void	swap_dist(double *a, double *b);
-void	swap_sprite(t_sprite *a, t_sprite *b);
-void	sort_sprites(t_sprite *sprite, double *dist, int numspr);
-t_list	*ft_lstget(t_list *lst, int index);
-void	update_sprite(t_game *game);
+void			swap_dist(double *a, double *b);
+void			swap_sprite(t_sprite *a, t_sprite *b);
+void			sort_sprites(t_sprite *sprite, double *dist, int numspr);
+t_list			*ft_lstget(t_list *lst, int index);
+void			update_sprite(t_game *game);
 
 //--------------------------- texture.c ---------------------------//
-int		get_color(int *tab_c);
-void	pixel_color_ceiling_floor(t_game *game, int x);
-void	pixel_color_walls(t_game *game, int x);
-void	texture_wall_orientation(t_game *game);
-void	texture(t_game *game, int x);
+int				get_color(int *tab_c);
+void			pixel_color_ceiling_floor(t_game *game, int x);
+void			pixel_color_walls(t_game *game, int x);
+void			texture_wall_orientation(t_game *game);
+void			texture(t_game *game, int x);
 
-void	draw_box(t_game *game, int color, int x, int y);
-void	minimap(t_game *game);
+void			draw_box(t_game *game, int color, int x, int y);
+void			minimap(t_game *game);
 
 //--------------------------- texture2.c ---------------------------//
-void	project_sprites_ter(t_game *game);
-void	project_sprites_bis(t_game *game);
-void	project_sprites(t_game *game, int i);
-void	pixel_color_sprites(t_game *game);
+void			project_sprites_ter(t_game *game);
+void			project_sprites_bis(t_game *game);
+void			project_sprites(t_game *game, int i);
+void			pixel_color_sprites(t_game *game);
 
 //--------------------------- pixels.c ---------------------------//
 unsigned int	get_pixel_img(t_img src, int x, int y);
-void	put_pixel_img(t_img dst, int x, int y, int color);
-void	put_pixel_img_anims(t_img dst, int x, int y, int color);
+void			put_pixel_img(t_img dst, int x, int y, int color);
+void			put_pixel_img_anims(t_img dst, int x, int y, int color);
 
 //------------------------- move.c --------------------------//
-void	move_up(t_game *game);
-void	move_down(t_game *game);
-void	move_right(t_game *game);
-void	move_left(t_game *game);
+void			move_up(t_game *game);
+void			move_down(t_game *game);
+void			move_right(t_game *game);
+void			move_left(t_game *game);
 
 //------------------------- move_mouse.c --------------------------//
-void	mouse_pos(t_game *game, int x, int y);
-int		mouse_mv(int x, int y, t_game *game);
-int		mouse_click(int button, int x, int y, t_game *game);
+void			mouse_pos(t_game *game, int x, int y);
+int				mouse_mv(int x, int y, t_game *game);
+int				mouse_click(int button, int x, int y, t_game *game);
 
 //------------------------- minimap.c --------------------------//
-void	perso(t_game *game);
-void	minimap(t_game *game);
+void			perso(t_game *game);
+void			minimap(t_game *game);
 
 //------------------------- minimap2.c --------------------------//
-void	right_down(t_game *game, int y, int x);
-void	left_down(t_game *game, int y, int x);
-void	left_up(t_game *game, int y, int x);
-void	right_up(t_game *game, int y, int x);
+void			right_down(t_game *game, int y, int x);
+void			left_down(t_game *game, int y, int x);
+void			left_up(t_game *game, int y, int x);
+void			right_up(t_game *game, int y, int x);
 
 //------------------------- rotate.c --------------------------//
-void	rotate_right(t_game *game, double mult);
-void	rotate_left(t_game *game, double mult);
+void			rotate_right(t_game *game, double mult);
+void			rotate_left(t_game *game, double mult);
 
 //-------------------------- free_exit.c -------------------------//
-void	free_buffer(t_game *game);
-int		ft_exit(t_game *game);
+void			free_buffer(t_game *game);
+int				ft_exit(t_game *game);
 
 #endif

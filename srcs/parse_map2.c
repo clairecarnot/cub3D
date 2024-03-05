@@ -29,7 +29,7 @@ int	len_max(char **tab)
  * Malloc a char* of lenmax chars and fill it with the current 
  * 	map char* until the next newline :
  * 		if current char is a whitespace, replace it with 1
- *		else copy the char in the map
+ *		else cop_y the char in the map
  * If the len of the new char* is not lenmax chars, fill all 'empty
  * 	remaining chars' with a 2 until the next newline or EOF
  * If the end of line is \n, input \n, else if it is EOF, input EOF
@@ -66,7 +66,7 @@ char	*redef_rows_bis(char *map, int lmax)
 
 /*
  * redef_rows
- * If the map row is just an empty newline, return the copy of
+ * If the map row is just an empty newline, return the cop_y of
  * 	an empty newline, else go to the 2nd part of the function
  */
 

@@ -119,7 +119,7 @@ void	is_newline(char *line, int *nl, int *rows)
  * rows = nb of lines since the beginning of the file until the first
  * 	line of the map
  * game-rows: nb of lines of the map
- * The read head is already set after the 'types' char* ; we need to
+ * The read head is alread_y set after the 'types' char* ; we need to
  * 	pass all the empty newlines until we reach the first line of
  * 	the map and to increment rows each time
  * Once a non-empty line is reached, it means it is the first line of
