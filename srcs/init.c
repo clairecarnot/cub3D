@@ -4,18 +4,18 @@ void	get_dir2(t_game *game, char c)
 {
 	if (c == 'S')
 	{
-		game->dirX = 1;
-		game->dirY = 0;
-		game->planeX = 0;
-		game->planeY = -0.66;
+		game->dir_x = 1;
+		game->dir_y = 0;
+		game->plane_x = 0;
+		game->plane_y = -0.66;
 		return ;
 	}
 	if (c == 'N')
 	{
-		game->dirX = -1;
-		game->dirY = 0;
-		game->planeX = 0;
-		game->planeY = 0.66;
+		game->dir_x = -1;
+		game->dir_y = 0;
+		game->plane_x = 0;
+		game->plane_y = 0.66;
 		return ;
 	}
 }
@@ -24,18 +24,18 @@ void	get_dir(t_game *game, char c)
 {
 	if (c == 'E')
 	{
-		game->dirX = 0;
-		game->dirY = 1;
-		game->planeX = 0.66;
-		game->planeY = 0;
+		game->dir_x = 0;
+		game->dir_y = 1;
+		game->plane_x = 0.66;
+		game->plane_y = 0;
 		return ;
 	}
 	if (c == 'W')
 	{
-		game->dirX = 0;
-		game->dirY = -1;
-		game->planeX = -0.66;
-		game->planeY = 0;
+		game->dir_x = 0;
+		game->dir_y = -1;
+		game->plane_x = -0.66;
+		game->plane_y = 0;
 		return ;
 	}
 	get_dir2(game, c);
@@ -55,11 +55,11 @@ void	get_pos(t_game *game)
 			if (game->map[y][x] == 'N' || game->map[y][x] == 'S' ||
 				game->map[y][x] == 'E' || game->map[y][x] == 'W')
 			{
-				game->posY = (double)x + 0.5 ;
-				game->posX = (double)y + 0.5 ;
-				// game->posX = (double)x + 0.5 ;
-				// game->posY = (double)y + 0.5 ;
-				// dprintf(2, "posX= %f  posY = %f\n", game->posX, game->posY);
+				game->pos_y = (double)x + 0.5 ;
+				game->pos_x = (double)y + 0.5 ;
+				// game->pos_x = (double)x + 0.5 ;
+				// game->pos_y = (double)y + 0.5 ;
+				// dprintf(2, "pos_x= %f  pos_y = %f\n", game->pos_x, game->pos_y);
 				get_dir(game, game->map[y][x]);
 				game->map[y][x] = '0';
 			}
@@ -117,7 +117,7 @@ t_game	*init_game(void)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 5;
-	game->moveSpeed = 0.01;
+	game->move_speed = 0.01;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;

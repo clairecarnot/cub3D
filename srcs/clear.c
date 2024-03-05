@@ -34,10 +34,10 @@ void	free_game2(t_game *game)
 		free_img(game, game->spr);
 	if (game->sprite)
 		free(game->sprite);
-	if (game->spriteOrder)
-		free(game->spriteOrder);
-	if (game->spriteDistance)
-		free(game->spriteDistance);
+	if (game->sprite_order)
+		free(game->sprite_order);
+	if (game->sprite_distance)
+		free(game->sprite_distance);
 	if (game->anim)
 		(free(game->anim->tex), ft_lstfree_int(&game->anim->imgs),
 			free(game->anim));

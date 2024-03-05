@@ -21,37 +21,37 @@ int	init_buf(t_game *game)
 void	wall_size(t_game *game)
 {
 	if (game->side == 0)
-		game->perpWallDist = (game->sideDistX - game->deltaDistX);
+		game->perp_wall_dist = (game->side_dist_x - game->delta_dist_x);
 	else
-		game->perpWallDist = (game->sideDistY - game->deltaDistY);
-	game->lineHeight = (int)(game->screen_h / game->perpWallDist);
+		game->perp_wall_dist = (game->side_dist_y - game->delta_dist_y);
+	game->line_height = (int)(game->screen_h / game->perp_wall_dist);
 	// game->pitch = 100;
-	game->drawStart = - game->lineHeight / 2 + game->screen_h / 2 /*+ game->pitch*/;
-	if (game->drawStart < 0)
-		game->drawStart = 0;
-	game->drawEnd = game->lineHeight / 2 + game->screen_h / 2 /*+ game->pitch*/;
-	if (game->drawEnd >= game->screen_h)
-		game->drawEnd = game->screen_h - 1;
+	game->draw_start = - game->line_height / 2 + game->screen_h / 2 /*+ game->pitch*/;
+	if (game->draw_start < 0)
+		game->draw_start = 0;
+	game->draw_end = game->line_height / 2 + game->screen_h / 2 /*+ game->pitch*/;
+	if (game->draw_end >= game->screen_h)
+		game->draw_end = game->screen_h - 1;
 }
 
 void	dda_algo(t_game *game)
 {
 	while (game->hit == 0)
 	{
-		if (game->sideDistX < game->sideDistY)
+		if (game->side_dist_x < game->side_dist_y)
 		{
-			game->sideDistX += game->deltaDistX;
-			game->mapX += game->stepX;
+			game->side_dist_x += game->delta_dist_x;
+			game->map_x += game->step_x;
 			game->side = 0;
 		}
 		else
 		{
-			game->sideDistY += game->deltaDistY;
-			game->mapY += game->stepY;
+			game->side_dist_y += game->delta_dist_y;
+			game->map_y += game->step_y;
 			game->side = 1;
 		}
-		if (game->map[game->mapX][game->mapY] == '1' ||
-			game->map[game->mapX][game->mapY] == 'D' )
+		if (game->map[game->map_x][game->map_y] == '1' ||
+			game->map[game->map_x][game->map_y] == 'D' )
 			game->hit = 1;
 	}
 }
@@ -59,25 +59,25 @@ void	dda_algo(t_game *game)
 void	init_side(t_game *game)
 {
 	game->hit = 0;
-	if (game->rayDirX < 0)
+	if (game->raydir_x < 0)
 	{
-		game->stepX = -1;
-		game->sideDistX = (game->posX - game->mapX) * game->deltaDistX;
+		game->step_x = -1;
+		game->side_dist_x = (game->pos_x - game->map_x) * game->delta_dist_x;
 	}
 	else
 	{
-		game->stepX = 1;
-		game->sideDistX = (game->mapX + 1.0 - game->posX) * game->deltaDistX;
+		game->step_x = 1;
+		game->side_dist_x = (game->map_x + 1.0 - game->pos_x) * game->delta_dist_x;
 	}
-	if (game->rayDirY < 0)
+	if (game->raydir_y < 0)
 	{
-		game->stepY = -1;
-		game->sideDistY = (game->posY - game->mapY) * game->deltaDistY;
+		game->step_y = -1;
+		game->side_dist_y = (game->pos_y - game->map_y) * game->delta_dist_y;
 	}
 	else
 	{
-		game->stepY = 1;
-		game->sideDistY = (game->mapY + 1.0 - game->posY) * game->deltaDistY;
+		game->step_y = 1;
+		game->side_dist_y = (game->map_y + 1.0 - game->pos_y) * game->delta_dist_y;
 	}
 }
 
@@ -86,26 +86,26 @@ int	display(t_game *game, int x)
 	init_buf(game);
 	while (x < game->screen_w)
 	{
-		game->cameraX = 2 * x / (double)game->screen_w - 1;
-		game->rayDirX = game->dirX + game->planeX * game->cameraX;
-		game->rayDirY = game->dirY + game->planeY * game->cameraX;
-		game->mapX = (int)game->posX;
-		game->mapY = (int)game->posY;
-		if (game->rayDirX == 0)
-			game->deltaDistX = pow(10, 30);
+		game->camera_x = 2 * x / (double)game->screen_w - 1;
+		game->raydir_x = game->dir_x + game->plane_x * game->camera_x;
+		game->raydir_y = game->dir_y + game->plane_y * game->camera_x;
+		game->map_x = (int)game->pos_x;
+		game->map_y = (int)game->pos_y;
+		if (game->raydir_x == 0)
+			game->delta_dist_x = pow(10, 30);
 		else
-			game->deltaDistX = fabs(1 / game->rayDirX);
-		if (game->rayDirY == 0)
-			game->deltaDistY = pow(10, 30);
+			game->delta_dist_x = fabs(1 / game->raydir_x);
+		if (game->raydir_y == 0)
+			game->delta_dist_y = pow(10, 30);
 		else
-			game->deltaDistY = fabs(1 / game->rayDirY);
+			game->delta_dist_y = fabs(1 / game->raydir_y);
 		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
 		if (x == (game->screen_w / 2))
 		{
-			game->mY = game->mapY;
-			game->mX = game->mapX;
-			game->dY = (int)game->sideDistY;
-			game->dX = (int)game->sideDistX;
+			game->mY = game->map_y;
+			game->mX = game->map_x;
+			game->dY = (int)game->side_dist_y;
+			game->dX = (int)game->side_dist_x;
 			// dprintf(2, "dY = %d, dX = %d\n", game->dY, game->dX);
 		}
 		x++;

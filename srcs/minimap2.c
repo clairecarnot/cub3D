@@ -2,12 +2,12 @@
 
 void	right_down(t_game *game, int y, int x)
 {
-	game->pY = game->posX + 0;
-	game->pX = game->posY + 0;
+	game->pY = game->pos_x + 0;
+	game->pX = game->pos_y + 0;
 	while (++y < 75)
 	{
 		x = 39;
-		game->pX = game->posY;
+		game->pX = game->pos_y;
 		while (++x < 75)
 		{			
 			if (game->pY >= 0 && game->pX >= 0
@@ -33,12 +33,12 @@ void	right_down(t_game *game, int y, int x)
 
 void	left_down(t_game *game, int y, int x)
 {
-	game->pY = game->posX + 0;
-	game->pX = game->posY + 0;
+	game->pY = game->pos_x + 0;
+	game->pX = game->pos_y + 0;
 	while (++y < 75)
 	{
 		x = 41;
-		game->pX = game->posY;
+		game->pX = game->pos_y;
 		while (--x > 5)
 		{	
 			if (game->pY >= 0 && game->pX >= 0
@@ -64,12 +64,12 @@ void	left_down(t_game *game, int y, int x)
 
 void	left_up(t_game *game, int y, int x)
 {
-	game->pY = game->posX + 0;
-	game->pX = game->posY + 0;
+	game->pY = game->pos_x + 0;
+	game->pX = game->pos_y + 0;
 	while (--y > 5)
 	{
 		x = 41;
-		game->pX = game->posY;
+		game->pX = game->pos_y;
 		while (--x > 5)
 		{		
 			if (game->pY >= 0 && game->pX >= 0
@@ -95,12 +95,12 @@ void	left_up(t_game *game, int y, int x)
 
 void	right_up(t_game *game, int y, int x)
 {
-	game->pY = game->posX + 0;
-	game->pX = game->posY + 0;
+	game->pY = game->pos_x + 0;
+	game->pX = game->pos_y + 0;
 	while (--y > 5)
 	{
 		x = 39;
-		game->pX = game->posY;
+		game->pX = game->pos_y;
 		while (++x < 75)
 		{			
 			if (game->pY >= 0 && game->pX >= 0

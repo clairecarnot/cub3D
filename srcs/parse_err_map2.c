@@ -25,7 +25,7 @@ int	valid_char_bonus(t_game *game, char c)
 	if (c == 'A')
 	{
 		game->anim_flag = 1;
-		game->numSprites++;
+		game->num_sprites++;
 	}
 	return (0);
 }

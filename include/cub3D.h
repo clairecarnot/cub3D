@@ -96,47 +96,45 @@ typedef struct s_game
 
 	int				screen_w;
 	int				screen_h;
-	double			posX;
-	double			posY;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
-	double			time;//
-	double			oldtime;//
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 
-	double			cameraX;
-	double			rayDirX;
-	double			rayDirY;
-	int				mapX;
-	int				mapY;
-	double			sideDistX;
-	double			sideDistY;
-	double			deltaDistX;
-	double			deltaDistY;
-	double			perpWallDist;
-	int				stepX;
-	int				stepY;
+	double			camera_x;
+	double			raydir_x;
+	double			raydir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
 	int				hit;
 	int				side;
 
-	int				lineHeight;
+	int				line_height;
 	int				pitch;
-	int				drawStart;
-	int				drawEnd;
+	int				draw_start;
+	int				draw_end;
 	
-	int				texNum;
-	double			wallX;
-	int				texX;
-	int				texY;
+	int				tex_num;
+	double			wall_x;
+	int				tex_x;
+	int				tex_y;
 	double			step;
-	double			texPos;
+	double			tex_pos;
 
 	// double			frameTime;
-	double			moveSpeed;
+	double			move_speed;
 
-	double			oldDirX;
-	double			oldPlaneX;
+	double			olddir_x;
+	double			oldplane_x;
 
 	int				tex_w;
 	int				tex_h;
@@ -145,24 +143,24 @@ typedef struct s_game
 	// int				*door_tex;
 
 	t_sprite	*sprite;
-	int			numSprites;
-	double			ZBuffer[SCREEN_W];
-	int			*spriteOrder;
-	double			*spriteDistance;
-	double			spriteX;
-	double			spriteY;
-	double			invDet;
-	double			transformX;
-	double			transformY;
-	int				spriteScreenX;
-	int				spriteHeight;
-	int				spriteWidth;
+	int			num_sprites;
+	double			z_buffer[SCREEN_W];
+	int			*sprite_order;
+	double			*sprite_distance;
+	double			sprite_x;
+	double			sprite_y;
+	double			inv_det;
+	double			transform_x;
+	double			transform_y;
+	int				sprite_screen_x;
+	int				sprite_height;
+	int				sprite_width;
 	int				stripe;
-	int				drawStartY;
-	int				drawStartX;
-	int				drawEndY;
-	int				drawEndX;
-	int				vMoveScreen;
+	int				draw_start_y;
+	int				draw_start_x;
+	int				draw_end_y;
+	int				draw_end_x;
+	int				vmove_screen;
 
 	//---- mini_map ----//
 	double			pX;

@@ -29,15 +29,15 @@ int	sprite_init(t_game *game)
 
 int	create_sprite_utils(t_game *game)
 {
-	game->sprite = ft_calloc(game->numSprites, sizeof(t_sprite));
+	game->sprite = ft_calloc(game->num_sprites, sizeof(t_sprite));
 	if (!game->sprite)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	sprite_init(game);
-	game->spriteOrder = ft_calloc(game->numSprites, sizeof(int));
-	if (!game->spriteOrder)
+	game->sprite_order = ft_calloc(game->num_sprites, sizeof(int));
+	if (!game->sprite_order)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
-	game->spriteDistance = ft_calloc(game->numSprites, sizeof(double));
-	if (!game->spriteDistance)
+	game->sprite_distance = ft_calloc(game->num_sprites, sizeof(double));
+	if (!game->sprite_distance)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
 	return (0);
 }

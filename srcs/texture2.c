@@ -6,22 +6,22 @@ void	project_sprites_ter(t_game *game)
 	int				d;
 	unsigned int	color;
 
-	game->texX = (int)(256 * (game->stripe - (-game->spriteWidth / 2
-					+ game->spriteScreenX)) * game->anim->w
-			/ game->spriteWidth) / 256;
-	if (game->transformY > 0 && game->stripe > 0
+	game->tex_x = (int)(256 * (game->stripe - (-game->sprite_width / 2
+					+ game->sprite_screen_x)) * game->anim->w
+			/ game->sprite_width) / 256;
+	if (game->transform_y > 0 && game->stripe > 0
 		&& game->stripe < game->screen_w
-		&& game->transformY < game->ZBuffer[game->stripe])
+		&& game->transform_y < game->z_buffer[game->stripe])
 	{
-		y = game->drawStartY;
-		while (y < game->drawEndY)
+		y = game->draw_start_y;
+		while (y < game->draw_end_y)
 		{
-			d = (y - game->vMoveScreen) * 256 - game->screen_h * 128
-				+ game->spriteHeight * 128;
-			game->texY = ((d * game->anim->h)
-					/ game->spriteHeight) / 256;
+			d = (y - game->vmove_screen) * 256 - game->screen_h * 128
+				+ game->sprite_height * 128;
+			game->tex_y = ((d * game->anim->h)
+					/ game->sprite_height) / 256;
 			color = game->anim->tex[game->anim->w
-				* game->texY + game->texX];
+				* game->tex_y + game->tex_x];
 			if ((color & 0x00FFFFFF) != 0)
 				game->buf[y][game->stripe] = color;
 			y ++;
@@ -31,14 +31,14 @@ void	project_sprites_ter(t_game *game)
 
 void	project_sprites_bis(t_game *game)
 {
-	game->drawStartX = -game->spriteWidth / 2 + game->spriteScreenX;
-	if (game->drawStartX < 0)
-		game->drawStartX = 0;
-	game->drawEndX = game->spriteWidth / 2 + game->spriteScreenX;
-	if (game->drawEndX >= game->screen_w)
-		game->drawEndX = game->screen_w - 1;
-	game->stripe = game->drawStartX;
-	while (game->stripe < game->drawEndX)
+	game->draw_start_x = -game->sprite_width / 2 + game->sprite_screen_x;
+	if (game->draw_start_x < 0)
+		game->draw_start_x = 0;
+	game->draw_end_x = game->sprite_width / 2 + game->sprite_screen_x;
+	if (game->draw_end_x >= game->screen_w)
+		game->draw_end_x = game->screen_w - 1;
+	game->stripe = game->draw_start_x;
+	while (game->stripe < game->draw_end_x)
 	{
 		project_sprites_ter(game);
 		game->stripe++;
@@ -47,29 +47,29 @@ void	project_sprites_bis(t_game *game)
 
 void	project_sprites(t_game *game, int i)
 {
-	game->spriteX = game->sprite[game->spriteOrder[i]].x - game->posX;
-	game->spriteY = game->sprite[game->spriteOrder[i]].y - game->posY;
-	game->invDet = 1.0 / (game->planeX * game->dirY
-			- game->dirX * game->planeY);
-	game->transformX = game->invDet * (game->dirY * game->spriteX
-			- game->dirX * game->spriteY);
-	game->transformY = game->invDet * (-game->planeY * game->spriteX
-			+ game->planeX * game->spriteY);
-	game->spriteScreenX = (int)((game->screen_w / 2)
-			* (1 + game->transformX / game->transformY));
-	game->vMoveScreen = (int)(VMOVE / (game->transformY));
-	game->spriteHeight = abs((int)(game->screen_h
-				/ (game->transformY))) / VDIV;
-	game->drawStartY = -game->spriteHeight / 2
-		+ game->screen_h / 2 + game->vMoveScreen;
-	if (game->drawStartY < 0)
-		game->drawStartY = 0;
-	game->drawEndY = game->spriteHeight / 2
-		+ game->screen_h / 2 + game->vMoveScreen;
-	if (game->drawEndY >= game->screen_h)
-		game->drawEndY = game->screen_h - 1;
-	game->spriteWidth = abs((int)(game->screen_h
-				/ (game->transformY))) / UDIV;
+	game->sprite_x = game->sprite[game->sprite_order[i]].x - game->pos_x;
+	game->sprite_y = game->sprite[game->sprite_order[i]].y - game->pos_y;
+	game->inv_det = 1.0 / (game->plane_x * game->dir_y
+			- game->dir_x * game->plane_y);
+	game->transform_x = game->inv_det * (game->dir_y * game->sprite_x
+			- game->dir_x * game->sprite_y);
+	game->transform_y = game->inv_det * (-game->plane_y * game->sprite_x
+			+ game->plane_x * game->sprite_y);
+	game->sprite_screen_x = (int)((game->screen_w / 2)
+			* (1 + game->transform_x / game->transform_y));
+	game->vmove_screen = (int)(VMOVE / (game->transform_y));
+	game->sprite_height = abs((int)(game->screen_h
+				/ (game->transform_y))) / VDIV;
+	game->draw_start_y = -game->sprite_height / 2
+		+ game->screen_h / 2 + game->vmove_screen;
+	if (game->draw_start_y < 0)
+		game->draw_start_y = 0;
+	game->draw_end_y = game->sprite_height / 2
+		+ game->screen_h / 2 + game->vmove_screen;
+	if (game->draw_end_y >= game->screen_h)
+		game->draw_end_y = game->screen_h - 1;
+	game->sprite_width = abs((int)(game->screen_h
+				/ (game->transform_y))) / UDIV;
 	project_sprites_bis(game);
 }
 
@@ -78,18 +78,18 @@ void	pixel_color_sprites(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->numSprites)
+	while (i < game->num_sprites)
 	{
-		game->spriteOrder[i] = i;
-		game->spriteDistance[i] = ((game->posX - game->sprite[i].x)
-				* (game->posX - game->sprite[i].x) + (game->posY
-					- game->sprite[i].y) * (game->posY - game->sprite[i].y));
+		game->sprite_order[i] = i;
+		game->sprite_distance[i] = ((game->pos_x - game->sprite[i].x)
+				* (game->pos_x - game->sprite[i].x) + (game->pos_y
+					- game->sprite[i].y) * (game->pos_y - game->sprite[i].y));
 		i++;
 	}
-	sort_sprites(game->sprite, game->spriteDistance, game->numSprites);
+	sort_sprites(game->sprite, game->sprite_distance, game->num_sprites);
 	update_sprite(game);
 	i = 0;
-	while (i < game->numSprites)
+	while (i < game->num_sprites)
 	{
 		project_sprites(game, i);
 		i++;

@@ -21,20 +21,20 @@ void	open_door(t_game *game)
 	// 	dprintf(2, "%s", game->map[y]);
 	// 	y++;
 	// }
-	// dprintf(2, "game->map[%d][%d] = %c\n", game->mapX, game->mapY, game->map[game->mapX][game->mapY]);
-	// int	mX = game->mapX - 4;
-	// int	mY = game->mapY - 4;
+	// dprintf(2, "game->map[%d][%d] = %c\n", game->map_x, game->map_y, game->map[game->map_x][game->map_y]);
+	// int	mX = game->map_x - 4;
+	// int	mY = game->map_y - 4;
 
 	// dprintf(2, "mX = %d, mY = %d\n", mX, mY);
-	// dprintf(2, "game->mapX = %d, game->mapY = %d\n", game->mapX, game->mapY);
+	// dprintf(2, "game->map_x = %d, game->map_y = %d\n", game->map_x, game->map_y);
 	if (game->map[game->mX][game->mY] == 'D' && ((game->dX <= 2 && game->dX >= 0) || (game->dY <= 2 && game->dY >= 0)))
 	{
-		// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+		// dprintf(2, "---> map_x = %d, map_y = %d\n", game->map_x, game->map_y);
 		game->map[game->mX][game->mY] = 'd';
 	}
-	// else if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
+	// else if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->pos_x)][low(game->pos_y)] != 'd')
 	// {
-	// 	// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+	// 	// dprintf(2, "---> map_x = %d, map_y = %d\n", game->map_x, game->map_y);
 	// 	game->map[game->mX][game->mY] = 'D';
 	// }
 
@@ -53,9 +53,9 @@ void	close_door(t_game *game)
 		mY = 0;
 		while (game->map[mX][mY])
 		{
-			// dprintf(2, "---> posX = %f, posY = %f\n", game->posX, game->posY);
-			// dprintf(2, "---> (return)posX = %d, (return)posY = %d\n", return_low(game->posX), return_low(game->posY));
-			if (game->map[mX][mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
+			// dprintf(2, "---> pos_x = %f, pos_y = %f\n", game->pos_x, game->pos_y);
+			// dprintf(2, "---> (return)pos_x = %d, (return)pos_y = %d\n", return_low(game->pos_x), return_low(game->pos_y));
+			if (game->map[mX][mY] == 'd' && game->map[low(game->pos_x)][low(game->pos_y)] != 'd')
 			{
 				game->map[mX][mY] = 'D';
 			}
@@ -63,9 +63,9 @@ void	close_door(t_game *game)
 		}	
 		mX++;
 	}
-	// if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
+	// if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->pos_x)][low(game->pos_y)] != 'd')
 	// {
-	// 	// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+	// 	// dprintf(2, "---> map_x = %d, map_y = %d\n", game->map_x, game->map_y);
 	// 	game->map[game->mX][game->mY] = 'D';
 	// }
 
