@@ -174,6 +174,38 @@ void	project_sprites(t_game *game)
 	}
 }
 
+t_list	*ft_lstget(t_list *lst, int index)
+{
+	int	i;
+
+	if (!lst)
+		return (NULL);
+	if (!(lst->next))
+		return (lst);
+	i = 0;
+	while (i < index)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (lst);
+}
+
+void	update_sprite(t_game *game)
+{
+	t_list	*tmp;
+
+	tmp = game->anim->imgs;
+	game->anim->cur_time++;
+	if (game->anim->cur_time == game->anim->update_time)
+	{
+		game->anim->cur_time = 0;
+		game->anim->cur_nb++;
+		game->anim->cur_nb %= ft_lstsize(game->anim->imgs);
+		game->anim->tex = (int *)ft_lstget(tmp, game->anim->cur_nb)->content;
+	}
+}
+
 void	pixel_color_sprites(t_game *game)
 {
 	int	i;
@@ -200,6 +232,7 @@ void	pixel_color_sprites(t_game *game)
 	}
 //	sort_sprites(game, game->spriteOrder, game->spriteDistance, game->numSprites);
 	sort_sprites(game->sprite, game->spriteDistance, game->numSprites);
+	update_sprite(game);
 	/*
 	dprintf(2, "deuxieme\n");
 	int k = 0;

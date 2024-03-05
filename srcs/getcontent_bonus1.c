@@ -107,7 +107,7 @@ t_list	*create_imgs_lst(t_game *game, t_anim *anim)
 //		dprintf(2, "y = %d\n", y);
 		tmp = ft_lstnew(slice_anim(game, anim, x, y));
 		if (!tmp)
-			return (ft_lstfree(&imgs), NULL);
+			return (ft_lstfree_int(&imgs), NULL);
 		ft_lstadd_back(&imgs, tmp);
 		x += anim->w;
 		if (x >= game->spr->w)
@@ -129,11 +129,13 @@ t_anim	*anim_init(t_game *game, int update_time)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	anim->cur_time = 0;
 	anim->update_time = update_time;
-	anim->w = 16; //A MODIF
-	anim->h = 16; //A MODIF
+	anim->w = 64; //A MODIF
+	anim->h = 64; //A MODIF
 	anim->imgs = create_imgs_lst(game, anim);
 	if (!anim->imgs)
 		return (free(anim), NULL);
+	anim->tex = (int *)anim->imgs->content;
+	anim->cur_nb = 0;
 	anim->nb_img = ft_lstsize(anim->imgs);
 //	dprintf(2, "anim->nb_img = %d\n", anim->nb_img);
 	return (anim);
@@ -152,24 +154,24 @@ int	bonus_contents(t_game *game)
 	// }
 	if (game->anim_flag == 1)
 	{
-		/* Sprite avec animation
-		   game->spr = xpm_img(game, "./img/anim.xpm", 2400, 80);
-		   game->spr->addr = (char *) game->spr->full_buf;
-		   if (!game->spr)
-		   return (-1);
-		   game->anim = anim_init(game, 20);
-		   if (!game->anim)
-		   return (-1);
+		/* Sprite avec animation */
+		game->spr = xpm_img(game, "./img/player.xpm", 1920, 64);
+		game->spr->addr = (char *) game->spr->full_buf;
+		if (!game->spr)
+			return (-1);
+		game->anim = anim_init(game, 10000);
+		if (!game->anim)
+			return (-1);
+		/*   */
+		/* Sprite sans animation - a suppr
+		   game->anim = ft_calloc(1, sizeof(t_anim));
+		   game->anim->w = 16;
+		   game->anim->h = 16;
+		   t_img *img = xpm_img(game, "./img/coin_mario3.xpm", 16, 16);
+		   game->anim->tex = get_one_img_data(game, img);
+		   free(img);
 		   */
-		/* Sprite sans animation - a suppr*/
-		game->anim = ft_calloc(1, sizeof(t_anim));
-		game->anim->w = 16;
-		game->anim->h = 16;
-		t_img *img = xpm_img(game, "./img/coin_mario3.xpm", 16, 16);
-		game->anim->tex = get_one_img_data(game, img);
-		free(img);
-		/* */
-//		dprintf(2, "numSprites = %d\n", game->numSprites);
+		//		dprintf(2, "numSprites = %d\n", game->numSprites);
 		if (create_sprite_utils(game) == -1)
 			return (-1);
 	}
