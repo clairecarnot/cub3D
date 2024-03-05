@@ -101,7 +101,8 @@ void	init_game_bonus(t_game *game)
 	game->col_door = 0x726b73;
 	game->box_size = 100;
 	game->x_mmap = 0;
-	game->y_mmap = 0;	
+	game->y_mmap = 0;
+	game->click = -1;
 }
 
 t_game	*init_game(void)
@@ -116,8 +117,7 @@ t_game	*init_game(void)
 	game->tex_w = 64;
 	game->tex_h = 64;
 	game->nb_tex = 5;
-	game->moveSpeed = 0.1;
-	game->rotSpeed = 0.1;
+	game->moveSpeed = 0.01;
 	game->key_w = 0;
 	game->key_s = 0;
 	game->key_a = 0;

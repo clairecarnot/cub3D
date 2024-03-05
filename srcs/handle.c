@@ -32,11 +32,11 @@ void	open_door(t_game *game)
 		// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
 		game->map[game->mX][game->mY] = 'd';
 	}
-	else if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
-	{
-		// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
-		game->map[game->mX][game->mY] = 'D';
-	}
+	// else if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
+	// {
+	// 	// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+	// 	game->map[game->mX][game->mY] = 'D';
+	// }
 
 }
 
@@ -62,7 +62,13 @@ void	close_door(t_game *game)
 			mY++;
 		}	
 		mX++;
-	}	
+	}
+	// if (game->map[game->mX][game->mY] == 'd' && game->map[low(game->posX)][low(game->posY)] != 'd')
+	// {
+	// 	// dprintf(2, "---> mapX = %d, mapY = %d\n", game->mapX, game->mapY);
+	// 	game->map[game->mX][game->mY] = 'D';
+	// }
+
 }
 
 int	handle_no_event(t_game *game)
@@ -76,9 +82,9 @@ int	handle_no_event(t_game *game)
 	if (game->key_a)
 		move_left(game);
 	if (game->key_right)
-		rotate_right(game);
+		rotate_right(game, -1);
 	if (game->key_left)
-		rotate_left(game);
+		rotate_left(game, 1);
 	if (BONUS)
 	{
 		if (game->key_q)
