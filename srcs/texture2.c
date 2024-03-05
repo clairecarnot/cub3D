@@ -115,7 +115,6 @@ void	project_sprites(t_game *game)
 //		dprintf(2, "game->sprite[game->spriteOrder[i]].y = %f\n", game->sprite[game->spriteOrder[i]].y);
 		game->spriteX = game->sprite[game->spriteOrder[i]].x - game->posX;
 		game->spriteY = game->sprite[game->spriteOrder[i]].y - game->posY;
-		i++;
 		//transform sprite with the inverse camera matrix
 		game->invDet = 1.0 / (game->planeX * game->dirY - game->dirX * game->planeY);
 		game->transformX = game->invDet * (game->dirY * game->spriteX - game->dirX * game->spriteY);
@@ -139,13 +138,13 @@ void	project_sprites(t_game *game)
 			game->drawStartX = 0;
 		game->drawEndX = game->spriteWidth / 2 + game->spriteScreenX;
 		if (game->drawEndX >= game->screen_w)
-			game->drawEndX = game->screen_w - 1;
+			game->drawEndX = game->screen_w - 1; //MOINS UN ?
 		//loop through every vertical stripe of the sprite on screen
 		game->stripe = game->drawStartX;
 		while (game->stripe < game->drawEndX)
 		{
 			game->texX = (int)(256 * (game->stripe - (-game->spriteWidth / 2
-							+ game->spriteScreenX)) * game->anim->w / game->spriteWidth) / 256;
+					+ game->spriteScreenX)) * game->anim->w / game->spriteWidth) / 256;
 			//the conditions in the if are:
 			//1) it's in front of camera plane so you don't see things behind you
 			//2) it's on the screen (left)
@@ -159,7 +158,7 @@ void	project_sprites(t_game *game)
 				{
 					//dprintf(2, "y = %d\n", y);
 					//dprintf(2, "game->drawEndY = %d\n", game->drawEndY);
-					int d = (y) * 256 - game->screen_h * 128 + game->spriteHeight * 128;
+					int d = (y - game->vMoveScreen) * 256 - game->screen_h * 128 + game->spriteHeight * 128;
 					game->texY = ((d * game->anim->h) / game->spriteHeight) / 256;
 					color = game->anim->tex[game->anim->w * game->texY + game->texX];
 					if ((color & 0x00FFFFFF) != 0)
@@ -169,6 +168,7 @@ void	project_sprites(t_game *game)
 			}
 			game->stripe++;
 		}
+		i++;
 	}
 }
 
