@@ -53,14 +53,20 @@ int	replace_empty_chars(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == '2')
-				game->map[i][j] = repl_char(game, i, j);
-			j++;
-		}
-		i++;
+//		dprintf(2, "game->map[i] = %s", game->map[i]);
+//		if (ft_strlen(game->map[i]) == 1 && !ft_strncmp(game->map[i], "\n", 1))
+//			i++;
+//		else
+//		{
+			j = 0;
+			while (game->map[i][j])
+			{
+				if (game->map[i][j] == '2')
+					game->map[i][j] = repl_char(game, i, j);
+				j++;
+			}
+			i++;
+//		}
 	}
 	return (0);
 }
