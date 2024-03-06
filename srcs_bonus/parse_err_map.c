@@ -96,14 +96,14 @@ int	map_not_closed(t_game *game)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (game->map[i] && i < game->rows - 1)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->cols - 1] != '1')
 			return (ft_putstr_fd("Error\nMap not closed\n", 2), -1);
 		i++;
 	}
-	i = 1;
+	i = 0;
 	while (i < game->cols - 1)
 	{
 		if (game->map[0][i] != '1' || game->map[game->rows - 1][i] != '1')

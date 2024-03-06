@@ -72,15 +72,8 @@ char	*redef_rows_bis(char *map, int lmax)
 
 char	*redef_rows(char *map, int lmax)
 {
-	char	*new;
-
 	if (ft_strlen(map) == 1 && !ft_strncmp(map, "\n", 1))
-	{
-		new = ft_strdup(map);
-		if (!new)
-			return (ft_putstr_fd("Bad malloc\n", 2), NULL);
-		return (new);
-	}
+		return (ft_putstr_fd("Error\nEmpty newline in map\n", 2), NULL);
 	else
 		return (redef_rows_bis(map, lmax));
 }
@@ -135,6 +128,8 @@ int	redef_map(t_game *game)
 
 	i = 0;
 	lmax = len_max(game->map);
+	if (rmv_end_nl(game) == -1)
+		return (-1);
 	new = ft_calloc(game->rows + 1, sizeof(char *));
 	if (!new)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
@@ -148,8 +143,6 @@ int	redef_map(t_game *game)
 	game->cols = lmax - 1;
 	free_tab(game->map);
 	game->map = new;
-	if (rmv_end_nl(game) == -1)
-		return (-1);
 	replace_empty_chars(game);
 	return (0);
 }
