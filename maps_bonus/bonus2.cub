@@ -1,0 +1,20 @@
+NO ./img/blackandwhite_theme/ronds.xpm
+SO ./img/blackandwhite_theme/des.xpm	
+WE ./img/blackandwhite_theme/losanges.xpm
+EA ./img/blackandwhite_theme/briques.xpm
+
+   F	   	0,200,0
+
+
+
+
+C 0,128,255
+
+11111111111111111
+100000100S0000001
+100000100A0100101
+10000011000100001
+11111111D11111111
+10101000000000D01  
+10000000000000101
+11111111111111111

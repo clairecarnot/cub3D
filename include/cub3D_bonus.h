@@ -12,7 +12,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define BONUS 0
+# define BONUS 1
 # define DIST_MOUSE 20
 # define SCREEN_W 640
 # define UDIV 7

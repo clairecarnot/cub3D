@@ -1,4 +1,4 @@
-#include "include/cub3D.h"
+#include "include/cub3D_bonus.h"
 
 void	init_loop(t_game *game)
 {
