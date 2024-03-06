@@ -264,11 +264,12 @@ int				check_chars(char *s, char c);
 t_img			*xpm_img(t_game *game, char *img_path, int w, int h);
 int				get_nb(char *color);
 int				*parse_colors(char *identifier);
-int				check_err_types(t_game *game);
 
 /*--------------------------- parse_err_types2.c ---------------------------*/
 int				get_each_img_data(t_game *game, t_img *img, int i);
 int				get_imgs_data(t_game *game);
+int				check_err_types_bis(t_game *game);
+int				check_err_types(t_game *game);
 
 /*--------------------------- parsing.c ---------------------------*/
 int				tab_size(char **tab);
