@@ -1,5 +1,13 @@
 #include "cub3D.h" 
 
+void	get_var_door_bonus(t_game *game)
+{
+	game->m_y = game->map_y;
+	game->m_x = game->map_x;
+	game->d_y = (int)game->side_dist_y;
+	game->d_x = (int)game->side_dist_x;
+}
+
 int	sprite_init(t_game *game)
 {
 	int	i;

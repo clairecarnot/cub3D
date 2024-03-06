@@ -25,11 +25,10 @@ void	wall_size(t_game *game)
 	else
 		game->perp_wall_dist = (game->side_dist_y - game->delta_dist_y);
 	game->line_height = (int)(game->screen_h / game->perp_wall_dist);
-	// game->pitch = 100;
-	game->draw_start = - game->line_height / 2 + game->screen_h / 2 /*+ game->pitch*/;
+	game->draw_start = -game->line_height / 2 + game->screen_h / 2;
 	if (game->draw_start < 0)
 		game->draw_start = 0;
-	game->draw_end = game->line_height / 2 + game->screen_h / 2 /*+ game->pitch*/;
+	game->draw_end = game->line_height / 2 + game->screen_h / 2;
 	if (game->draw_end >= game->screen_h)
 		game->draw_end = game->screen_h - 1;
 }
@@ -62,12 +61,14 @@ void	init_side(t_game *game)
 	if (game->raydir_x < 0)
 	{
 		game->step_x = -1;
-		game->side_dist_x = (game->pos_x - game->map_x) * game->delta_dist_x;
+		game->side_dist_x = (game->pos_x
+				- game->map_x) * game->delta_dist_x;
 	}
 	else
 	{
 		game->step_x = 1;
-		game->side_dist_x = (game->map_x + 1.0 - game->pos_x) * game->delta_dist_x;
+		game->side_dist_x = (game->map_x
+				+ 1.0 - game->pos_x) * game->delta_dist_x;
 	}
 	if (game->raydir_y < 0)
 	{
@@ -77,7 +78,8 @@ void	init_side(t_game *game)
 	else
 	{
 		game->step_y = 1;
-		game->side_dist_y = (game->map_y + 1.0 - game->pos_y) * game->delta_dist_y;
+		game->side_dist_y = (game->map_y
+				+ 1.0 - game->pos_y) * game->delta_dist_y;
 	}
 }
 
@@ -101,13 +103,7 @@ int	display(t_game *game, int x)
 			game->delta_dist_y = fabs(1 / game->raydir_y);
 		(init_side(game), dda_algo(game), wall_size(game), texture(game, x));
 		if (x == (game->screen_w / 2))
-		{
-			game->m_y = game->map_y;
-			game->m_x = game->map_x;
-			game->d_y = (int)game->side_dist_y;
-			game->d_x = (int)game->side_dist_x;
-			// dprintf(2, "d_y = %d, d_x = %d\n", game->d_y, game->d_x);
-		}
+			get_var_door_bonus(game);
 		x++;
 	}
 	draw(game);

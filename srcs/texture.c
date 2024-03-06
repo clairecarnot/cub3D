@@ -22,10 +22,8 @@ void	pixel_color_ceiling_floor(t_game *game, int x)
 		y++;
 	}
 	y = game->draw_end;
-	// dprintf(2, "x = %d\n", x);
 	while (y < game->screen_h && y >= 0)
 	{
-		// dprintf(2, "y = %d, x = %d\n", y, x);
 		if (x < game->screen_w)
 			game->buf[y][x] = game->f_color;
 		y++;
@@ -42,7 +40,8 @@ void	pixel_color_walls(t_game *game, int x)
 	{
 		game->tex_y = (int)game->tex_pos & (game->tex_h - 1);
 		game->tex_pos += game->step;
-		color = game->tex[game->tex_num][game->tex_h * game->tex_y + game->tex_x];
+		color = game->tex[game->tex_num]
+		[game->tex_h * game->tex_y + game->tex_x];
 		game->buf[y][x] = color;
 		y++;
 	}
@@ -51,10 +50,7 @@ void	pixel_color_walls(t_game *game, int x)
 void	texture_wall_orientation(t_game *game)
 {
 	if (game->map[game->map_x][game->map_y] == 'D')
-	{
-		// dprintf(2, "---> map_x = %d, map_y = %d\n", game->map_x, game->map_y);
 		game->tex_num = 4;
-	}
 	else if (game->side == 0)
 	{
 		if (game->step_x == 1)
@@ -86,10 +82,9 @@ void	texture(t_game *game, int x)
 	if (game->side == 1 && game->raydir_y < 0)
 		game->tex_x = game->tex_w - game->tex_x - 1;
 	game->step = 1.0 * game->tex_h / game->line_height;
-	game->tex_pos = (game->draw_start /*- game->pitch*/
+	game->tex_pos = (game->draw_start
 			- game->screen_h / 2 + game->line_height / 2) * game->step;
 	texture_wall_orientation(game);
-		
 	pixel_color_walls(game, x);
 	pixel_color_ceiling_floor(game, x);
 	if (BONUS && game->num_sprites > 0)

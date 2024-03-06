@@ -12,10 +12,10 @@ srcs/getcontent1.c srcs/getcontent2.c srcs/getcontent_bonus1.c srcs/getcontent_b
 srcs/parsing.c srcs/parse_type1.c srcs/parse_type2.c \
 srcs/parse_map1.c srcs/parse_map2.c \
 srcs/parse_err_map.c srcs/parse_err_map2.c srcs/parse_err_types.c srcs/parse_err_types2.c \
-srcs/handle.c srcs/init.c \
+srcs/handle.c srcs/open_close_door.c srcs/init.c srcs/init2.c \
 srcs/display.c srcs/texture.c srcs/texture2.c srcs/draw.c srcs/pixels.c srcs/sprites.c \
 srcs/move.c srcs/rotate.c srcs/move_mouse.c \
-srcs/minimap.c srcs/minimap2.c \
+srcs/minimap.c srcs/minimap2.c srcs/minimap3.c \
 srcs/free_exit.c 
 
 OBJS = $(SRCS:.c=.o)
