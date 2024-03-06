@@ -55,9 +55,9 @@ int	bonus_contents(t_game *game)
 	if (game->anim_flag == 1)
 	{
 		game->spr = xpm_img(game, "./img/nounoursvert.xpm", 160, 20);
-		game->spr->addr = (char *) game->spr->full_buf;
 		if (!game->spr)
 			return (-1);
+		game->spr->addr = (char *) game->spr->full_buf;
 		game->anim = anim_init(game, 10000);
 		if (!game->anim)
 			return (-1);

@@ -215,7 +215,7 @@ int				get_file_content(t_game *game, char **argv);
 int				*get_one_img_data(t_img *img, t_anim *anim);
 t_img			*create_new_img(t_game *game, t_anim *anim);
 int				*slice_anim(t_game *game, t_anim *anim, int x, int y);
-t_list			*create_imgs_lst(t_game *game, t_anim *anim);
+t_list			*create_imgs_lst(t_game *game, t_anim *anim, int x, int y);
 t_anim			*anim_init(t_game *game, int update_time);
 
 /*--------------------------- getcontent_bonus2.c ---------------------------*/

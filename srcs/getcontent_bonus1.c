@@ -77,21 +77,22 @@ int	*slice_anim(t_game *game, t_anim *anim, int x, int y)
 	return (tex);
 }
 
-t_list	*create_imgs_lst(t_game *game, t_anim *anim)
+t_list	*create_imgs_lst(t_game *game, t_anim *anim, int x, int y)
 {
-	int		x;
-	int		y;
+	int		*tex;
 	t_list	*imgs;
 	t_list	*tmp;
 
-	x = 0;
-	y = 0;
 	imgs = NULL;
 	while (y < game->spr->h)
 	{
-		tmp = ft_lstnew(slice_anim(game, anim, x, y));
-		if (!tmp)
+		tex = slice_anim(game, anim, x, y);
+		if (!tex)
 			return (ft_lstfree_int(&imgs), NULL);
+		tmp = ft_lstnew(tex);
+		if (!tmp)
+			return (ft_putstr_fd("Bad malloc\n", 2), free(tex),
+				ft_lstfree_int(&imgs), NULL);
 		ft_lstadd_back(&imgs, tmp);
 		x += anim->w;
 		if (x >= game->spr->w)
@@ -106,7 +107,11 @@ t_list	*create_imgs_lst(t_game *game, t_anim *anim)
 t_anim	*anim_init(t_game *game, int update_time)
 {
 	t_anim	*anim;
+	int		x;
+	int		y;
 
+	x = 0;
+	y = 0;
 	anim = ft_calloc(1, sizeof(t_anim));
 	if (!anim)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
@@ -114,7 +119,7 @@ t_anim	*anim_init(t_game *game, int update_time)
 	anim->update_time = update_time;
 	anim->w = 20;
 	anim->h = 20;
-	anim->imgs = create_imgs_lst(game, anim);
+	anim->imgs = create_imgs_lst(game, anim, x, y);
 	if (!anim->imgs)
 		return (free(anim), NULL);
 	anim->tex = (int *)anim->imgs->content;
