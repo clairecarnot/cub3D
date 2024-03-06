@@ -1,46 +1,5 @@
 #include "../include/cub3D.h"
 
-void	get_dir2(t_game *game, char c)
-{
-	if (c == 'S')
-	{
-		game->dir_x = 1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = -0.66;
-		return ;
-	}
-	if (c == 'N')
-	{
-		game->dir_x = -1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = 0.66;
-		return ;
-	}
-}
-
-void	get_dir(t_game *game, char c)
-{
-	if (c == 'E')
-	{
-		game->dir_x = 0;
-		game->dir_y = 1;
-		game->plane_x = 0.66;
-		game->plane_y = 0;
-		return ;
-	}
-	if (c == 'W')
-	{
-		game->dir_x = 0;
-		game->dir_y = -1;
-		game->plane_x = -0.66;
-		game->plane_y = 0;
-		return ;
-	}
-	get_dir2(game, c);
-}
-
 void	get_pos(t_game *game)
 {
 	int	x;
@@ -57,9 +16,6 @@ void	get_pos(t_game *game)
 			{
 				game->pos_y = (double)x + 0.5 ;
 				game->pos_x = (double)y + 0.5 ;
-				// game->pos_x = (double)x + 0.5 ;
-				// game->pos_y = (double)y + 0.5 ;
-				// dprintf(2, "pos_x= %f  pos_y = %f\n", game->pos_x, game->pos_y);
 				get_dir(game, game->map[y][x]);
 				game->map[y][x] = '0';
 			}
@@ -67,8 +23,6 @@ void	get_pos(t_game *game)
 		}
 		y++;
 	}
-
-	
 }
 
 void	init_mlx(t_game *game)
@@ -88,9 +42,6 @@ void	init_mlx(t_game *game)
 			&game->image->bpp, &game->image->size, &game->image->endian);
 	if (!game->image->full_buf)
 		(free_game(game), exit (1));
-	// game->img_map = ft_calloc(sizeof(t_img), 1);
-	// if (!game->img_map)
-	// 	(free_game(game), exit(1));
 }
 
 void	init_game_bonus(t_game *game)

@@ -219,6 +219,7 @@ t_list			*create_imgs_lst(t_game *game, t_anim *anim);
 t_anim			*anim_init(t_game *game, int update_time);
 
 /*--------------------------- getcontent_bonus2.c ---------------------------*/
+void			get_var_door_bonus(t_game *game);
 int				sprite_init(t_game *game);
 int				create_sprite_utils(t_game *game);
 int				bonus_contents(t_game *game);
@@ -276,16 +277,24 @@ int				tab_size(char **tab);
 int				parse_content(t_game *game);
 
 //--------------------------- init.c ---------------------------//
-void			get_dir2(t_game *game, char c);
-void			get_dir(t_game *game, char c);
 void			get_pos(t_game *game);
 void			init_mlx(t_game *game);
+void			init_game_bonus(t_game *game);
 t_game			*init_game(void);
+
+//--------------------------- init2.c ---------------------------//
+void			get_dir2(t_game *game, char c);
+void			get_dir(t_game *game, char c);
 
 //--------------------------- handle.c ---------------------------//
 int				handle_no_event(t_game *game);
 int				handle_keypress(int keysym, t_game *game);
 int				handle_keyrelease(int keysym, t_game *game);
+
+//--------------------------- open_close_door.c ---------------------------//
+int				low(double nb);
+void			open_door(t_game *game);
+void			close_door(t_game *game);
 
 //--------------------------- display.c ---------------------------//
 int				init_buf(t_game *game);
@@ -345,6 +354,12 @@ void			right_down(t_game *game, int y, int x);
 void			left_down(t_game *game, int y, int x);
 void			left_up(t_game *game, int y, int x);
 void			right_up(t_game *game, int y, int x);
+
+//------------------------- minimap3.c --------------------------//
+void			right_down_2(t_game *game, int y, int x);
+void			left_down_2(t_game *game, int y, int x);
+void			left_up_2(t_game *game, int y, int x);
+void			right_up_2(t_game *game, int y, int x);
 
 //------------------------- rotate.c --------------------------//
 void			rotate_right(t_game *game, double mult);
