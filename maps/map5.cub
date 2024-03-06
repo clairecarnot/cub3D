@@ -1,25 +1,25 @@
-WE ./img/color_theme/color_background_62.xpm
+WE ./img/color_theme/bleu.xpm
 
-NO ./img/color_theme/color_background_88.2.xpm
-
-
+NO ./img/color_theme/gris.xpm
 
 
 
-		EA ./img/color_theme/color_background_86.xpm
+
+
+		EA ./img/color_theme/rose.xpm
 
 
 F 48,48,48    
 
 C          255,255,255
 
-SO 			./img/color_theme/color_background_89.3.xpm
+SO 			./img/color_theme/beige.xpm
 
 11111111
-100A0001
-11000001
 10000001
-100011D1
-100N10A1
+11000001
+100000001
+10001111
+100N0001
 11111111
 

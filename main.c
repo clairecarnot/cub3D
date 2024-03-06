@@ -2,10 +2,13 @@
 
 void	init_loop(t_game *game)
 {
-	mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->screen_w / 2,
-		game->screen_h / 2);
-	mlx_mouse_hook(game->win_ptr, mouse_click, game);
-	mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mv, game);
+	if (BONUS)
+	{
+		mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->screen_w / 2,
+			game->screen_h / 2);
+		mlx_mouse_hook(game->win_ptr, mouse_click, game);
+		mlx_hook(game->win_ptr, MotionNotify, PointerMotionMask, mouse_mv, game);
+	}
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
 		&handle_keyrelease, game);

@@ -1,19 +1,19 @@
-WE ./img/blackandwhite_theme/black_background_26.2.xpm
+WE ./img/blackandwhite_theme/losanges.xpm
 
-NO ./img/blackandwhite_theme/black_background_47.2.xpm
-
-
+NO ./img/blackandwhite_theme/ronds.xpm
 
 
 
-		EA ./img/blackandwhite_theme/black_background_56.2.xpm
+
+
+		EA ./img/blackandwhite_theme/briques.xpm
 
 
 F 48,48,48    
 
 C          255,255,255
 
-SO 			./img/blackandwhite_theme/black_background_63.2.xpm
+SO 			./img/blackandwhite_theme/des.xpm
 
 11111111111111111
 100000A1000000001

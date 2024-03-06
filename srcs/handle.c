@@ -11,9 +11,9 @@ int	handle_no_event(t_game *game)
 	if (game->key_a)
 		move_left(game);
 	if (game->key_right)
-		rotate_right(game, -1);
+		rotate_right(game, -0.3);
 	if (game->key_left)
-		rotate_left(game, 1);
+		rotate_left(game, 0.3);
 	if (BONUS)
 	{
 		if (game->key_q)
