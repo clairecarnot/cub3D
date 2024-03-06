@@ -1,21 +1,21 @@
-#include "cub3D.h" 
+#include "cub3D.h"
 
-int	*get_one_img_data(t_game *game, t_img *img)
+int	*get_one_img_data(t_img *img, t_anim *anim)
 {
 	int	x;
 	int	y;
 	int	*tex;
 
-	tex = ft_calloc(game->tex_w * game->tex_h, sizeof(int));
+	tex = ft_calloc(anim->w * anim->h, sizeof(int));
 	if (!tex)
 		return (ft_putstr_fd("Bad malloc\n", 2), NULL);
 	y = 0;
-	while (y < game->tex_h)
+	while (y < anim->h)
 	{
 		x = 0;
-		while (x < game->tex_w)
+		while (x < anim->w)
 		{
-			tex[y * game->tex_w + x] = img->full_buf[y * game->tex_w + x];
+			tex[y * anim->w + x] = img->full_buf[y * anim->w + x];
 			x++;
 		}
 		y++;
@@ -71,7 +71,8 @@ int	*slice_anim(t_game *game, t_anim *anim, int x, int y)
 		}
 		i++;
 	}
-	tex = get_one_img_data(game, img);
+	tex = get_one_img_data(img, anim);
+	mlx_destroy_image(game->mlx_ptr, img->img_ptr);
 	free(img);
 	return (tex);
 }

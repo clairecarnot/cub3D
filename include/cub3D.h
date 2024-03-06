@@ -47,6 +47,7 @@ typedef struct s_img
 typedef struct s_anim
 {
 	t_list	*imgs;
+	int		**tab_tex;
 	int		nb_img;
 	int		cur_nb;
 	int		cur_time;
@@ -194,6 +195,7 @@ int				free_game(t_game *game);
 void			free_tab_int(unsigned int **tab, int nb);
 void			free_tab(char **tab);
 void			ft_lstfree_int(t_list **lst);
+void			lstint_free(t_list **lst);
 
 /*--------------------------- getcontent1.c ---------------------------*/
 int				check_extension(char **argv);
@@ -210,7 +212,7 @@ int				sort_content(t_game *game, char **argv);
 int				get_file_content(t_game *game, char **argv);
 
 /*--------------------------- getcontent_bonus1.c ---------------------------*/
-int				*get_one_img_data(t_game *game, t_img *img);
+int				*get_one_img_data(t_img *img, t_anim *anim);
 t_img			*create_new_img(t_game *game, t_anim *anim);
 int				*slice_anim(t_game *game, t_anim *anim, int x, int y);
 t_list			*create_imgs_lst(t_game *game, t_anim *anim);

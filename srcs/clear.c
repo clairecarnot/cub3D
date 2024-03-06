@@ -39,8 +39,7 @@ void	free_game2(t_game *game)
 	if (game->sprite_distance)
 		free(game->sprite_distance);
 	if (game->anim)
-		(free(game->anim->tex), ft_lstfree_int(&game->anim->imgs),
-			free(game->anim));
+		(ft_lstfree_int(&game->anim->imgs), free(game->anim));
 	if (game->buf)
 		free_buffer(game);
 	if (game->win_ptr)
