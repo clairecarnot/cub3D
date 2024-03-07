@@ -130,6 +130,8 @@ int	redef_map(t_game *game)
 	lmax = len_max(game->map);
 	if (rmv_end_nl(game) == -1)
 		return (-1);
+	if (tab_size(game->map) < 3)
+		return (ft_putstr_fd("Invalid map\n", 2), -1);
 	new = ft_calloc(game->rows + 1, sizeof(char *));
 	if (!new)
 		return (ft_putstr_fd("Bad malloc\n", 2), -1);
