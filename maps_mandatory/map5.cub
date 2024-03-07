@@ -1,25 +1,19 @@
-WE ./img/color_theme/bleu.xpm
+C 255,255,255
 
 NO ./img/color_theme/gris.xpm
 
+WE ./img/color_theme/bleu.xpm
+
+
+        F 0,10,0    
 
 
 
+EA ./img/color_theme/rose.xpm
 
-		EA ./img/color_theme/rose.xpm
+SO ./img/color_theme/beige.xpm
 
 
-F 48,48,48    
-
-C          255,255,255
-
-SO 			./img/color_theme/beige.xpm
-
-11111111
-10000001
-11000001
-100000001
-10001111
-100N0001
-11111111
-
+1
+1N1
+1
